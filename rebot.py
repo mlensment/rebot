@@ -1,6 +1,7 @@
 from SimpleCV import *
 cam = Camera(0, {"width":640, "height":480})
 
+i = 0
 while True:
     img = cam.getImage()
     bm = BlobMaker()
@@ -11,3 +12,6 @@ while True:
         locationStr = "("+str(blobs[0].x)+","+str(blobs[0].y)+")"
         img.dl().text(locationStr,(0,0),color=Color.RED)
         img.show()
+
+    i = i + 1
+    print i
