@@ -1,9 +1,7 @@
-from SimpleCV import *
-cam = Camera()
-disp = Display()
-
-while disp.isNotDone():
-    img = cam.getImage()
-    if disp.mouseLeft:
-        break
-    img.save(disp)
+from SimpleCV import*
+cam = Camera(0, {"width":640, "height":480})
+while True:
+   img = cam.getImage().grayscale().threshold(45)
+   blob = img.findBlobs()
+   print blob
+   img.show()
