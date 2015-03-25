@@ -1,8 +1,13 @@
 from SimpleCV import *
+cam = Camera(0, {"width":640, "height":480})
 
-cam = Camera(0, {"width":1280, "height":1024})
-img = cam.getImage()
-blobs = img.findBlobs()
-blobs.draw()
+while True:
+    img = cam.getImage()
+    bm = BlobMaker()
+    blobs = bm.extractFromBinary(img.invert().binarize(thresh=240).invert(),img)
 
-img.save("/home/pi/test.jpg")
+    if(len(blobs) > 0):
+        blobs[0].draw()
+        locationStr = "("+str(blobs[0].x)+","+str(blobs[0].y)+")"
+        img.dl().text(locationStr,(0,0),color=Color.RED)
+        img.show()
