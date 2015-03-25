@@ -1,7 +1,7 @@
 from SimpleCV import*
-cam = Camera()
+cam = Camera(0, {"width":640, "height":480})
 while True:
-   img = cam.getImage().grayscale().threshold(45)
+   img = cam.getImage()
    blob = img.findBlobs()
    print blob
    img.show()
