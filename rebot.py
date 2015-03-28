@@ -10,5 +10,6 @@ while True:
         blobs[0].draw()
         locationStr = "("+str(blobs[0].x)+","+str(blobs[0].y)+")"
         img.dl().text(locationStr,(0,0),color=Color.RED)
-
-    img.show()
+    
+    rotate = img.rotate(-45);
+    rotate.show()
