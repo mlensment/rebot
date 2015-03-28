@@ -3,6 +3,7 @@ cam = Camera(0, {"width":640, "height":480})
 
 while True:
     img = cam.getImage()
+    img = img.rotate(90)
     bm = BlobMaker()
     blobs = bm.extractFromBinary(img.invert().binarize(thresh=240).invert(),img)
 
@@ -11,5 +12,4 @@ while True:
         locationStr = "("+str(blobs[0].x)+","+str(blobs[0].y)+")"
         img.dl().text(locationStr,(0,0),color=Color.RED)
     
-    rotate = img.rotate(90);
-    rotate.show()
+    img.show()
