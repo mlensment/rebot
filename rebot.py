@@ -11,5 +11,5 @@ while True:
         locationStr = "("+str(blobs[0].x)+","+str(blobs[0].y)+")"
         img.dl().text(locationStr,(0,0),color=Color.RED)
     
-    rotate = img.rotate(-45);
+    rotate = img.rotate(90);
     rotate.show()
