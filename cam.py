@@ -1,9 +1,26 @@
-import SimpleCV
-import time
-webcam_stream = SimpleCV.Camera(0,threaded=True)
-start = time.time()
-i = 0
-while (time.time()-start)<1:
-    raw_image = webcam_stream.getImage()
-    i = i + 1
-print(i)
+from SimpleCV import *
+cam = Camera(0, {"width":640, "height":640})
+
+while True:
+    img = cam.getImage()
+    img = img.rotate(90)
+
+    blob_maker = BlobMaker()
+    orig_img = image.colorDistance(Color.WHITE)
+    b_img = orig_img.binarize(230)
+    m_img = b_img.morphOpen().morphClose()
+    inv_img = m_img.invert()
+    blobs = blob_maker.extractFromBinary(inverted_img, orig_img)
+    centroid = blobs[0].centroid()
+    b_img.show()
+
+#
+#
+#
+# blob_maker = BlobMaker()
+# orig_img = image.colorDistance(Color.WHITE)
+# b_img = orig_img.binarize(230)
+# m_img = b_img.morphOpen().morphClose()
+# inv_img = m_img.invert()
+# blobs = blob_maker.extractFromBinary(inverted_img, orig_img)
+# centroid = blobs[0].centroid()
