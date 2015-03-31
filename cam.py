@@ -14,7 +14,7 @@ while True:
     if(len(blobs) > 0):
         # centroid = blobs[0].centroid()
         blobs[0].draw()
-    orig_img.show()
+    inv_img.show()
 
 #
 #
