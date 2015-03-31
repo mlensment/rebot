@@ -1,6 +1,7 @@
 from SimpleCV import *
 cam = Camera(0, {"width":640, "height":640})
 
+i = 0
 while True:
     img = cam.getImage()
     img = img.rotate(90)
@@ -14,7 +15,9 @@ while True:
     if(len(blobs) > 0):
         # centroid = blobs[0].centroid()
         blobs[0].draw()
-    orig_img.show()
+        print i
+    # orig_img.show()
+    i += 1
 
 #
 #
