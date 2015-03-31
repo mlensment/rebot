@@ -10,7 +10,7 @@ while True:
     b_img = orig_img.binarize(190) #230
     m_img = b_img.morphOpen().morphClose()
     inv_img = m_img.invert()
-    blobs = blob_maker.extractFromBinary(inv_img, orig_img, 50)
+    blobs = blob_maker.extractFromBinary(inv_img, orig_img, 50, 150)
     if(len(blobs) > 0):
         # centroid = blobs[0].centroid()
         blobs[0].draw()
