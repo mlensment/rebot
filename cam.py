@@ -9,14 +9,13 @@ while True:
     blob_maker = BlobMaker()
     orig_img = img.colorDistance(Color.WHITE)
     b_img = orig_img.binarize(190) #230
-    b_img.show()
     # m_img = b_img.morphOpen().morphClose()
-    # inv_img = m_img.invert()
-    # blobs = blob_maker.extractFromBinary(inv_img, orig_img, 80, 400)
-    # if(len(blobs) > 0):
-    #     # centroid = blobs[0].centroid()
-    #     blobs[0].draw()
-    # orig_img.show()
+    inv_img = b_img.invert()
+    blobs = blob_maker.extractFromBinary(inv_img, orig_img, 80, 400)
+    if(len(blobs) > 0):
+        # centroid = blobs[0].centroid()
+        blobs[0].draw()
+    orig_img.show()
     # i += 1
     # print i
 
