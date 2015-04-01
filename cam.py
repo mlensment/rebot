@@ -7,7 +7,7 @@ while True:
     img = img.rotate(90)
     blob_maker = BlobMaker()
     orig_img = img.colorDistance(Color.WHITE)
-    b_img = orig_img.binarize(190) #230
+    b_img = orig_img.binarize(200) #230
     b_img.show()
     # m_img = b_img.morphOpen().morphClose()
     # inv_img = b_img.invert()
