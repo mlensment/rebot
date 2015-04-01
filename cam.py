@@ -5,12 +5,12 @@ i = 0
 while True:
     img = cam.getImage()
     img = img.rotate(90)
+    img.show()
 
-    blob_maker = BlobMaker()
-    orig_img = img.colorDistance(Color.WHITE)
-    b_img = orig_img.binarize(190) #230
-    m_img = b_img.morphOpen().morphClose()
-    m_img.show()
+    # blob_maker = BlobMaker()
+    # orig_img = img.colorDistance(Color.WHITE)
+    # b_img = orig_img.binarize(190) #230
+    # m_img = b_img.morphOpen().morphClose()
     # inv_img = b_img.invert()
     # blobs = blob_maker.extractFromBinary(inv_img, orig_img, 80, 400)
     # if(len(blobs) > 0):
