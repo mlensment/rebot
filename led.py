@@ -2,8 +2,8 @@ import numpy as np
 import cv2
 
 cap = cv2.VideoCapture(0)
-cap.set(3,320)
-cap.set(4,320)
+cap.set(3,640)
+cap.set(4,640)
 
 while(True):
     # Capture frame-by-frame
