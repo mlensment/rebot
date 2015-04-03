@@ -1,6 +1,7 @@
 import numpy as np
 import cv2
 import cv2.cv as cv
+import frame
 
 class Camera:
     def __init__(self):
@@ -9,6 +10,7 @@ class Camera:
         self.cap.set(cv.CV_CAP_PROP_FRAME_WIDTH, self.width)
         self.cap.set(cv.CV_CAP_PROP_FRAME_HEIGHT, self.height)
 
+    # Reads raw frame
     def read(self):
         ret, frame = self.cap.read()
 
@@ -17,6 +19,10 @@ class Camera:
         rotated = cv2.warpAffine(frame, rotation_matrix, (self.width, self.height))
 
         return frame
+
+    # Reads raw frame and creates a Frame object
+    def read_frame(self):
+        return frame.Frame(self.read_frame)
 
     def snapshot(self, filename = 'shot.jpg'):
         cv2.imwrite(filename, self.read())

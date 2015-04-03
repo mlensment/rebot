@@ -22,7 +22,7 @@ while(True):
     # convert to grayscale
     gray = cv2.cvtColor(rotated, cv2.COLOR_BGR2GRAY)
 
-    # treshold the image
+    # threshold the image
     ret, thresh1 = cv2.threshold(gray, 127, 255, cv2.THRESH_BINARY)
 
     # Display the resulting frame
