@@ -19,11 +19,14 @@ while(True):
     rotation_matrix = cv2.getRotationMatrix2D((width / 2, height / 2), 90, 1)
     rotated = cv2.warpAffine(frame, rotation_matrix, (width, height))
 
-    # Our operations on the frame come here
-    # gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    # convert to grayscale
+    gray = cv2.cvtColor(rotated, cv2.COLOR_BGR2GRAY)
+
+    # treshold the image
+    ret, thresh1 = cv2.threshold(gray, 127, 255, cv2.THRESH_BINARY)
 
     # Display the resulting frame
-    cv2.imshow('frame', rotated)
+    cv2.imshow('frame', thresh1)
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
