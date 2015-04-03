@@ -2,7 +2,7 @@ import numpy as np
 import cv2
 import cv2.cv as cv
 
-class Camera:
+class Camera():
     def __init__(self):
         self.cap = cv2.VideoCapture(0)
         self.width, self.height = 320, 320
