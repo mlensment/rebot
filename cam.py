@@ -1,31 +1,20 @@
-from SimpleCV import *
-cam = Camera(0, {"width":640, "height":640})
+import numpy as np
+import cv2
+import cv2.cv as cv
 
-i = 0
-while True:
-    img = cam.getImage()
-    img = img.rotate(90)
-    blob_maker = BlobMaker()
-    orig_img = img.colorDistance(Color.WHITE)
-    b_img = orig_img.binarize(230) #230
-    b_img.show()
-    # m_img = b_img.morphOpen().morphClose()
-    # inv_img = b_img.invert()
-    # blobs = blob_maker.extractFromBinary(inv_img, orig_img, 80, 400)
-    # if(len(blobs) > 0):
-    #     # centroid = blobs[0].centroid()
-    #     blobs[0].draw()
-    # orig_img.show()
-    # # i += 1
-    # # print i
+cap = cv2.VideoCapture(0)
+width, height = 320, 320
+cap.set(cv.CV_CAP_PROP_FRAME_WIDTH, width)
+cap.set(cv.CV_CAP_PROP_FRAME_HEIGHT, height)
 
-#
-#
-#
-# blob_maker = BlobMaker()
-# orig_img = image.colorDistance(Color.WHITE)
-# b_img = orig_img.binarize(230)
-# m_img = b_img.morphOpen().morphClose()
-# inv_img = m_img.invert()
-# blobs = blob_maker.extractFromBinary(inverted_img, orig_img)
-# centroid = blobs[0].centroid()
+# Capture frame
+ret, frame = cap.read()
+
+# rotate frame
+rotation_matrix = cv2.getRotationMatrix2D((width / 2, height / 2), 90, 1)
+rotated = cv2.warpAffine(frame, rotation_matrix, (width, height))
+
+cv2.imwrite('eye.jpg', frame)
+
+# When everything done, release the capture
+cap.release()
