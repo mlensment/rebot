@@ -6,6 +6,9 @@ width, height = 640, 640
 cap.set(3, width)
 cap.set(4, height)
 
+# windows for displaying image
+cv2.namedWindow('frame')
+
 while(True):
     # Capture frame-by-frame
     ret, frame = cap.read()
