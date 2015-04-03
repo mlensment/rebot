@@ -8,6 +8,7 @@ cap.set(4, height)
 
 # windows for displaying image
 cv2.namedWindow('frame')
+cv2.moveWindow('frame', 100, 100)
 
 while(True):
     # Capture frame-by-frame
