@@ -9,7 +9,7 @@ class Camera:
         self.cap.set(cv.CV_CAP_PROP_FRAME_WIDTH, self.width)
         self.cap.set(cv.CV_CAP_PROP_FRAME_HEIGHT, self.height)
 
-    def read:
+    def read():
         ret, frame = self.cap.read()
 
         # rotate frame
@@ -22,5 +22,5 @@ class Camera:
         cv2.imwrite(filename, self.read())
         self.close()
 
-    def close:
+    def close():
         self.cap.release()
