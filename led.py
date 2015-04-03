@@ -3,7 +3,7 @@ import cv2
 
 cap = cv2.VideoCapture(0)
 width, height = 320, 320
-cap.set(cv2.CV_CAP_PROP_FRAME_WIDTH, width)
+cap.set(cv2.CAP_PROP_FRAME_WIDTH, width)
 cap.set(cv2.CV_CAP_PROP_FRAME_HEIGHT, height)
 
 # create a window for displaying image and move it to a reasonable spot
