@@ -7,7 +7,7 @@ import cv2
 
 class Rebot:
     def __init__(self):
-        self.camera = Camera()
+        self.camera = camera.Camera()
 
         # create a window for displaying image and move it to a reasonable spot
         cv2.namedWindow(config.WINDOW_NAME)
