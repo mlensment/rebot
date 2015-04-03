@@ -2,11 +2,11 @@ import numpy as np
 import cv2
 
 cap = cv2.VideoCapture(0)
-width, height = 640, 640
+width, height = 300, 300
 cap.set(3, width)
 cap.set(4, height)
 
-# windows for displaying image
+# create a window for displaying image and move it to a reasonable spot
 cv2.namedWindow('frame')
 cv2.moveWindow('frame', 100, 100)
 
