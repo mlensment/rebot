@@ -1,10 +1,9 @@
 import numpy as np
 import cv2
 
-cv2.VideoCapture.set(3,320)
-cv2.VideoCapture.set(4,320)
-
 cap = cv2.VideoCapture(0)
+cap.set(3,320)
+cap.set(4,320)
 
 while(True):
     # Capture frame-by-frame
