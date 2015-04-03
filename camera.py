@@ -2,14 +2,14 @@ import numpy as np
 import cv2
 import cv2.cv as cv
 
-class Camera():
+class Camera:
     def __init__(self):
         self.cap = cv2.VideoCapture(0)
         self.width, self.height = 320, 320
         self.cap.set(cv.CV_CAP_PROP_FRAME_WIDTH, self.width)
         self.cap.set(cv.CV_CAP_PROP_FRAME_HEIGHT, self.height)
 
-    def read():
+    def read(self):
         ret, frame = self.cap.read()
 
         # rotate frame
@@ -18,9 +18,9 @@ class Camera():
 
         return frame
 
-    def snapshot(filename = 'shot.jpg'):
+    def snapshot(self, filename = 'shot.jpg'):
         cv2.imwrite(filename, self.read())
         self.close()
 
-    def close():
+    def close(self):
         self.cap.release()
