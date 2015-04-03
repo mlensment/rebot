@@ -12,7 +12,7 @@ while(True):
 
     # rotate frame
     rotation_matrix = cv2.getRotationMatrix2D((width / 2, height / 2), 90, 1)
-    rotated = cv2.warpAffine(img, rotation_matrix, (width, height))
+    rotated = cv2.warpAffine(frame, rotation_matrix, (width, height))
 
     # Our operations on the frame come here
     # gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
