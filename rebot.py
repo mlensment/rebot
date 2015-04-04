@@ -11,7 +11,7 @@ class Rebot:
     def __init__(self, frame_path = None):
         c = camera.Camera()
         c.snapshot()
-        sleep(1)
+        
         # self.camera = camera.Camera(frame_path)
         #
         # # create a window for displaying image and move it to a reasonable spot
