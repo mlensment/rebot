@@ -36,7 +36,7 @@ class Frame:
         blank_image[:, :] = 100
 
         ret, mask = cv2.threshold(img, 150, 255, cv2.THRESH_BINARY)
-        img = cv2.add(blank_image, blank_image, dst=img, mask=mask)
+        img = cv2.add(img, img, dst=blank_image, mask=mask)
 
         cv2.imshow(config.WINDOW_NAME, img)
 
