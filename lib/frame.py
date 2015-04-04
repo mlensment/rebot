@@ -9,7 +9,7 @@ class Frame:
 
     def process(self):
         # Frame can be processed only once...
-        return None if self.processed
+        if self.processed is not None: return self.processed
 
         # convert to grayscale
         gray = cv2.cvtColor(self.original, cv2.COLOR_BGR2GRAY)
