@@ -15,8 +15,14 @@ class Rebot:
         cv2.namedWindow(config.WINDOW_NAME)
         cv2.moveWindow(config.WINDOW_NAME, 100, 100)
 
-        cv2.namedWindow('frame2')
-        cv2.moveWindow('frame2', 500, 500)
+        cv2.namedWindow('2')
+        cv2.moveWindow('2', 500, 100)
+
+        cv2.namedWindow('3')
+        cv2.moveWindow('3', 1000, 100)
+
+        cv2.namedWindow('4')
+        cv2.moveWindow('4', 500, 100)
 
     def run(self):
         while(1):
