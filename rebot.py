@@ -1,5 +1,5 @@
 import config
-import camera
+from lib import camera
 # import eye
 import frame
 # import arm
