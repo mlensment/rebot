@@ -34,6 +34,10 @@ class Frame:
         # get rid of too bright pixels
         blank_image = np.zeros(img.shape, np.uint8)
         blank_image[:, :] = 100
+
+        ret, mask = cv2.threshold(img, 150, 255, cv2.THRESH_BINARY)
+        img.copyTo(blank_image, mask);
+
         cv2.imshow(config.WINDOW_NAME, blank_image)
 
         # ret, mask = cv2.threshold(img, 150, 255, cv2.THRESH_BINARY)
