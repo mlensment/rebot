@@ -67,7 +67,7 @@ class Frame:
 
         # circles = np.uint16(np.around(circles))
 
-        if(len(circles) > 0):
+        if(circles is not None and len(circles) > 0):
             for i in circles[0,:]:
                 # draw the outer circle
                 cv2.circle(img,(i[0],i[1]),i[2],(0,255,0),2)
