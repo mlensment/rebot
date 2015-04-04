@@ -33,6 +33,7 @@ class Frame:
 
         # threshold the image
         # blur = cv2.GaussianBlur(gray,(2,2),0)
+        kernel = np.ones((5,5),np.uint8)
         img = cv2.morphologyEx(img, cv2.MORPH_OPEN, kernel)
 
         ret, thresh = cv2.threshold(img, 200, 255, cv2.THRESH_BINARY)
