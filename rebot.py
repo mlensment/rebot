@@ -19,7 +19,7 @@ class Rebot:
         while(1):
             frame = self.camera.read_frame()
             frame.process()
-            frame.show()
+            frame.show_original()
 
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
