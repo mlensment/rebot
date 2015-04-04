@@ -33,9 +33,9 @@ class Camera:
     # Reads raw frame and creates a Frame object
     def read_frame(self):
         if self.cached_frame:
-            print self.cached_frame
             return self.cached_frame
-        return frame.Frame(self.read())
+        else:
+            return frame.Frame(self.read())
 
     def snapshot(self, filename = 'shot.jpg'):
         cv2.imwrite(filename, self.read())
