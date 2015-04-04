@@ -94,7 +94,7 @@ class Frame:
         #
         # cv2.drawContours(self.processed, contour, -1, (0,255,0), 3)
         font = cv2.FONT_HERSHEY_SIMPLEX
-        cv2.putText(self.original, str(radius),(10,500), font, 4,(255,255,255),2)
+        cv2.putText(self.original, str(radius), (10,200), font, 4, (255,255,255), 2)
 
         cv2.imshow('3', self.original)
 
