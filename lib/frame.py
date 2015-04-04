@@ -44,7 +44,7 @@ class Frame:
 
         img = cv2.add(img1_bg, img2_fg)
         img = cv2.GaussianBlur(img,(5,5),0)
-        cv2.imshow(config.WINDOW_NAME, img)
+        # cv2.imshow(config.WINDOW_NAME, img)
 
         # ret, mask = cv2.threshold(img, 150, 255, cv2.THRESH_BINARY)
         # res = cv2.bitwise_not(img, img, mask= mask)
@@ -67,9 +67,9 @@ class Frame:
 
 
         # cv2.imshow(config.WINDOW_NAME, img)
-        # edges = cv2.Canny(img, 0, 200)
+        edges = cv2.Canny(img, 0, 200)
         # #
-        # cv2.imshow(config.WINDOW_NAME, edges)
+        cv2.imshow(config.WINDOW_NAME, edges)
 
         # ret, thresh = cv2.threshold(img, 200, 255, cv2.THRESH_BINARY)
         # #
