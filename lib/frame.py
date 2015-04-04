@@ -32,7 +32,7 @@ class Frame:
         gray = cv2.cvtColor(self.processed, cv2.COLOR_BGR2GRAY)
 
         # threshold the image
-        blur = cv2.GaussianBlur(gray,(5,5),0)
+        blur = cv2.GaussianBlur(gray,(2,2),0)
         ret, thresh = cv2.threshold(blur, 200, 255, cv2.THRESH_BINARY)
 
         contours, hierarchy = cv2.findContours(thresh,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
