@@ -35,10 +35,10 @@ class Frame:
         img = cv2.GaussianBlur(img,(5,5),0)
         # kernel = np.ones((2,2),np.uint8)
         # img = cv2.morphologyEx(img, cv2.MORPH_OPEN, kernel)
-        cv2.imshow(config.WINDOW_NAME, img)
-        # edges = cv2.Canny(img, 100, 200)
+        # cv2.imshow(config.WINDOW_NAME, img)
+        edges = cv2.Canny(img, 0, 200)
         #
-        # cv2.imshow(config.WINDOW_NAME, edges)
+        cv2.imshow(config.WINDOW_NAME, edges)
 
         # ret, thresh = cv2.threshold(img, 200, 255, cv2.THRESH_BINARY)
         # #
