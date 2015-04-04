@@ -35,7 +35,7 @@ class Frame:
         blank_image = np.zeros(img.shape, np.uint8)
         blank_image[:, :] = 100
 
-        ret, mask = cv2.threshold(img, 150, 255, cv2.THRESH_BINARY)
+        ret, mask = cv2.threshold(img, 150, 255, cv2.THRESH_BINARY_INV)
         img = cv2.add(img, img, dst=blank_image, mask=mask)
 
         cv2.imshow(config.WINDOW_NAME, img)
