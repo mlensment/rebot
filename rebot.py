@@ -22,7 +22,7 @@ class Rebot:
         cv2.moveWindow('3', 1000, 100)
 
         cv2.namedWindow('4')
-        cv2.moveWindow('4', 500, 100)
+        cv2.moveWindow('4', 100, 500)
 
     def run(self):
         while(1):
