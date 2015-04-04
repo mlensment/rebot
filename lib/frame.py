@@ -32,7 +32,7 @@ class Frame:
         # threshold the image
         ret, thresh = cv2.threshold(gray, 200, 255, cv2.THRESH_BINARY)
 
-        image, contours, hierarchy = cv2.findContours(thresh,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
+        contours, hierarchy = cv2.findContours(thresh,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
 
         self.processed = cv2.drawContours(self.original, contours, -1, (0,255,0), 3)
 
