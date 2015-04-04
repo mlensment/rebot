@@ -77,7 +77,15 @@ class Frame:
 
         # FIND CONTOURS
         contours, hierarchy = cv2.findContours(edges, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
-        cv2.drawContours(self.processed, contours, -1, (0,255,0), 3)
+
+        # Check if countour is convex
+        filtered_contours = []
+        for i in contours:
+            if cv2.isContourConvex(i):
+                filtered_contours.append(i)
+
+        cv2.drawContours(self.processed, filtered_contours, -1, (0,255,0), 3)
+
 
         cv2.imshow('3', self.processed)
 
