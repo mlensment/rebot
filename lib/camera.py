@@ -20,6 +20,7 @@ class Camera:
         img = cv2.imread(frame_path)
 
         if img is None:
+            print 'snapshottting'
             self.snapshot(frame_path)
             img = cv2.imread(frame_path)
 
