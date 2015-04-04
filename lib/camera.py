@@ -2,6 +2,7 @@ import numpy as np
 import cv2
 import cv2.cv as cv
 import frame
+import time
 
 class Camera:
     # If Camera is initialized with frame_path, Camera will cache a Frame from disk for further reading
