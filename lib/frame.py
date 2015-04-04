@@ -32,11 +32,17 @@ class Frame:
         img = cv2.cvtColor(self.processed, cv2.COLOR_BGR2GRAY)
 
         # get rid of too bright pixels
+        # create gray background
         blank_image = np.zeros(img.shape, np.uint8)
         blank_image[:, :] = 100
 
-        ret, mask = cv2.threshold(img, 150, 255, cv2.THRESH_BINARY_INV)
-        img = cv2.add(img, img, dst=blank_image, mask=mask)
+        ret, mask = cv2.threshold(img, 150, 255, cv2.THRESH_BINARY)
+        mask_inv = cv2.bitwise_not(mask)
+
+        img1_bg = cv2.bitwise_and(img, img, mask = mask_inv)
+        img2_fg = cv2.bitwise_and(blank_image, blank_image, mask = mask)
+
+        img = cv2.add(img1_bg, img2_fg)
 
         cv2.imshow(config.WINDOW_NAME, img)
 
