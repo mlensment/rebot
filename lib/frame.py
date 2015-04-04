@@ -29,11 +29,13 @@ class Frame:
     def find_glints(self):
         # convert to grayscale
         self.processed = self.original
-        gray = cv2.cvtColor(self.processed, cv2.COLOR_BGR2GRAY)
+        img = cv2.cvtColor(self.processed, cv2.COLOR_BGR2GRAY)
 
         # threshold the image
         # blur = cv2.GaussianBlur(gray,(2,2),0)
-        ret, thresh = cv2.threshold(gray, 200, 255, cv2.THRESH_BINARY)
+        img = cv2.morphologyEx(img, cv2.MORPH_OPEN, kernel)
+
+        ret, thresh = cv2.threshold(img, 200, 255, cv2.THRESH_BINARY)
 
         contours, hierarchy = cv2.findContours(thresh,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
         cv2.drawContours(self.processed, contours, -1, (0,255,0), 3)
