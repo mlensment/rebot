@@ -37,45 +37,32 @@ class Frame:
         blank_image = np.zeros(img.shape, np.uint8)
         blank_image[:, :] = 100
 
+        # create mask for too bright areas
         ret, mask = cv2.threshold(img, 200, 255, cv2.THRESH_BINARY)
         mask_inv = cv2.bitwise_not(mask)
 
+        # paint all normal areas black on background
         img1_bg = cv2.bitwise_and(img, img, mask = mask_inv)
+
+        # paint all bright areas black on foreground
         img2_fg = cv2.bitwise_and(blank_image, blank_image, mask = mask)
 
+        # join two images
         img = cv2.add(img1_bg, img2_fg)
-        # img = cv2.GaussianBlur(img,(5,5),0)
+
         cv2.imshow(config.WINDOW_NAME, img1_bg)
 
-        kernel = np.ones((10,10),np.uint8)
+        # erode remaining white areas
+        kernel = np.ones((10,10), np.uint8)
         img = cv2.morphologyEx(img, cv2.MORPH_OPEN, kernel)
 
         cv2.imshow('4', img)
 
-        # threshold the image
-        # img = cv2.GaussianBlur(img,(5,5),0)
-
-
+        # find edges
         edges = cv2.Canny(img, 50, 130)
         cv2.imshow('2', edges)
 
-        #FIND CIRCLES
-        # circles = cv2.HoughCircles(edges, cv.CV_HOUGH_GRADIENT, 1, 20,
-        #                     param1=50,param2=30,minRadius=10,maxRadius=0)
-        # #
-        # # # circles = np.uint16(np.around(circles))
-        # #
-        # if(circles is not None and len(circles) > 0):
-        #     for i in circles[0,:]:
-        #         # draw the outer circle
-        #         cv2.circle(img,(i[0],i[1]),i[2],(0,255,0),2)
-        #         # draw the center of the circle
-        #         cv2.circle(img,(i[0],i[1]),2,(0,0,255),3)
-        # #
-        # cv2.imshow('3', img)
-        # ret, thresh = cv2.threshold(img, 200, 255, cv2.THRESH_BINARY)
-
-        # FIND CONTOURS
+        # find contours
         contours, hierarchy = cv2.findContours(edges, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 
         # Find largest contour
@@ -95,7 +82,7 @@ class Frame:
             #
             # cv2.drawContours(self.processed, contour, -1, (0,255,0), 3)
             font = cv2.FONT_HERSHEY_SIMPLEX
-            cv2.putText(self.original, str(largest_area), (10,200), font, 4, (255,255,255), 2)
+            cv2.putText(self.original, str(largest_area), (10,200), font, 1, (255,255,255), 2)
 
         cv2.imshow('3', self.original)
 
