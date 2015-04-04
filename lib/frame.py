@@ -78,14 +78,16 @@ class Frame:
         # FIND CONTOURS
         contours, hierarchy = cv2.findContours(edges, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 
-        # Check if countour is convex
-        filtered_contours = []
+        # Find largest contour
+        largest_area = 0
+        contour = None
         for i in contours:
             area = cv2.contourArea(i)
-            if area > 50:
-                filtered_contours.append(i)
+            if area >= largest_area:
+                contour = i
+                largest_area = area
 
-        cv2.drawContours(self.processed, filtered_contours, -1, (0,255,0), 3)
+        cv2.drawContours(self.processed, contour, -1, (0,255,0), 3)
 
 
         cv2.imshow('3', self.processed)
