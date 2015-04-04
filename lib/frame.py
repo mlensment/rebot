@@ -36,9 +36,9 @@ class Frame:
         blank_image[:, :] = 100
 
         ret, mask = cv2.threshold(img, 150, 255, cv2.THRESH_BINARY)
-        img.copyTo(blank_image, mask);
+        img = cv2.add(img, img, dst=blank_image, mask=mask)
 
-        cv2.imshow(config.WINDOW_NAME, blank_image)
+        cv2.imshow(config.WINDOW_NAME, img)
 
         # ret, mask = cv2.threshold(img, 150, 255, cv2.THRESH_BINARY)
         # res = cv2.bitwise_not(img, img, mask= mask)
