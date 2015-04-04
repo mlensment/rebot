@@ -5,7 +5,7 @@ import frame
 
 class Camera:
     # If Camera is initialized with frame_path, Camera will cache a Frame from disk for further reading
-    # If image cannot be found from the disk, Camera snapshots a new image (frame.jpg) and caches it (TODO)
+    # If image cannot be found from the disk, Camera snapshots a new image and caches it
     def __init__(self, frame_path = None):
         self.cap = cv2.VideoCapture(0)
         self.width, self.height = 320, 320
@@ -33,7 +33,7 @@ class Camera:
         rotation_matrix = cv2.getRotationMatrix2D((self.width / 2, self.height / 2), 90, 1)
         rotated = cv2.warpAffine(frame, rotation_matrix, (self.width, self.height))
 
-        return frame
+        return rotated
 
     # Reads raw frame and creates a Frame object
     def read_frame(self):
