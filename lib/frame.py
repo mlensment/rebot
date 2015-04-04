@@ -38,12 +38,12 @@ class Frame:
         self.processed = img
         # ret, thresh = cv2.threshold(img, 200, 255, cv2.THRESH_BINARY)
         #
-        # contours, hierarchy = cv2.findContours(thresh,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
-        # cv2.drawContours(self.processed, contours, -1, (0,255,0), 3)
-        #
-        # if not self.printed:
-        #     print len(contours)
-        # self.printed = True
+        contours, hierarchy = cv2.findContours(thresh,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
+        cv2.drawContours(self.processed, contours, -1, (0,255,0), 3)
+
+        if not self.printed:
+            print len(contours)
+        self.printed = True
 
 
         # img = img[c1:c1+25,r1:r1+25]
