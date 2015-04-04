@@ -32,8 +32,7 @@ class Frame:
         img = cv2.cvtColor(self.processed, cv2.COLOR_BGR2GRAY)
 
         # get rid of too bright pixels
-        # ret, mask = cv2.threshold(img, 200, 255, cv2.THRESH_BINARY)
-        mask = cv2.inRange(img, np.array([200]), np.array([255]))
+        ret, mask = cv2.threshold(img, 150, 255, cv2.THRESH_BINARY)
         res = cv2.bitwise_not(img,img, mask= mask)
         cv2.imshow(config.WINDOW_NAME, res)
 
