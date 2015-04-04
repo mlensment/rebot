@@ -14,6 +14,7 @@ class Camera:
         self.cache_frame(frame_path)
 
     def cache_frame(self, frame_path):
+        self.cached_frame = None
         if not frame_path: return
         img = cv2.imread(frame_path, cv2.IMREAD_GRAYSCALE)
         self.cached_frame = frame.Frame(img)
