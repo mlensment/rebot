@@ -33,7 +33,7 @@ class Rebot:
         # else:
         #     arm.take_food()
 
-parser = argparse.ArgumentParser(description='Rebot.'')
+parser = argparse.ArgumentParser(description='Rebot.')
 parser.add_argument('--frame', nargs='?', const = True, default = None, help = 'Path to frame you want to process.')
 args = parser.parse_args()
 
