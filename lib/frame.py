@@ -17,10 +17,13 @@ class Frame:
         # threshold the image
         # ret, thresh = cv2.threshold(gray, 127, 255, cv2.THRESH_BINARY)
 
-        thresh = cv2.adaptiveThreshold(gray, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C,\
+        # thresh = cv2.adaptiveThreshold(gray, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C,\
             cv2.THRESH_BINARY, 11, 2)
 
-        self.processed = thresh
+        th2 = cv2.adaptiveThreshold(gray,255,cv2.ADAPTIVE_THRESH_MEAN_C,\
+            cv2.THRESH_BINARY,11,2)
+
+        self.processed = th2
 
     def show(self):
         cv2.imshow(config.WINDOW_NAME, self.processed)
