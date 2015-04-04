@@ -33,17 +33,17 @@ class Frame:
 
         # get rid of too bright pixels
         # create gray background
-        blank_image = np.zeros(img.shape, np.uint8)
-        blank_image[:, :] = 150
-
-        ret, mask = cv2.threshold(img, 150, 255, cv2.THRESH_BINARY)
-        mask_inv = cv2.bitwise_not(mask)
-
-        img1_bg = cv2.bitwise_and(img, img, mask = mask_inv)
-        img2_fg = cv2.bitwise_and(blank_image, blank_image, mask = mask)
-
-        img = cv2.add(img1_bg, img2_fg)
-        img = cv2.GaussianBlur(img,(5,5),0)
+        # blank_image = np.zeros(img.shape, np.uint8)
+        # blank_image[:, :] = 150
+        #
+        # ret, mask = cv2.threshold(img, 150, 255, cv2.THRESH_BINARY)
+        # mask_inv = cv2.bitwise_not(mask)
+        #
+        # img1_bg = cv2.bitwise_and(img, img, mask = mask_inv)
+        # img2_fg = cv2.bitwise_and(blank_image, blank_image, mask = mask)
+        #
+        # img = cv2.add(img1_bg, img2_fg)
+        # img = cv2.GaussianBlur(img,(5,5),0)
         # cv2.imshow(config.WINDOW_NAME, img)
 
         # ret, mask = cv2.threshold(img, 150, 255, cv2.THRESH_BINARY)
