@@ -32,13 +32,21 @@ class Frame:
         img = cv2.cvtColor(self.processed, cv2.COLOR_BGR2GRAY)
 
         # threshold the image
-        img = cv2.GaussianBlur(img,(5,5),0)
-        # kernel = np.ones((2,2),np.uint8)
-        # img = cv2.morphologyEx(img, cv2.MORPH_OPEN, kernel)
-        # cv2.imshow(config.WINDOW_NAME, img)
-        edges = cv2.Canny(img, 0, 200)
-        #
+        # img = cv2.GaussianBlur(img,(5,5),0)
+        kernel = np.ones((2,2),np.uint8)
+        img = cv2.morphologyEx(img, cv2.MORPH_OPEN, kernel)
+
+        edges = cv2.Canny(img, 0, 100)
         cv2.imshow(config.WINDOW_NAME, edges)
+
+        # ret, thresh = cv2.threshold(img, 200, 255, cv2.THRESH_BINARY)
+        # contours, hierarchy = cv2.findContours(thresh,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
+
+
+        # cv2.imshow(config.WINDOW_NAME, img)
+        # edges = cv2.Canny(img, 0, 200)
+        # #
+        # cv2.imshow(config.WINDOW_NAME, edges)
 
         # ret, thresh = cv2.threshold(img, 200, 255, cv2.THRESH_BINARY)
         # #
