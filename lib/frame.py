@@ -82,7 +82,7 @@ class Frame:
         filtered_contours = []
         for i in contours:
             area = cv2.contourArea(i)
-            if area > 90:
+            if area > 50:
                 filtered_contours.append(i)
 
         cv2.drawContours(self.processed, filtered_contours, -1, (0,255,0), 3)
