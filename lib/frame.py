@@ -58,22 +58,28 @@ class Frame:
 
         edges = cv2.Canny(img, 50, 130)
         cv2.imshow('2', edges)
-        circles = cv2.HoughCircles(edges, cv.CV_HOUGH_GRADIENT, 1, 20,
-                            param1=50,param2=30,minRadius=10,maxRadius=0)
-        #
-        # # circles = np.uint16(np.around(circles))
-        #
-        if(circles is not None and len(circles) > 0):
-            for i in circles[0,:]:
-                # draw the outer circle
-                cv2.circle(img,(i[0],i[1]),i[2],(0,255,0),2)
-                # draw the center of the circle
-                cv2.circle(img,(i[0],i[1]),2,(0,0,255),3)
-        #
-        cv2.imshow('3', img)
-        # ret, thresh = cv2.threshold(img, 200, 255, cv2.THRESH_BINARY)
-        # contours, hierarchy = cv2.findContours(thresh,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
 
+        #FIND CIRCLES
+        # circles = cv2.HoughCircles(edges, cv.CV_HOUGH_GRADIENT, 1, 20,
+        #                     param1=50,param2=30,minRadius=10,maxRadius=0)
+        # #
+        # # # circles = np.uint16(np.around(circles))
+        # #
+        # if(circles is not None and len(circles) > 0):
+        #     for i in circles[0,:]:
+        #         # draw the outer circle
+        #         cv2.circle(img,(i[0],i[1]),i[2],(0,255,0),2)
+        #         # draw the center of the circle
+        #         cv2.circle(img,(i[0],i[1]),2,(0,0,255),3)
+        # #
+        # cv2.imshow('3', img)
+        # ret, thresh = cv2.threshold(img, 200, 255, cv2.THRESH_BINARY)
+
+        # FIND CONTOURS
+        contours, hierarchy = cv2.findContours(edges, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+        cv2.drawContours(self.processed, contours, -1, (0,255,0), 3)
+
+        cv2.imshow('3', self.processed)
 
         # cv2.imshow(config.WINDOW_NAME, img)
         # edges = cv2.Canny(img, 0, 200)
