@@ -20,8 +20,8 @@ class Camera:
         img = cv2.imread(frame_path)
 
         if img is None:
-            self.snapshot('frame.jpg')
-            img = cv2.imread('frame.jpg')
+            self.snapshot(frame_path)
+            img = cv2.imread(frame_path)
 
         self.cached_frame = frame.Frame(img)
 
