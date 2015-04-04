@@ -36,13 +36,13 @@ class Frame:
         mask = cv2.inRange(img, np.array([200]), np.array([255]))
         cv2.imshow(config.WINDOW_NAME, mask)
 
-        inRange(img, RangeLow,RangeHigh,Mask);
-        M.setTo(C,Mask);
+        # inRange(img, RangeLow,RangeHigh,Mask);
+        # M.setTo(C,Mask);
 
         # threshold the image
         # img = cv2.GaussianBlur(img,(5,5),0)
-        kernel = np.ones((2,2),np.uint8)
-        img = cv2.morphologyEx(img, cv2.MORPH_OPEN, kernel)
+        # kernel = np.ones((2,2),np.uint8)
+        # img = cv2.morphologyEx(img, cv2.MORPH_OPEN, kernel)
 
 
         # edges = cv2.Canny(img, 50, 130)
