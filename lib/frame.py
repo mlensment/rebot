@@ -33,7 +33,7 @@ class Frame:
 
         # get rid of too bright pixels
         # ret, mask = cv2.threshold(img, 200, 255, cv2.THRESH_BINARY)
-        mask = cv2.inRange(img, 200, 255)
+        mask = cv2.inRange(img, np.array([200]), np.array([255]))
         cv2.imshow(config.WINDOW_NAME, mask)
 
         inRange(img, RangeLow,RangeHigh,Mask);
