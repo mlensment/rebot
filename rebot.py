@@ -15,6 +15,9 @@ class Rebot:
         cv2.namedWindow(config.WINDOW_NAME)
         cv2.moveWindow(config.WINDOW_NAME, 100, 100)
 
+        cv2.namedWindow('frame2')
+        cv2.moveWindow('frame2', 500, 500)
+
     def run(self):
         while(1):
             frame = self.camera.read_frame()

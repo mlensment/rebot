@@ -33,19 +33,19 @@ class Frame:
         img = cv2.cvtColor(self.processed, cv2.COLOR_BGR2GRAY)
 
         # get rid of too bright pixels
-        # create gray background
-        # blank_image = np.zeros(img.shape, np.uint8)
-        # blank_image[:, :] = 150
-        #
-        # ret, mask = cv2.threshold(img, 150, 255, cv2.THRESH_BINARY)
-        # mask_inv = cv2.bitwise_not(mask)
-        #
-        # img1_bg = cv2.bitwise_and(img, img, mask = mask_inv)
-        # img2_fg = cv2.bitwise_and(blank_image, blank_image, mask = mask)
-        #
-        # img = cv2.add(img1_bg, img2_fg)
-        # img = cv2.GaussianBlur(img,(5,5),0)
-        # cv2.imshow(config.WINDOW_NAME, img)
+        create gray background
+        blank_image = np.zeros(img.shape, np.uint8)
+        blank_image[:, :] = 150
+
+        ret, mask = cv2.threshold(img, 150, 255, cv2.THRESH_BINARY)
+        mask_inv = cv2.bitwise_not(mask)
+
+        img1_bg = cv2.bitwise_and(img, img, mask = mask_inv)
+        img2_fg = cv2.bitwise_and(blank_image, blank_image, mask = mask)
+
+        img = cv2.add(img1_bg, img2_fg)
+        img = cv2.GaussianBlur(img,(5,5),0)
+        cv2.imshow(config.WINDOW_NAME, img)
 
         # ret, mask = cv2.threshold(img, 150, 255, cv2.THRESH_BINARY)
         # res = cv2.bitwise_not(img, img, mask= mask)
@@ -61,7 +61,7 @@ class Frame:
 
 
         edges = cv2.Canny(img, 50, 130)
-        cv2.imshow(config.WINDOW_NAME, edges)
+        cv2.imshow('frame2', edges)
         # circles = cv2.HoughCircles(edges, cv.CV_HOUGH_GRADIENT, 1, 20,
         #                     param1=50,param2=30,minRadius=0,maxRadius=0)
         #
