@@ -31,6 +31,7 @@ class Frame:
         self.processed = self.original
         img = cv2.cvtColor(self.processed, cv2.COLOR_BGR2GRAY)
 
+        cv2.imshow(config.WINDOW_NAME, img)
         # get rid of too bright pixels
         ret, img = cv2.threshold(img, 180, 180, cv2.THRESH_TOZERO)
 
@@ -39,7 +40,6 @@ class Frame:
         kernel = np.ones((2,2),np.uint8)
         img = cv2.morphologyEx(img, cv2.MORPH_OPEN, kernel)
 
-        cv2.imshow(config.WINDOW_NAME, img)
 
         # edges = cv2.Canny(img, 50, 130)
         # cv2.imshow(config.WINDOW_NAME, edges)
