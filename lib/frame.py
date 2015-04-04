@@ -15,15 +15,26 @@ class Frame:
         gray = cv2.cvtColor(self.original, cv2.COLOR_BGR2GRAY)
 
         # threshold the image
-        ret, thresh = cv2.threshold(gray, 200, 255, cv2.THRESH_BINARY)
+        # ret, thresh = cv2.threshold(gray, 200, 255, cv2.THRESH_BINARY)
 
-        # thresh = cv2.adaptiveThreshold(gray, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C,\
-            # cv2.THRESH_BINARY, 11, 2)
+        thresh = cv2.adaptiveThreshold(gray, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C,\
+            cv2.THRESH_BINARY, 11, 2)
 
         # th2 = cv2.adaptiveThreshold(gray,255,cv2.ADAPTIVE_THRESH_MEAN_C,\
         #     cv2.THRESH_BINARY,11,2)
 
         self.processed = thresh
+
+    def find_glints(self):
+        # convert to grayscale
+        gray = cv2.cvtColor(self.original, cv2.COLOR_BGR2GRAY)
+
+        # threshold the image
+        ret, thresh = cv2.threshold(gray, 200, 255, cv2.THRESH_BINARY)
+
+
+
+        # img = img[c1:c1+25,r1:r1+25]
 
     def show(self):
         cv2.imshow(config.WINDOW_NAME, self.processed)
