@@ -34,7 +34,7 @@ class Frame:
 
         contours, hierarchy = cv2.findContours(thresh,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
         img = cv2.drawContours(self.original, contours, -1, (0,255,0), 3)
-        cv2.imshow(config.WINDOW_NAME, img)
+        cv2.imshow(config.WINDOW_NAME, self.original)
 
         # img = img[c1:c1+25,r1:r1+25]
 
