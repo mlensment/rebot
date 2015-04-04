@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 import config
 from lib import camera, frame
 # import eye
@@ -5,8 +7,9 @@ from lib import camera, frame
 import cv2
 
 class Rebot:
-    def __init__(self):
+    def __init__(self, mode):
         self.camera = camera.Camera()
+        self.mode = mode
 
         # create a window for displaying image and move it to a reasonable spot
         cv2.namedWindow(config.WINDOW_NAME)
@@ -29,6 +32,8 @@ class Rebot:
         #     arm.eat()
         # else:
         #     arm.take_food()
+
+opts, args = getopt.getopt(argv, "hg:d", ["help", "grammar="])
 
 r = Rebot()
 r.run()
