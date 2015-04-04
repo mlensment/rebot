@@ -32,11 +32,11 @@ class Frame:
         img = cv2.cvtColor(self.processed, cv2.COLOR_BGR2GRAY)
 
         # threshold the image
-        # blur = cv2.GaussianBlur(gray,(2,2),0)
-        kernel = np.ones((2,2),np.uint8)
+        img = cv2.GaussianBlur(img,(5,5),0)
+        # kernel = np.ones((2,2),np.uint8)
         img = cv2.morphologyEx(img, cv2.MORPH_OPEN, kernel)
 
-        edges = cv2.Canny(img,100,200)
+        edges = cv2.Canny(img, 100, 200)
 
         cv2.imshow(config.WINDOW_NAME, edges)
 
