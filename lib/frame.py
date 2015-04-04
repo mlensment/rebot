@@ -87,14 +87,15 @@ class Frame:
                 contour = i
                 largest_area = area
 
-        (x,y),radius = cv2.minEnclosingCircle(contour)
-        center = (int(x),int(y))
-        radius = int(radius)
-        img = cv2.circle(self.original,center,radius,(0,255,0),2)
-        #
-        # cv2.drawContours(self.processed, contour, -1, (0,255,0), 3)
-        font = cv2.FONT_HERSHEY_SIMPLEX
-        cv2.putText(self.original, str(largest_area), (10,200), font, 4, (255,255,255), 2)
+        if contour:
+            (x,y),radius = cv2.minEnclosingCircle(contour)
+            center = (int(x),int(y))
+            radius = int(radius)
+            img = cv2.circle(self.original,center,radius,(0,255,0),2)
+            #
+            # cv2.drawContours(self.processed, contour, -1, (0,255,0), 3)
+            font = cv2.FONT_HERSHEY_SIMPLEX
+            cv2.putText(self.original, str(largest_area), (10,200), font, 4, (255,255,255), 2)
 
         cv2.imshow('3', self.original)
 
