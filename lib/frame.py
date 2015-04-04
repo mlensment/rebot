@@ -50,7 +50,7 @@ class Frame:
         kernel = np.ones((5,5),np.uint8)
         img = cv2.morphologyEx(img, cv2.MORPH_OPEN, kernel)
 
-        cv2.imshow('4', img1_bg)
+        cv2.imshow('4', img)
 
         # threshold the image
         # img = cv2.GaussianBlur(img,(5,5),0)
