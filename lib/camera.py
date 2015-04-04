@@ -33,6 +33,7 @@ class Camera:
     # Reads raw frame and creates a Frame object
     def read_frame(self):
         if self.cached_frame:
+            print self.cached_frame
             return self.cached_frame
         return frame.Frame(self.read())
 
