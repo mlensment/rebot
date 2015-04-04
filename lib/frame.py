@@ -36,8 +36,10 @@ class Frame:
         kernel = np.ones((2,2),np.uint8)
         img = cv2.morphologyEx(img, cv2.MORPH_OPEN, kernel)
 
-        edges = cv2.Canny(img, 50, 130)
-        cv2.imshow(config.WINDOW_NAME, edges)
+        cv2.imshow(config.WINDOW_NAME, img)
+
+        # edges = cv2.Canny(img, 50, 130)
+        # cv2.imshow(config.WINDOW_NAME, edges)
 
         # ret, thresh = cv2.threshold(img, 200, 255, cv2.THRESH_BINARY)
         # contours, hierarchy = cv2.findContours(thresh,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
