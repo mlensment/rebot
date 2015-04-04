@@ -34,7 +34,7 @@ class Frame:
         # get rid of too bright pixels
         # create gray background
         blank_image = np.zeros(img.shape, np.uint8)
-        blank_image[:, :] = 100
+        blank_image[:, :] = 150
 
         ret, mask = cv2.threshold(img, 150, 255, cv2.THRESH_BINARY)
         mask_inv = cv2.bitwise_not(mask)
