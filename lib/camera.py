@@ -12,7 +12,7 @@ class Camera:
         self.width, self.height = 320, 320
         self.cap.set(cv.CV_CAP_PROP_FRAME_WIDTH, self.width)
         self.cap.set(cv.CV_CAP_PROP_FRAME_HEIGHT, self.height)
-        time.sleep(2)
+        # time.sleep(2)
         self.cache_frame(frame_path)
 
     def cache_frame(self, frame_path):
