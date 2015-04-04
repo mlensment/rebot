@@ -82,8 +82,8 @@ class Frame:
             #
             # cv2.drawContours(self.processed, contour, -1, (0,255,0), 3)
             font = cv2.FONT_HERSHEY_SIMPLEX
-            cv2.putText(self.original, 'Largest contour area: ' + str(largest_area), (10,10), font, 0.5, (255,255,255), 2)
-            cv2.putText(self.original, 'Center of the contour: (' + str(x) + ', ' + str(y) + ')', (10,30), font, 0.5, (255,255,255), 2)
+            cv2.putText(self.original, 'Largest contour area: ' + str(largest_area), (10,10), font, 1, (255,255,255), 2)
+            cv2.putText(self.original, 'Center of the contour: (' + str(x) + ', ' + str(y) + ')', (10,30), font, 1, (255,255,255), 2)
 
         cv2.imshow('3', self.original)
 
