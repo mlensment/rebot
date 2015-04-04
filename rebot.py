@@ -18,7 +18,7 @@ class Rebot:
     def run(self):
         while(1):
             frame = self.camera.read_frame()
-            # frame.process()
+            frame.process()
             frame.show()
 
             if cv2.waitKey(1) & 0xFF == ord('q'):
