@@ -9,14 +9,11 @@ import cv2
 
 class Rebot:
     def __init__(self, frame_path = None):
-        c = camera.Camera()
-        c.snapshot()
-        
-        # self.camera = camera.Camera(frame_path)
-        #
-        # # create a window for displaying image and move it to a reasonable spot
-        # cv2.namedWindow(config.WINDOW_NAME)
-        # cv2.moveWindow(config.WINDOW_NAME, 100, 100)
+        self.camera = camera.Camera(frame_path)
+
+        # create a window for displaying image and move it to a reasonable spot
+        cv2.namedWindow(config.WINDOW_NAME)
+        cv2.moveWindow(config.WINDOW_NAME, 100, 100)
 
     def run(self):
         while(1):
