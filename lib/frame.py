@@ -35,15 +35,15 @@ class Frame:
         # blur = cv2.GaussianBlur(gray,(2,2),0)
         kernel = np.ones((5,5),np.uint8)
         img = cv2.morphologyEx(img, cv2.MORPH_OPEN, kernel)
-
-        ret, thresh = cv2.threshold(img, 200, 255, cv2.THRESH_BINARY)
-
-        contours, hierarchy = cv2.findContours(thresh,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
-        cv2.drawContours(self.processed, contours, -1, (0,255,0), 3)
-
-        if not self.printed:
-            print len(contours)
-        self.printed = True
+        self.processed = img
+        # ret, thresh = cv2.threshold(img, 200, 255, cv2.THRESH_BINARY)
+        #
+        # contours, hierarchy = cv2.findContours(thresh,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
+        # cv2.drawContours(self.processed, contours, -1, (0,255,0), 3)
+        #
+        # if not self.printed:
+        #     print len(contours)
+        # self.printed = True
 
 
         # img = img[c1:c1+25,r1:r1+25]
