@@ -18,7 +18,7 @@ class Frame:
         # ret, thresh = cv2.threshold(gray, 127, 255, cv2.THRESH_BINARY)
 
         # thresh = cv2.adaptiveThreshold(gray, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C,\
-            cv2.THRESH_BINARY, 11, 2)
+            # cv2.THRESH_BINARY, 11, 2)
 
         th2 = cv2.adaptiveThreshold(gray,255,cv2.ADAPTIVE_THRESH_MEAN_C,\
             cv2.THRESH_BINARY,11,2)
