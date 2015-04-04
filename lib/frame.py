@@ -81,7 +81,8 @@ class Frame:
         # Check if countour is convex
         filtered_contours = []
         for i in contours:
-            if cv2.isContourConvex(i):
+            area = cv2.contourArea(i)
+            if area > 90:
                 filtered_contours.append(i)
 
         cv2.drawContours(self.processed, filtered_contours, -1, (0,255,0), 3)
