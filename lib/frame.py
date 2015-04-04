@@ -39,7 +39,7 @@ class Frame:
         cv2.drawContours(self.processed, contours, -1, (0,255,0), 3)
 
         if not self.printed:
-            print contours
+            print len(contours)
         self.printed = True
 
 
