@@ -1,7 +1,6 @@
 import config
-from lib import camera
+from lib import camera, frame
 # import eye
-import frame
 # import arm
 import cv2
 
