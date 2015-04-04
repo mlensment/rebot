@@ -31,9 +31,9 @@ class Frame:
         self.processed = self.original
         img = cv2.cvtColor(self.processed, cv2.COLOR_BGR2GRAY)
 
-        cv2.imshow(config.WINDOW_NAME, img)
         # get rid of too bright pixels
         ret, img = cv2.threshold(img, 180, 180, cv2.THRESH_TOZERO)
+        cv2.imshow(config.WINDOW_NAME, img)
 
         # threshold the image
         # img = cv2.GaussianBlur(img,(5,5),0)
