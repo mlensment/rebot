@@ -1,5 +1,6 @@
 #!/usr/bin/python
 
+import argparse
 import config
 from lib import camera, frame
 # import eye
@@ -7,9 +8,8 @@ from lib import camera, frame
 import cv2
 
 class Rebot:
-    def __init__(self, mode):
-        self.camera = camera.Camera()
-        self.mode = mode
+    def __init__(self, frame_path = None):
+        self.camera = camera.Camera(frame_path)
 
         # create a window for displaying image and move it to a reasonable spot
         cv2.namedWindow(config.WINDOW_NAME)
@@ -33,7 +33,9 @@ class Rebot:
         # else:
         #     arm.take_food()
 
-opts, args = getopt.getopt(argv, "hg:d", ["help", "grammar="])
+parser = argparse.ArgumentParser(description='Rebot.'')
+parser.add_argument('--frame', nargs='?', const = True, default = None, help = 'Path to frame you want to process.')
+args = parser.parse_args()
 
-r = Rebot()
+r = Rebot(args.frame)
 r.run()

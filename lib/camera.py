@@ -4,11 +4,19 @@ import cv2.cv as cv
 import frame
 
 class Camera:
-    def __init__(self):
+    # If Camera is initialized with frame_path, Camera will cache a Frame from disk for further reading
+    # If image cannot be found from the disk, Camera snapshots a new image and caches it (TODO)
+    def __init__(self, frame_path = None):
         self.cap = cv2.VideoCapture(0)
         self.width, self.height = 320, 320
         self.cap.set(cv.CV_CAP_PROP_FRAME_WIDTH, self.width)
         self.cap.set(cv.CV_CAP_PROP_FRAME_HEIGHT, self.height)
+        self.cache_frame(frame_path)
+
+    def cache_frame(frame_path):
+        if not frame_path: return
+        img = cv2.imread(frame_path, cv2.IMREAD_GRAYSCALE)
+        self.cached_frame = frame.Frame(img)
 
     # Reads raw frame
     def read(self):
@@ -22,7 +30,7 @@ class Camera:
 
     # Reads raw frame and creates a Frame object
     def read_frame(self):
-        return frame.Frame(self.read())
+        return self.cached_frame ? self.cached_frame : frame.Frame(self.read())
 
     def snapshot(self, filename = 'shot.jpg'):
         cv2.imwrite(filename, self.read())
