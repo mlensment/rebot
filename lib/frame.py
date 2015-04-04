@@ -90,7 +90,7 @@ class Frame:
         (x,y),radius = cv2.minEnclosingCircle(contour)
         center = (int(x),int(y))
         radius = int(radius)
-        img = cv2.circle(img,center,radius,(0,255,0),2)
+        img = cv2.circle(self.original,center,radius,(0,255,0),2)
         #
         # cv2.drawContours(self.processed, contour, -1, (0,255,0), 3)
 
