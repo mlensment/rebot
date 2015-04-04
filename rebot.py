@@ -38,4 +38,4 @@ parser.add_argument('--frame', nargs='?', const = True, default = None, help = '
 args = parser.parse_args()
 
 r = Rebot(args.frame)
-# r.run()
+r.run()
