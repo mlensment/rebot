@@ -18,7 +18,7 @@ class Camera:
         if not frame_path: return
         img = cv2.imread(frame_path)
         self.cached_frame = frame.Frame(img)
-        cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        self.cached_frame.process()
 
     # Reads raw frame
     def read(self):
