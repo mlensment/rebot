@@ -84,7 +84,7 @@ class Frame:
             # if cv2.isContourConvex(i):
             filtered_contours.append(i)
 
-        cv2.drawContours(self.processed, filtered_contours, -1, (0,255,0), 3)
+        cv2.drawContours(self.processed, contours, -1, (0,255,0), 3)
 
 
         cv2.imshow('3', self.processed)
