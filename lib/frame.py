@@ -47,17 +47,13 @@ class Frame:
         # img = cv2.GaussianBlur(img,(5,5),0)
         cv2.imshow(config.WINDOW_NAME, img1_bg)
 
-        # ret, mask = cv2.threshold(img, 150, 255, cv2.THRESH_BINARY)
-        # res = cv2.bitwise_not(img, img, mask= mask)
-        # cv2.imshow(config.WINDOW_NAME, res)
+        kernel = np.ones((2,2),np.uint8)
+        img = cv2.morphologyEx(img, cv2.MORPH_OPEN, kernel)
 
-        # inRange(img, RangeLow,RangeHigh,Mask);
-        # M.setTo(C,Mask);
+        cv2.imshow('4', img1_bg)
 
         # threshold the image
         # img = cv2.GaussianBlur(img,(5,5),0)
-        # kernel = np.ones((2,2),np.uint8)
-        # img = cv2.morphologyEx(img, cv2.MORPH_OPEN, kernel)
 
 
         edges = cv2.Canny(img, 50, 130)
