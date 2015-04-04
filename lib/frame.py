@@ -87,7 +87,7 @@ class Frame:
                 contour = i
                 largest_area = area
 
-        if contour:
+        if contour.any():
             (x,y),radius = cv2.minEnclosingCircle(contour)
             center = (int(x),int(y))
             radius = int(radius)
