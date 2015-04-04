@@ -15,7 +15,10 @@ class Frame:
         gray = cv2.cvtColor(self.original, cv2.COLOR_BGR2GRAY)
 
         # threshold the image
-        ret, thresh = cv2.threshold(gray, 127, 255, cv2.THRESH_BINARY)
+        # ret, thresh = cv2.threshold(gray, 127, 255, cv2.THRESH_BINARY)
+
+        thresh = cv2.adaptiveThreshold(gray, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C,\
+            cv2.THRESH_BINARY, 11, 2)
 
         self.processed = thresh
 
