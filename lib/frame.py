@@ -8,6 +8,7 @@ class Frame:
 
     def process(self):
         # convert to grayscale
+        print self.img
         gray = cv2.cvtColor(self.img, cv2.COLOR_BGR2GRAY)
 
         # threshold the image
