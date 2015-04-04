@@ -19,7 +19,7 @@ class Rebot:
         while(1):
             frame = self.camera.read_frame()
             frame.process()
-            frame.show_original()
+            frame.show()
 
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
@@ -34,7 +34,7 @@ class Rebot:
         #     arm.take_food()
 
 parser = argparse.ArgumentParser(description='Rebot.')
-parser.add_argument('--frame', nargs='?', const = True, default = None, help = 'Path to frame you want to process.')
+parser.add_argument('--frame', nargs='?', const = 'frame.jpg', default = None, help = 'Path to frame you want to process.')
 args = parser.parse_args()
 
 r = Rebot(args.frame)
