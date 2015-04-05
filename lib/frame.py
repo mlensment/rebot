@@ -96,6 +96,7 @@ class Frame:
             center = (int(x),int(y))
             radius = int(radius)
             img = cv2.circle(self.processed, center, radius,(0,255,0),2)
+            img = cv2.circle(self.processed, center, 2,(0,0,255),2)
             #
             # cv2.drawContours(self.processed, contour, -1, (0,255,0), 3)
             font = cv2.FONT_HERSHEY_SIMPLEX
