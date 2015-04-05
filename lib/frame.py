@@ -53,7 +53,7 @@ class Frame:
         # cv2.imshow(config.WINDOW_NAME, img1_bg)
         #
         # erode remaining white areas
-        kernel = np.ones((10,10), np.uint8)
+        kernel = np.ones((15,15), np.uint8)
         img = cv2.morphologyEx(img, cv2.MORPH_OPEN, kernel)
 
         cv2.imshow('4', img)
