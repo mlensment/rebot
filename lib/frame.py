@@ -52,11 +52,11 @@ class Frame:
         #
         # cv2.imshow(config.WINDOW_NAME, img1_bg)
         #
-        # # erode remaining white areas
-        # kernel = np.ones((10,10), np.uint8)
-        # img = cv2.morphologyEx(img, cv2.MORPH_OPEN, kernel)
+        # erode remaining white areas
+        kernel = np.ones((10,10), np.uint8)
+        img = cv2.morphologyEx(img, cv2.MORPH_OPEN, kernel)
 
-        # cv2.imshow('4', img)
+        cv2.imshow('4', img)
 
         # find edges
         # values 50, 130 work well
