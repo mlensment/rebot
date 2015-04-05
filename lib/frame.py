@@ -59,7 +59,8 @@ class Frame:
         cv2.imshow('4', img)
 
         # find edges
-        edges = cv2.Canny(img, 50, 130)
+        # values 50, 130 work well
+        edges = cv2.Canny(img, 40, 130)
         cv2.imshow('2', edges)
 
         # find contours
