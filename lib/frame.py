@@ -29,7 +29,7 @@ class Frame:
 
     def find_glints(self):
         # convert to grayscale
-        self.processed = self.original
+        self.processed = self.original.clone()
         img = cv2.cvtColor(self.processed, cv2.COLOR_BGR2GRAY)
 
         # get rid of too bright pixels
