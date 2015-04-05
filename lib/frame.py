@@ -60,7 +60,7 @@ class Frame:
 
         # find edges
         # values 50, 130 work well
-        edges = cv2.Canny(img, 4, 130)
+        edges = cv2.Canny(img, 40, 130)
         cv2.imshow('frame', edges)
 
         # kernel = np.ones((3,3), np.uint8)
