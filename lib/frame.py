@@ -82,7 +82,7 @@ class Frame:
             if y < 50 or y > 250:
                 break
 
-            contour = i#
+            contour = i
             largest_area = area
 
         if contour is not None and contour.any():
@@ -95,6 +95,7 @@ class Frame:
             font = cv2.FONT_HERSHEY_SIMPLEX
             cv2.putText(self.processed, 'Largest contour area: ' + str(largest_area), (10,10), font, 0.5, (255,255,255), 2)
             cv2.putText(self.processed, 'Center of the contour: (' + str(x) + ', ' + str(y) + ')', (10,30), font, 0.5, (255,255,255), 2)
+            cv2.putText(self.processed, 'Radius of the contour: ' + str(radius), (10,60), font, 0.5, (255,255,255), 2)
 
         cv2.imshow('3', self.processed)
 
