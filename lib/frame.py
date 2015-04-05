@@ -69,6 +69,10 @@ class Frame:
         # find contours
         contours, hierarchy = cv2.findContours(edges, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 
+        if not self.printed:
+            print len(contours)
+        self.printed = True
+
         largest_area = 0
         contour = None
         for i in contours:
