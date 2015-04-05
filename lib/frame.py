@@ -69,7 +69,6 @@ class Frame:
         # find contours
         contours, hierarchy = cv2.findContours(edges, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 
-        e = False
         largest_area = 0
         contour = None
         for i in contours:
@@ -81,15 +80,15 @@ class Frame:
             # discard contours that are not in the center of the image
             # discard contours which bounding circle is too large
             (x,y),radius = cv2.minEnclosingCircle(i)
-            if y < 50 or y > 250:
+            if y < 50 or y > 250 or radius > 50 or radius < 15:
                 continue
 
             contour = i
             largest_area = area
 
-        if not self.printed:
-            print e
-        self.printed = True
+        # if not self.printed:
+        #     print e
+        # self.printed = True
 
         if contour is not None and contour.any():
             (x,y),radius = cv2.minEnclosingCircle(contour)
