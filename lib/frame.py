@@ -64,9 +64,9 @@ class Frame:
 
         kernel = np.ones((3,3), np.uint8)
         edges = cv2.dilate(edges, kernel, iterations = 1)
+        cv2.imshow('2', edges)
 
         roi = edges[0:50, 300:250]
-        cv2.imshow('2', roi)
 
         # find contours
         contours, hierarchy = cv2.findContours(roi, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
