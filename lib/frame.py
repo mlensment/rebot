@@ -43,13 +43,9 @@ class Frame:
         # find edges
         # values 50, 130 work well
         # values 40, 130 work well
-
-        # kernel = np.ones((3,3), np.uint8)
-        # edges = cv2.dilate(edges, kernel, iterations = 1)
-
         edges = cv2.Canny(img, 40, 130)
-        kernel = np.ones((2,2), np.uint8)
-        edges = cv2.dilate(edges, kernel, iterations = 1)
+        # kernel = np.ones((2,2), np.uint8)
+        # edges = cv2.dilate(edges, kernel, iterations = 1)
         cv2.imshow('4', edges)
 
         # find contours
@@ -75,6 +71,12 @@ class Frame:
         # if not self.printed:
         #     print e
         # self.printed = True
+
+        minLineLength = 100
+        maxLineGap = 10
+        lines = cv2.HoughLinesP(contours,1,np.pi/180,100,minLineLength,maxLineGap)
+        for x1,y1,x2,y2 in lines[0]:
+            cv2.line(img,(x1,y1),(x2,y2),(0,255,0),2)
 
         if contour is not None and contour.any():
             (x,y),radius = cv2.minEnclosingCircle(contour)
