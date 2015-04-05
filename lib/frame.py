@@ -75,7 +75,7 @@ class Frame:
             area = cv2.contourArea(i)
             # find only largest contour
             if area < largest_area:
-                break
+                continue
 
             # discard contours that are not in the center of the image
             # (x,y),radius = cv2.minEnclosingCircle(i)
