@@ -82,7 +82,7 @@ class Frame:
             if y < 50 or y > 250:
                 break
 
-            contour = i
+            contour = i#
             largest_area = area
 
         if contour is not None and contour.any():
