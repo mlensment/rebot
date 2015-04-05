@@ -78,9 +78,9 @@ class Frame:
                 continue
 
             # discard contours that are not in the center of the image
-            # (x,y),radius = cv2.minEnclosingCircle(i)
-            # if y < 50 or y > 250:
-            #     break
+            (x,y),radius = cv2.minEnclosingCircle(i)
+            if y < 50 or y > 250:
+                break
 
             contour = i
             largest_area = area
