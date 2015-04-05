@@ -84,11 +84,9 @@ class Frame:
             if y < 50 or y > 250:
                 continue
 
-            e = True
             contour = i
             largest_area = area
 
-        contour = contours[2]
         if not self.printed:
             print e
         self.printed = True
