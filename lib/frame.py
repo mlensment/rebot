@@ -78,6 +78,7 @@ class Frame:
             if area < largest_area:
                 continue
 
+            e = True
             # discard contours that are not in the center of the image
             # discard contours which bounding circle is too large
             (x,y),radius = cv2.minEnclosingCircle(i)
@@ -86,7 +87,6 @@ class Frame:
 
             contour = i
             largest_area = area
-            e = True
 
         contour = contours[2]
         if not self.printed:
