@@ -71,7 +71,7 @@ class Frame:
         contour = None
         for i in contours:
             area = cv2.contourArea(i)
-            if area >= largest_area and area >= 50:
+            if area >= largest_area:
                 contour = i
                 largest_area = area
 
