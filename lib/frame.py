@@ -79,7 +79,7 @@ class Frame:
 
             # discard contours that are not in the center of the image
             (x,y),radius = cv2.minEnclosingCircle(contour)
-            if y < 50 || y > 250:
+            if y < 50 or y > 250:
                 break
 
             contour = i
