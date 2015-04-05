@@ -91,6 +91,7 @@ class Frame:
         # self.printed = True
 
         if contour is not None and contour.any():
+            print 'bla'
             (x,y),radius = cv2.minEnclosingCircle(contour)
             center = (int(x),int(y))
             radius = int(radius)
