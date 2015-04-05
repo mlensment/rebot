@@ -43,16 +43,9 @@ class Frame:
         # find edges
         # values 50, 130 work well
         # values 40, 130 work well
-        edges = cv2.Canny(img, 40, 100)
 
         # kernel = np.ones((3,3), np.uint8)
         # edges = cv2.dilate(edges, kernel, iterations = 1)
-
-        edges = cv2.Canny(img, 50, 120)
-        cv2.imshow('2', edges)
-
-        edges = cv2.Canny(img, 70, 100)
-        cv2.imshow('3', edges)
 
         edges = cv2.Canny(img, 40, 130)
         kernel = np.ones((5,5), np.uint8)
@@ -96,7 +89,7 @@ class Frame:
             cv2.putText(self.processed, 'Center of the contour: (' + str(round(x, 2)) + ', ' + str(round(y, 2)) + ')', (10,30), font, 0.5, (255,255,255), 2)
             cv2.putText(self.processed, 'Radius of the contour: ' + str(round(radius, 2)), (10,60), font, 0.5, (255,255,255), 2)
 
-        # cv2.imshow('3', self.processed)
+        cv2.imshow('3', self.processed)
 
         # cv2.imshow(config.WINDOW_NAME, img)
         # edges = cv2.Canny(img, 0, 200)
