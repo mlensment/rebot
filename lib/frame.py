@@ -38,7 +38,7 @@ class Frame:
         blank_image[:, :] = 100
 
         # create mask for too bright areas
-        ret, mask = cv2.threshold(img, 200, 255, cv2.THRESH_BINARY)
+        ret, mask = cv2.threshold(img, 180, 255, cv2.THRESH_BINARY)
         mask_inv = cv2.bitwise_not(mask)
 
         # paint all normal areas black on background
