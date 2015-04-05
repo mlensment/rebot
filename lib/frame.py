@@ -69,6 +69,7 @@ class Frame:
         # find contours
         contours, hierarchy = cv2.findContours(edges, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 
+        e = False
         largest_area = 0
         contour = None
         for i in contours:
@@ -85,11 +86,12 @@ class Frame:
 
             contour = i
             largest_area = area
+            e = True
 
         contour = contours[2]
-        # if not self.printed:
-        #     print len(contours)
-        # self.printed = True
+        if not self.printed:
+            print e
+        self.printed = True
 
         if contour is not None and contour.any():
             (x,y),radius = cv2.minEnclosingCircle(contour)
