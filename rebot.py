@@ -30,7 +30,7 @@ class Rebot:
             frame.find_glints()
             # frame.show()
 
-            if cv2.waitKey(1) & 0xFF == ord('q'):
+            if cv2.waitKey(1) & 0xFF == ord('/'):
                 break
 
         self.camera.close()
