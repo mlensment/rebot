@@ -66,19 +66,24 @@ class Frame:
         edges = cv2.dilate(edges, kernel, iterations = 1)
         cv2.imshow('2', edges)
 
-        roi = edges[0:50, 300:250]
-
         # find contours
-        contours, hierarchy = cv2.findContours(roi, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+        contours, hierarchy = cv2.findContours(edges, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 
-        # Find largest contour
         largest_area = 0
         contour = None
         for i in contours:
             area = cv2.contourArea(i)
-            if area >= largest_area:
-                contour = i
-                largest_area = area
+            # find only largest contour
+            if area < largest_area:
+                break
+
+            # discard contours that are not in the center of the image
+            (x,y),radius = cv2.minEnclosingCircle(contour)
+            if y < 50 || y > 250:
+                break
+
+            contour = i
+            largest_area = area
 
         if contour is not None and contour.any():
             (x,y),radius = cv2.minEnclosingCircle(contour)
