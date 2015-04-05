@@ -68,7 +68,7 @@ class Frame:
             contour = i
             largest_area = area
 
-        contour = countours[0]
+        contour = contours[0]
         # if not self.printed:
         #     print e
         # self.printed = True
