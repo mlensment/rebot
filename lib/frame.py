@@ -61,10 +61,10 @@ class Frame:
         # find edges
         # values 50, 130 work well
         edges = cv2.Canny(img, 40, 130)
-        cv2.imshow('2', edges)
 
         kernel = np.ones((2,2), np.uint8)
         edges = cv2.dilate(edges, kernel, iterations = 1)
+        cv2.imshow('2', edges)
 
 
         # find contours
