@@ -60,7 +60,7 @@ class Frame:
 
         # find edges
         # values 50, 130 work well
-        edges = cv2.Canny(img, 40, 100)
+        edges = cv2.Canny(img, 40, 120)
 
         kernel = np.ones((3,3), np.uint8)
         edges = cv2.dilate(edges, kernel, iterations = 1)
