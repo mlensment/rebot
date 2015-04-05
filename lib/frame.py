@@ -100,9 +100,9 @@ class Frame:
             #
             # cv2.drawContours(self.processed, contour, -1, (0,255,0), 3)
             font = cv2.FONT_HERSHEY_SIMPLEX
-            cv2.putText(self.processed, 'Largest contour area: ' + str(largest_area), (10,10), font, 0.5, (255,255,255), 2)
-            cv2.putText(self.processed, 'Center of the contour: (' + str(x) + ', ' + str(y) + ')', (10,30), font, 0.5, (255,255,255), 2)
-            cv2.putText(self.processed, 'Radius of the contour: ' + str(radius), (10,60), font, 0.5, (255,255,255), 2)
+            cv2.putText(self.processed, 'Largest contour area: ' + str(round(largest_area, 2)), (10,10), font, 0.5, (255,255,255), 2)
+            cv2.putText(self.processed, 'Center of the contour: (' + str(round(x, 2)) + ', ' + str(round(y, 2)) + ')', (10,30), font, 0.5, (255,255,255), 2)
+            cv2.putText(self.processed, 'Radius of the contour: ' + str(round(radius, 2)), (10,60), font, 0.5, (255,255,255), 2)
 
         cv2.imshow('3', self.processed)
 
