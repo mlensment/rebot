@@ -64,11 +64,12 @@ class Frame:
 
         kernel = np.ones((3,3), np.uint8)
         edges = cv2.dilate(edges, kernel, iterations = 1)
-        cv2.imshow('2', edges)
 
+        roi = edges[0:50, 300:250]
+        cv2.imshow('2', roi)
 
         # find contours
-        contours, hierarchy = cv2.findContours(edges, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+        contours, hierarchy = cv2.findContours(roi, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 
         # Find largest contour
         largest_area = 0
@@ -87,8 +88,8 @@ class Frame:
             #
             # cv2.drawContours(self.processed, contour, -1, (0,255,0), 3)
             font = cv2.FONT_HERSHEY_SIMPLEX
-            cv2.putText(self.processed, 'Largest contour area: ' + str(largest_area), (10,10), font, 0.3, (255,255,255), 2)
-            cv2.putText(self.processed, 'Center of the contour: (' + str(x) + ', ' + str(y) + ')', (10,30), font, 0.3, (255,255,255), 2)
+            cv2.putText(self.processed, 'Largest contour area: ' + str(largest_area), (10,10), font, 0.5, (255,255,255), 2)
+            cv2.putText(self.processed, 'Center of the contour: (' + str(x) + ', ' + str(y) + ')', (10,30), font, 0.5, (255,255,255), 2)
 
         cv2.imshow('3', self.processed)
 
