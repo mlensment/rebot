@@ -37,7 +37,7 @@ class Frame:
         kernel = np.ones((10,10), np.uint8)
         img = cv2.morphologyEx(img, cv2.MORPH_OPEN, kernel)
 
-        img = (255.0/2) * (img/(255.0/2))**2
+        img = (255.0/3) * (img/(255.0/3))**2
         img = array(img,dtype=np.uint8)
 
         # cv2.imshow('4', img)
