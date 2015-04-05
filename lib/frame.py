@@ -69,7 +69,7 @@ class Frame:
         edges = cv2.Canny(img, 50, 120)
         cv2.imshow('2', edges)
 
-        edges = cv2.Canny(img, 50, 130)
+        edges = cv2.Canny(img, 40, 130)
         cv2.imshow('3', edges)
 
         edges = cv2.Canny(img, 70, 100)
