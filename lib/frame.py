@@ -33,7 +33,7 @@ class Frame:
         img = cv2.cvtColor(self.processed, cv2.COLOR_BGR2GRAY)
 
         # try to just threshold for fun
-        ret, mask = cv2.threshold(img, 200, 255, cv2.THRESH_BINARY)
+        ret, mask = cv2.threshold(img, 150, 255, cv2.THRESH_BINARY)
         cv2.imshow('3', mask)
 
 
