@@ -63,6 +63,9 @@ class Frame:
         edges = cv2.Canny(img, 40, 130)
         cv2.imshow('2', edges)
 
+        edges = cv2.dilate(edges, kernel, iterations = 1)
+
+
         # find contours
         contours, hierarchy = cv2.findContours(edges, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 
