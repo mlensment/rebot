@@ -33,7 +33,7 @@ class Frame:
         img = cv2.cvtColor(self.processed, cv2.COLOR_BGR2GRAY)
 
         # get rid of too bright pixels
-        create gray background
+        # create gray background
         blank_image = np.zeros(img.shape, np.uint8)
         blank_image[:, :] = 100
 
