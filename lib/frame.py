@@ -60,19 +60,19 @@ class Frame:
 
         # find edges
         # values 50, 130 work well
-        edges = cv2.Canny(img, 40, 130)
+        edges = cv2.Canny(img, 40, 100)
         cv2.imshow('frame', edges)
 
         # kernel = np.ones((3,3), np.uint8)
         # edges = cv2.dilate(edges, kernel, iterations = 1)
 
-        edges = cv2.Canny(img, 50, 130)
+        edges = cv2.Canny(img, 50, 120)
         cv2.imshow('2', edges)
 
         edges = cv2.Canny(img, 60, 130)
         cv2.imshow('3', edges)
 
-        edges = cv2.Canny(img, 70, 130)
+        edges = cv2.Canny(img, 70, 140)
         cv2.imshow('4', edges)
 
         # find contours
