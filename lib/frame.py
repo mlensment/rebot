@@ -55,8 +55,8 @@ class Frame:
         cv2.imshow('3', edges)
 
         edges = cv2.Canny(img, 70, 100)
-        kernel = np.ones((3,3), np.uint8)
-        edges = cv2.dilate(edges, kernel, iterations = 3)
+        kernel = np.ones((5,5), np.uint8)
+        edges = cv2.dilate(edges, kernel, iterations = 1)
         cv2.imshow('4', edges)
 
         # find contours
