@@ -78,13 +78,13 @@ class Frame:
             if area < largest_area:
                 continue
 
-            e = True
             # discard contours that are not in the center of the image
             # discard contours which bounding circle is too large
             (x,y),radius = cv2.minEnclosingCircle(i)
             if y < 50 or y > 250:
-                break
+                continue
 
+            e = True
             contour = i
             largest_area = area
 
