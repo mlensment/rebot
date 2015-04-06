@@ -35,7 +35,7 @@ class Frame:
 
         # erode remaining white areas
         kernel = np.ones((10,10), np.uint8)
-        img = cv2.morphologyExphologyEx(img, cv2.MORPH_OPEN, kernel)
+        img = cv2.morphologyEx(img, cv2.MORPH_OPEN, kernel)
 
         # cv2.imshow('4', img)
         cv2.imshow('frame', img)
