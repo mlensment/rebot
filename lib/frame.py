@@ -64,7 +64,7 @@ class Frame:
             # discard contours that are not in the center of the image
             # discard contours which bounding circle is too large
             (x,y),radius = cv2.minEnclosingCircle(i)
-            if y < 50 or y > 250 or (x - radius) < 45 or radius > 30 or radius < 15:
+            if y < 50 or y > 280 or radius > 30 or radius < 15:
                 continue
 
             contour = i
@@ -80,7 +80,7 @@ class Frame:
         # for x1,y1,x2,y2 in lines[0]:
         #     cv2.line(img,(x1,y1),(x2,y2),(0,255,0),2)
 
-        contour = contours[2]
+        # contour = contours[2]
 
         if contour is not None and contour.any():
             (x,y),radius = cv2.minEnclosingCircle(contour)
