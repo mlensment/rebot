@@ -48,8 +48,8 @@ class Frame:
         # edges = cv2.dilate(edges, kernel, iterations = 1)
         cv2.imshow('2', edges)
 
-        edges = cv2.Canny(img, 10, 100)
-        kernel = np.ones((3,3), np.uint8)
+        edges = cv2.Canny(img, 40, 110)
+        kernel = np.ones((2,2), np.uint8)
         edges = cv2.dilate(edges, kernel, iterations = 1)
         cv2.imshow('4', edges)
 
