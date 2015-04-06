@@ -30,6 +30,8 @@ class Frame:
 
     def find_glints(self):
         # convert to grayscale
+        cv2.imshow('2', self.original)
+
         self.processed = self.original.copy()
         img = cv2.cvtColor(self.processed, cv2.COLOR_BGR2GRAY)
 
