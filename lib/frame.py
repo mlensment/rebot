@@ -30,7 +30,7 @@ class Frame:
 
     def find_glints(self):
         # convert to grayscale
-        cv2.imshow('2', self.original)
+        cv2.imshow('frame', self.original)
 
         self.processed = self.original.copy()
         img = cv2.cvtColor(self.processed, cv2.COLOR_BGR2GRAY)
@@ -40,7 +40,7 @@ class Frame:
         img = cv2.morphologyEx(img, cv2.MORPH_OPEN, kernel)
 
         # cv2.imshow('4', img)
-        cv2.imshow('frame', img)
+        cv2.imshow('2', img)
 
         # find edges
         # values 50, 130 work well
