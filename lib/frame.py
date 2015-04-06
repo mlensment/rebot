@@ -34,7 +34,7 @@ class Frame:
         img = cv2.cvtColor(self.processed, cv2.COLOR_BGR2GRAY)
 
         # erode remaining white areas
-        kernel = np.ones((10,10), np.uint8)
+        kernel = np.ones((5,5), np.uint8)
         img = cv2.morphologyEx(img, cv2.MORPH_OPEN, kernel)
 
         # cv2.imshow('4', img)
@@ -43,9 +43,9 @@ class Frame:
         # find edges
         # values 50, 130 work well
         # values 40, 130 work well
-        edges = cv2.Canny(img, 50, 130)
-        kernel = np.ones((2,2), np.uint8)
-        edges = cv2.dilate(edges, kernel, iterations = 1)
+        edges = cv2.Canny(img, 40, 130)
+        # kernel = np.ones((2,2), np.uint8)
+        # edges = cv2.dilate(edges, kernel, iterations = 1)
         # cv2.imshow('2', edges)
 
         cv2.imshow('4', edges)
