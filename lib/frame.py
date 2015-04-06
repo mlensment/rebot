@@ -80,7 +80,7 @@ class Frame:
         # for x1,y1,x2,y2 in lines[0]:
         #     cv2.line(img,(x1,y1),(x2,y2),(0,255,0),2)
 
-        contour = contours[0]
+        contour = contours[2]
 
         if contour is not None and contour.any():
             (x,y),radius = cv2.minEnclosingCircle(contour)
