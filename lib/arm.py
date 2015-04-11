@@ -2,7 +2,7 @@ import os
 
 class Arm:
     def __init__(self):
-        os.system("sudo ./../bin/servod 1> /dev/null")
+        os.system("sudo killall servod && sudo ./../bin/servod > /dev/null")
 
     def move_to(self, deg):
         if os.path.exists('/dev/servoblaster'):
