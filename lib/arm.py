@@ -28,8 +28,10 @@ class Arm:
             # self.spoon_position += 1
 
     def ease_in_out_quad(self, x, t, s, e, d):
-        if ((t/=d/2) < 1):
-             return c/2*t*t + b;
+        ti = d / 2
+        ti /= ti
+        if (ti < 1):
+             return c/2*t*t + b
         return -c/2 * ((--t)*(t-2) - 1) + b
 
     def move_to(self, servo, deg):
