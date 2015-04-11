@@ -22,7 +22,7 @@ class Arm:
         while(self.spoon_position != deg):
             elapsed_time = int(round(time.time() * 1000)) - millis
 
-            self.spoon_position = self.ease_in_out_quad(self.spoon_position, elapsed_time, start_position, end_position, 2000)
+            self.spoon_position = self.ease_in_out_quad(self.spoon_position, elapsed_time, start_position, end_position, 5000)
             self.spoon_position = math.ceil(self.spoon_position)
             self.move_to(5, self.spoon_position)
             # self.spoon_position += 1
