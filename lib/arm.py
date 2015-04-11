@@ -1,4 +1,5 @@
 import os
+import math
 
 class Arm:
     def __init__(self):
@@ -12,8 +13,8 @@ class Arm:
 
 
         if os.path.exists('/dev/servoblaster'):
-            os.system("echo 2=" + str(ceil(deg)) + " > /dev/servoblaster")
-            os.system("echo 5=" + str(ceil(deg)) + " > /dev/servoblaster")
+            os.system("echo 2=" + str(math.ceil(deg)) + " > /dev/servoblaster")
+            os.system("echo 5=" + str(math.ceil(deg)) + " > /dev/servoblaster")
         else:
             raise 'ERROR: Servo driver was not found. Is servoblaster loaded?'
 
