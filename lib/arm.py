@@ -19,4 +19,4 @@ class Arm:
             raise 'ERROR: Servo driver was not found. Is servoblaster loaded?'
 
 a = Arm()
-a.move_to(120)
+a.move_to(0)
