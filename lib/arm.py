@@ -29,5 +29,5 @@ class Arm:
 # args = parser.parse_args()
 #
 a = Arm()
-a.move_to(0)
+a.move_to(5, 0)
 a.ease_spoon_to(180)
