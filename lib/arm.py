@@ -31,7 +31,7 @@ class Arm:
         ti = d / 2
         ti /= ti
         if (ti < 1):
-             return c/2*t*t + b
+             return c/2*ti*ti + b
         return -c/2 * ((--t)*(t-2) - 1) + b
 
     def move_to(self, servo, deg):
