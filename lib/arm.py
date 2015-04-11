@@ -27,7 +27,7 @@ class Arm:
             self.move_to(5, self.spoon_position)
             # self.spoon_position += 1
 
-    def ease_in_out_quad(self, x, t, s, e, d):
+    def ease_in_out_quad(self, x, t, b, c, d):
         ti = d / 2
         ti /= ti
         if (ti < 1):
