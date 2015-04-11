@@ -1,4 +1,3 @@
-import config
 import argparse
 import os
 import math
