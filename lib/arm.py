@@ -24,6 +24,3 @@ args = parser.parse_args()
 
 a = Arm()
 a.move_to(args.deg)
-
-180 - 180
-1   -
