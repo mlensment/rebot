@@ -13,7 +13,7 @@ class Arm:
         self.leg_position = 0
 
     def ease_spoon_to(self, deg):
-        self.move_to(self, config.SPOON_SERVO, deg):
+        self.move_to(config.SPOON_SERVO, deg)
 
     def move_to(self, servo, deg):
         pwm = deg * 0.94 # 1 degree = 0.094ms high pulse time
