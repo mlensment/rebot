@@ -8,5 +8,5 @@ class Arm:
         os.system("echo 2=" + deg + " > /dev/servoblaster")
         os.system("echo 5=" + deg + " > /dev/servoblaster")
 
-a = Rebot()
+a = Arm()
 a.move_to(120)
