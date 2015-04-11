@@ -24,7 +24,7 @@ class Arm:
             elapsed_time = int(round(time.time() * 1000)) - millis
 
             self.spoon_position = self.ease_in_out_quad(self.spoon_position, elapsed_time, start_position, end_position, 2000)
-            print self.spoon_position
+            print self.elapsed_time
             # self.move_to(5, self.spoon_position)
             # self.spoon_position += 1
 
