@@ -9,7 +9,7 @@ class Arm:
         os.system("sudo killall servod && sudo ./../bin/servod 1> /dev/null")
 
     def move_to(self, deg):
-        pwm = deg * 1.05882352941176 # 1 degree = 0.011ms high pulse time
+        pwm = deg * 0.94444444444444 # 1 degree = 0.011ms high pulse time
         pwm += 50  # minimum high pulse time is 0.5 milliseconds
 
         if os.path.exists('/dev/servoblaster'):
