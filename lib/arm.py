@@ -9,10 +9,13 @@ class Arm:
         os.system("sudo killall servod && sudo ./../bin/servod 1> /dev/null")
 
         self.spoon_position = 0
+        self.spoon_ease = 0.1
         self.leg_position = 0
 
     def ease_spoon_to(self, deg):
-        self.move_to(5, deg)
+        while(self.spoon_position != deg):
+            self.move_to(5, self.spoon_position)
+            self.spoon_position += 1
 
     def move_to(self, servo, deg):
         pwm = deg * 0.94 # 1 degree = 0.094ms high pulse time
@@ -29,5 +32,5 @@ class Arm:
 # args = parser.parse_args()
 #
 a = Arm()
-a.move_to(5, 0)
+# a.move_to(5, 0)
 a.ease_spoon_to(180)
