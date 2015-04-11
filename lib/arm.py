@@ -13,8 +13,8 @@ class Arm:
 
 
         if os.path.exists('/dev/servoblaster'):
-            os.system("echo 2=" + str(math.ceil(deg)) + " > /dev/servoblaster")
-            os.system("echo 5=" + str(math.ceil(deg)) + " > /dev/servoblaster")
+            os.system("echo 2=" + str(math.ceil(pwm)) + " > /dev/servoblaster")
+            os.system("echo 5=" + str(math.ceil(pwm)) + " > /dev/servoblaster")
         else:
             raise 'ERROR: Servo driver was not found. Is servoblaster loaded?'
 
