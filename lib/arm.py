@@ -9,12 +9,12 @@ class Arm:
         os.system("sudo killall servod && sudo ./../bin/servod 1> /dev/null")
 
     def move_to(self, deg):
-
-        pwm = deg + 50  # minimum high pulse time is 0.5 milliseconds
+        pwm = deg * 1.05882352941176 # 1 degree = 0.011ms high pulse time
+        pwm += 50  # minimum high pulse time is 0.5 milliseconds
 
         if os.path.exists('/dev/servoblaster'):
-            os.system("echo 2=" + str(pwm) + " > /dev/servoblaster")
-            os.system("echo 5=" + str(pwm) + " > /dev/servoblaster")
+            os.system("echo 2=" + str(math.ceil(pwm)) + " > /dev/servoblaster")
+            os.system("echo 5=" + str(math.ceil(pwm)) + " > /dev/servoblaster")
         else:
             raise 'ERROR: Servo driver was not found. Is servoblaster loaded?'
 
