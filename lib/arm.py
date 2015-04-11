@@ -13,15 +13,15 @@ class Arm:
         self.leg_position = 0
 
     def ease_spoon_to(self, deg):
-        self.move_to(config.SPOON_SERVO, deg)
+        self.move_to(5, deg)
 
     def move_to(self, servo, deg):
         pwm = deg * 0.94 # 1 degree = 0.094ms high pulse time
         pwm += 50  # minimum high pulse time is 0.5 milliseconds
 
         if os.path.exists('/dev/servoblaster'):
-            os.system("echo 2=" + str(math.ceil(pwm)) + " > /dev/servoblaster")
-            os.system("echo 5=" + str(math.ceil(pwm)) + " > /dev/servoblaster")
+            # os.system("echo 2=" + str(math.ceil(pwm)) + " > /dev/servoblaster")
+            os.system("echo "str(servo)"=" + str(math.ceil(pwm)) + " > /dev/servoblaster")
         else:
             raise 'ERROR: Servo driver was not found. Is servoblaster loaded?'
 
