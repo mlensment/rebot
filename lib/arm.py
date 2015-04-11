@@ -2,10 +2,10 @@ import os
 
 class Arm:
     def __init__(self):
-        os.system("sudo ./../bin/servod")
+        os.system("sudo killall servod && sudo ./../bin/servod")
 
     def move_to(self, deg):
-        if os.path.isfile('/dev/servoblaster'):
+        if os.path.exists('/dev/servoblaster'):
             os.system("echo 2=" + str(deg) + " > /dev/servoblaster")
             os.system("echo 5=" + str(deg) + " > /dev/servoblaster")
         else:
