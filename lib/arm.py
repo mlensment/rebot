@@ -22,17 +22,18 @@ class Arm:
         while(self.spoon_position != deg):
             elapsed_time = int(round(time.time() * 1000)) - millis
 
-            self.spoon_position = self.ease_in_out_quad(self.spoon_position, elapsed_time, start_position, end_position, 5000)
-            self.spoon_position = math.ceil(self.spoon_position)
+            self.spoon_position = self.ease_in_out_sine(self.spoon_position, elapsed_time, start_position, end_position, 5000)
+            # self.spoon_position = math.ceil(self.spoon_position)
             self.move_to(2, self.spoon_position)
             # self.spoon_position += 1
 
-    def ease_in_out_quad(self, x, t, b, c, d):
-        t = t / (d / 2.0)
-        if (t < 1):
-             return c/2*t*t + b
-        ti = t - 1
-        return -c/2 * ((ti)*(t-3) - 1) + b
+    def ease_in_out_sine(self, x, t, b, c, d):
+        return -c / 2 * (math.cos(math.pi * t / d) - 1) + b;
+        # t = t / (d / 2.0)
+        # if (t < 1):
+        #      return c/2*t*t + b
+        # ti = t - 1
+        # return -c/2 * ((ti)*(t-3) - 1) + b
 
     def move_to(self, servo, deg):
         pwm = deg
