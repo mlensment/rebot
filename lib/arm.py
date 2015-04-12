@@ -35,8 +35,9 @@ class Arm:
         return -c/2 * ((ti)*(t-3) - 1) + b
 
     def move_to(self, servo, deg):
-        pwm = deg * 0.94 # 1 degree = 0.094ms high pulse time
-        pwm += 50  # minimum high pulse time is 0.5 milliseconds
+        pwm = deg
+        # pwm = deg * 0.94 # 1 degree = 0.094ms high pulse time
+        # pwm += 50  # minimum high pulse time is 0.5 milliseconds
 
         if os.path.exists('/dev/servoblaster'):
             # os.system("echo 2=" + str(math.ceil(pwm)) + " > /dev/servoblaster")
@@ -50,4 +51,4 @@ class Arm:
 #
 a = Arm()
 # a.move_to(5, 0)
-a.ease_spoon_to(200)
+a.ease_spoon_to(250)
