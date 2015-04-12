@@ -29,13 +29,14 @@ class Arm:
 
             self.spoon_position = self.ease_in_out_sine(self.spoon_position, elapsed_time, start_position, end_position, 5000)
             # self.spoon_position = math.ceil(self.spoon_position)
-            self.move_to(2, self.spoon_position)
             # self.spoon_position += 1
             if self.spoon_position >= deg and direction == 'asc':
                 break
 
             if self.spoon_position <= deg and direction == 'desc':
                 break
+                
+            self.move_to(2, self.spoon_position)
 
     def ease_in_out_sine(self, x, t, b, c, d):
         return -c / 2 * (math.cos(math.pi * t / d) - 1) + b;
