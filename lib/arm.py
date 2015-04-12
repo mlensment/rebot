@@ -27,11 +27,6 @@ class Arm:
         cv2.namedWindow('4')
         cv2.moveWindow('4', 100, 500)
 
-        while(1):
-            if cv2.waitKey(1) & 0xFF == ord('/'):
-                break
-
-
     def ease_spoon_to(self, deg):
         start_position = self.spoon_position
         end_position = deg
@@ -62,6 +57,9 @@ class Arm:
 
             # print str(self.spoon_position) + " - " + str(elapsed_time) + " - " + str(start_position) + " - " + str(end_position)
             self.move_to(2, self.spoon_position)
+
+            if cv2.waitKey(1) & 0xFF == ord('/'):
+                break
 
     def ease_in_out_sine(self, elapsed_time, begin, end, timeframe):
         b = begin
