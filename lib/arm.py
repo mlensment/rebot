@@ -92,3 +92,4 @@ print 'easing to 60'
 a.ease_spoon_to(60)
 print 'easing to 250 last'
 a.ease_spoon_to(250)
+a.ease_spoon_to(60)
