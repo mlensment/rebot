@@ -11,6 +11,12 @@ class Arm:
         # although servoblaster seems to be writing errors to stdout too, instead of stderr...
         # os.system("sudo killall servod && sudo ./../bin/servod 1> /dev/null")
 
+        # sudo ./servod --step-seize 2
+        # range 250 - 1250
+
+        # sudo ./servod --step-seize 2
+        # range 50 - 250
+
         self.spoon_position = 250
         # temp
         self.camera = camera.Camera()
@@ -36,8 +42,8 @@ class Arm:
             direction = 'desc'
 
         while(1):
-            # frame = self.camera.read_frame()
-            # frame.find_glints()
+            frame = self.camera.read_frame()
+            frame.find_glints()
 
             elapsed_time = int(round(time.time() * 1000)) - millis
 
