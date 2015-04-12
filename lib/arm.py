@@ -10,7 +10,7 @@ class Arm:
         # although servoblaster seems to be writing errors to stdout too, instead of stderr...
         # os.system("sudo killall servod && sudo ./../bin/servod 1> /dev/null")
 
-        self.spoon_position = 80
+        self.spoon_position = 60
         self.spoon_next_pos = 0
         self.spoon_ease = 0.1
         # self.leg_position = 0
