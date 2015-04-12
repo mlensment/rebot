@@ -31,10 +31,10 @@ class Arm:
             # self.spoon_position = math.ceil(self.spoon_position)
             self.move_to(2, self.spoon_position)
             # self.spoon_position += 1
-            if self.spoon_position >= deg && direction == 'asc':
+            if self.spoon_position >= deg and direction == 'asc':
                 break
 
-            if self.spoon_position <= deg && direction == 'desc':
+            if self.spoon_position <= deg and direction == 'desc':
                 break
 
     def ease_in_out_sine(self, x, t, b, c, d):
