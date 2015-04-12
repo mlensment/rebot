@@ -29,10 +29,10 @@ class Arm:
 
             self.spoon_position = self.ease_in_out_sine(elapsed_time, start_position, end_position, 5000)
 
-            if self.spoon_position >= deg and direction == 'asc':
+            if self.spoon_position >= deg - 1 and direction == 'asc':
                 break
 
-            if self.spoon_position <= deg and direction == 'desc':
+            if self.spoon_position <= deg  + 1 and direction == 'desc':
                 break
 
             if self.spoon_position > 250:
