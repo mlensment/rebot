@@ -90,7 +90,7 @@ class App:
 
     def run(self):
         i = 0
-        self.ease_spoon(config.config.SERVO_MAX_WIDTH)
+        self.ease_spoon(config.SERVO_MAX_WIDTH)
         while(1):
             # is_alive()
             i += 1
