@@ -11,7 +11,7 @@ class Arm:
         # although servoblaster seems to be writing errors to stdout too, instead of stderr...
         # os.system("sudo killall servod && sudo ./../bin/servod 1> /dev/null")
 
-        self.spoon_position = 60
+        self.spoon_position = 250
         # temp
         self.camera = camera.Camera()
         cv2.namedWindow('frame')
@@ -49,10 +49,10 @@ class Arm:
             if math.floor(self.spoon_position) <= deg and direction == 'desc':
                 break
 
-            if self.spoon_position > 250:
+            if self.spoon_position > 1250:
+                self.spoon_position = 1250
+            elif self.spoon_position < 250:
                 self.spoon_position = 250
-            elif self.spoon_position < 50:
-                self.spoon_position = 50
 
             # print str(self.spoon_position) + " - " + str(elapsed_time) + " - " + str(start_position) + " - " + str(end_position)
             self.move_to(2, self.spoon_position)
@@ -102,14 +102,14 @@ class Arm:
 a = Arm()
 # a.move_to(5, 0)
 print 'easing to 60'
-a.ease_spoon_to(60)
+a.ease_spoon_to(250)
 print 'easing to 250'
-a.ease_spoon_to(250)
+a.ease_spoon_to(1250)
 print 'easing to 60'
-a.ease_spoon_to(60)
-print 'easing to 250 last'
 a.ease_spoon_to(250)
-a.ease_spoon_to(60)
+print 'easing to 250 last'
+a.ease_spoon_to(1250)
+a.ease_spoon_to(250)
 
 # a.camera.close()
 # cv2.destroyAllWindows()
