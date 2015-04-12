@@ -46,7 +46,17 @@ class Arm:
             self.move_to(2, self.spoon_position)
 
     def ease_in_out_sine(self, x, t, b, c, d):
-        return -c / 2 * (math.cos(math.pi * t / d) - 1) + b;
+        reverse = False
+        if b > c:
+            reverse = True
+
+        pos = -c / 2 * (math.cos(math.pi * t / d) - 1) + b;
+
+        if reverse:
+            return b - (b - pos)
+            
+        return pos
+
         # t = t / (d / 2.0)
         # if (t < 1):
         #      return c/2*t*t + b
