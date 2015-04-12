@@ -40,7 +40,7 @@ class Arm:
             elif self.spoon_position < 50:
                 self.spoon_position = 50
 
-            print str(self.spoon_position) + " - " + str(elapsed_time) + " - " + str(start_position) + " - " + str(end_position)
+            # print str(self.spoon_position) + " - " + str(elapsed_time) + " - " + str(start_position) + " - " + str(end_position)
             self.move_to(2, self.spoon_position)
 
     def ease_in_out_sine(self, elapsed_time, begin, end, timeframe):
@@ -84,7 +84,9 @@ class Arm:
 #
 a = Arm()
 # a.move_to(5, 0)
+print 'easing to 60'
 a.ease_spoon_to(60)
+print 'easing to 250'
 a.ease_spoon_to(250)
 # a.ease_spoon_to(60)
 # a.ease_spoon_to(250)
