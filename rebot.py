@@ -4,13 +4,13 @@ import argparse
 import config
 from lib import camera, frame
 # import eye
-import arm
+# import arm
 import cv2
 
 class Rebot:
     def __init__(self, frame_path = None):
         self.camera = camera.Camera(frame_path)
-        self.arm = arm.Arm()
+        # self.arm = arm.Arm()
 
         # create a window for displaying image and move it to a reasonable spot
         cv2.namedWindow(config.WINDOW_NAME)
