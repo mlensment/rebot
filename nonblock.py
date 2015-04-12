@@ -47,8 +47,7 @@ class Servo(Process):
             elif self.angle.value < 250:
                 self.angle.value = 250
 
-            print str(self.angle.value)
-            # self.rotate()
+            self.rotate()
 
     def rotate(self):
         pwm = self.angle.value
@@ -95,7 +94,7 @@ class App:
         while(1):
             # is_alive()
             i += 1
-            
+
 
     def ease_spoon(self, deg):
         self.spoon_servo.angle_to = deg
