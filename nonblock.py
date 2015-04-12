@@ -51,7 +51,7 @@ class Servo(Process):
             self.rotate()
 
     def rotate(self):
-        pwm = self.angle.value * ((config.SERVO_MAX_WIDTH - config.SERVO_MAX_WIDTH) / 180.0) # 1 degree = max high pulse time / 180
+        pwm = self.angle.value * ((config.SERVO_MAX_WIDTH - config.SERVO_MIN_WIDTH) / 180.0) # 1 degree = max high pulse time / 180
         pwm += config.SERVO_MIN_WIDTH  # add minimum high pulse time
 
         if os.path.exists('/dev/servoblaster'):
