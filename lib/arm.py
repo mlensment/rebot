@@ -30,6 +30,12 @@ class Arm:
             self.spoon_position = self.ease_in_out_sine(self.spoon_position, elapsed_time, start_position, end_position, 5000)
             # self.spoon_position = math.ceil(self.spoon_position)
             # self.spoon_position += 1
+
+            if self.spoon_position > 250:
+                self.spoon_position = 250
+            elif self.spoon_position < 50:
+                self.spoon_position = 50
+
             if self.spoon_position >= deg and direction == 'asc':
                 break
 
