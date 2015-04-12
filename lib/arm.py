@@ -24,7 +24,7 @@ class Arm:
 
             self.spoon_position = self.ease_in_out_quad(self.spoon_position, elapsed_time, start_position, end_position, 5000)
             self.spoon_position = math.ceil(self.spoon_position)
-            self.move_to(5, self.spoon_position)
+            self.move_to(2, self.spoon_position)
             # self.spoon_position += 1
 
     def ease_in_out_quad(self, x, t, b, c, d):
