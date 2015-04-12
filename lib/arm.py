@@ -37,12 +37,12 @@ class Arm:
             direction = 'desc'
 
         while(1):
-            # frame = self.camera.read_frame()
-            # frame.find_glints()
+            frame = self.camera.read_frame()
+            frame.find_glints()
 
             elapsed_time = int(round(time.time() * 1000)) - millis
 
-            self.spoon_position = self.ease_in_out_sine(elapsed_time, start_position, end_position, 5000)
+            self.spoon_position = self.ease_in_out_sine(elapsed_time, start_position, end_position, 10000)
 
             if math.ceil(self.spoon_position) >= deg and direction == 'asc':
                 break
