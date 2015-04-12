@@ -19,13 +19,23 @@ class Arm:
         start_position = self.spoon_position
         end_position = deg
         millis = int(round(time.time() * 1000))
-        while(self.spoon_position != deg or self.spoon_position <= 250 and self.spoon_position >= 50):
+
+        direction = 'asc'
+        if self.spoon_position > deg:
+            direction = 'desc'
+
+        while(1):
             elapsed_time = int(round(time.time() * 1000)) - millis
 
             self.spoon_position = self.ease_in_out_sine(self.spoon_position, elapsed_time, start_position, end_position, 5000)
             # self.spoon_position = math.ceil(self.spoon_position)
             self.move_to(2, self.spoon_position)
             # self.spoon_position += 1
+            if self.spoon_position >= deg && direction == 'asc':
+                break
+
+            if self.spoon_position <= deg && direction == 'desc':
+                break
 
     def ease_in_out_sine(self, x, t, b, c, d):
         return -c / 2 * (math.cos(math.pi * t / d) - 1) + b;
