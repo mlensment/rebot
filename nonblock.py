@@ -37,6 +37,7 @@ class Servo(Process):
 
             self.angle.value = Servo.ease_in_out_sine(elapsed_time, start_angle, end_angle, 15000)
 
+            print self.angle.value
             if math.ceil(self.angle.value) >= self.angle_to and direction == 'asc':
                 break
 
