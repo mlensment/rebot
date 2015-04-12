@@ -2,6 +2,8 @@ import argparse
 import os
 import math
 import time
+import camera, frame
+import cv2
 
 
 class Arm:
@@ -11,9 +13,20 @@ class Arm:
         # os.system("sudo killall servod && sudo ./../bin/servod 1> /dev/null")
 
         self.spoon_position = 60
-        self.spoon_next_pos = 0
-        self.spoon_ease = 0.1
-        # self.leg_position = 0
+        # temp
+        self.camera = camera.Camera()
+        cv2.namedWindow('frame')
+        cv2.moveWindow('frame', 100, 100)
+
+        cv2.namedWindow('2')
+        cv2.moveWindow('2', 500, 100)
+
+        cv2.namedWindow('3')
+        cv2.moveWindow('3', 1000, 100)
+
+        cv2.namedWindow('4')
+        cv2.moveWindow('4', 100, 500)
+
 
     def ease_spoon_to(self, deg):
         start_position = self.spoon_position
@@ -25,6 +38,9 @@ class Arm:
             direction = 'desc'
 
         while(1):
+            frame = self.camera.read_frame()
+            frame.find_glints()
+
             elapsed_time = int(round(time.time() * 1000)) - millis
 
             self.spoon_position = self.ease_in_out_sine(elapsed_time, start_position, end_position, 5000)
@@ -93,3 +109,6 @@ a.ease_spoon_to(60)
 print 'easing to 250 last'
 a.ease_spoon_to(250)
 a.ease_spoon_to(60)
+
+a.camera.close()
+cv2.destroyAllWindows()
