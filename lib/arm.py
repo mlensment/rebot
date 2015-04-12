@@ -43,7 +43,7 @@ class Arm:
             print str(self.spoon_position) + " - " + str(elapsed_time) + " - " + str(start_position) + " - " + str(end_position)
             self.move_to(2, self.spoon_position)
 
-    def ease_in_out_sine(self, t, b, c, d):
+    def ease_in_out_sine(self, elapsed_time, begin, end, timeframe):
         b = begin
         c = math.fabs(end - begin)
         begin = 0
