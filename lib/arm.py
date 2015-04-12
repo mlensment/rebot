@@ -36,8 +36,8 @@ class Arm:
             direction = 'desc'
 
         while(1):
-            frame = self.camera.read_frame()
-            frame.find_glints()
+            # frame = self.camera.read_frame()
+            # frame.find_glints()
 
             elapsed_time = int(round(time.time() * 1000)) - millis
 
