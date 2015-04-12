@@ -35,7 +35,7 @@ class Arm:
 
             if self.spoon_position <= deg and direction == 'desc':
                 break
-                
+
             self.move_to(2, self.spoon_position)
 
     def ease_in_out_sine(self, x, t, b, c, d):
@@ -63,4 +63,7 @@ class Arm:
 #
 a = Arm()
 # a.move_to(5, 0)
+a.ease_spoon_to(0)
+a.ease_spoon_to(250)
+a.ease_spoon_to(0)
 a.ease_spoon_to(250)
