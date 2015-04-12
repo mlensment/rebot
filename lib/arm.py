@@ -50,11 +50,11 @@ class Arm:
         if b > c:
             reverse = True
 
-        pos = -c / 2 * (math.cos(math.pi * t / d) - 1) + b;
+        pos = -c / 2.0 * (math.cos(math.pi * t / d) - 1) + b;
 
         if reverse:
             return b - (b - pos)
-            
+
         return pos
 
         # t = t / (d / 2.0)
