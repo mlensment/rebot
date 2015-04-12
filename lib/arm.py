@@ -27,35 +27,39 @@ class Arm:
         while(1):
             elapsed_time = int(round(time.time() * 1000)) - millis
 
-            self.spoon_position = self.ease_in_out_sine(self.spoon_position, elapsed_time, start_position, end_position, 5000)
-            # self.spoon_position = math.ceil(self.spoon_position)
-            # self.spoon_position += 1
+            self.spoon_position = self.ease_in_out_sine(elapsed_time, start_position, end_position, 5000)
+
+            if self.spoon_position > deg and direction == 'asc':
+                break
+
+            if self.spoon_position < deg and direction == 'desc':
+                break
 
             if self.spoon_position > 250:
                 self.spoon_position = 250
             elif self.spoon_position < 50:
                 self.spoon_position = 50
 
-            if self.spoon_position >= deg and direction == 'asc':
-                break
-
-            if self.spoon_position <= deg and direction == 'desc':
-                break
-
             print str(self.spoon_position) + " - " + str(elapsed_time) + " - " + str(start_position) + " - " + str(end_position)
             self.move_to(2, self.spoon_position)
 
-    def ease_in_out_sine(self, x, t, b, c, d):
-        reverse = False
-        if b > c:
-            reverse = True
+    def ease_in_out_sine(self, t, b, c, d):
+        b = begin
+        c = math.fabs(end - begin)
+        begin = 0
 
-        pos = -c / 2.0 * (math.cos(math.pi * t / d) - 1) + b;
+        pos = -c / 2 * (math.cos(math.pi * elapsed_time / timeframe) - 1)
 
-        if reverse:
-            return b - (b - pos)
+        if b > end:
+            return math.fabs(pos - b)
+        else:
+            return pos + b
 
-        return pos
+
+        # c = math.abs(c - b)
+        # b = 0
+        #
+        # return -c / 2 * (math.cos(math.pi * t / d) - 1) + b
 
         # t = t / (d / 2.0)
         # if (t < 1):
@@ -78,9 +82,9 @@ class Arm:
 # parser.add_argument('--deg', required=True, type=int)
 # args = parser.parse_args()
 #
-a = Arm()
+# a = Arm()
 # a.move_to(5, 0)
-a.ease_spoon_to(60)
-a.ease_spoon_to(250)
-a.ease_spoon_to(60)
-a.ease_spoon_to(250)
+# a.ease_spoon_to(60)
+# a.ease_spoon_to(250)
+# a.ease_spoon_to(60)
+# a.ease_spoon_to(250)
