@@ -83,7 +83,7 @@ class Servo(Process):
 
 class App:
     def __init__(self):
-        self.spoon_angle = Value('f', 0.0) # shared memory between sub and main process
+        self.spoon_angle = Value('f', 950.0) # shared memory between sub and main process
         self.init_servos()
 
     def init_servos(self):
@@ -91,7 +91,7 @@ class App:
 
     def run(self):
         i = 0
-        self.ease_spoon(1000)
+        self.ease_spoon(2000)
         while(1):
             # is_alive()
             i += 1
