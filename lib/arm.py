@@ -85,6 +85,6 @@ class Arm:
 a = Arm()
 # a.move_to(5, 0)
 a.ease_spoon_to(60)
-# a.ease_spoon_to(250)
+a.ease_spoon_to(250)
 # a.ease_spoon_to(60)
 # a.ease_spoon_to(250)
