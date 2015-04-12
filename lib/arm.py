@@ -36,7 +36,7 @@ class Arm:
             if self.spoon_position <= deg and direction == 'desc':
                 break
 
-            print str(self.spoon_position) + " - " + str(deg)
+            print str(self.spoon_position) + " - " + str(elapsed_time) + " - " + str(start_position) + " - " + str(end_position)
             self.move_to(2, self.spoon_position)
 
     def ease_in_out_sine(self, x, t, b, c, d):
@@ -62,9 +62,9 @@ class Arm:
 # parser.add_argument('--deg', required=True, type=int)
 # args = parser.parse_args()
 #
-a = Arm()
+# a = Arm()
 # a.move_to(5, 0)
-a.ease_spoon_to(60)
-a.ease_spoon_to(250)
-a.ease_spoon_to(60)
-a.ease_spoon_to(250)
+# a.ease_spoon_to(60)
+# a.ease_spoon_to(250)
+# a.ease_spoon_to(60)
+# a.ease_spoon_to(250)
