@@ -27,6 +27,10 @@ class Arm:
         cv2.namedWindow('4')
         cv2.moveWindow('4', 100, 500)
 
+        while(1):
+            if cv2.waitKey(1) & 0xFF == ord('/'):
+                break
+
 
     def ease_spoon_to(self, deg):
         start_position = self.spoon_position
