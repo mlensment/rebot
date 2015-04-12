@@ -37,7 +37,6 @@ class Servo(Process):
 
             self.angle.value = Servo.ease_in_out_sine(elapsed_time, start_angle, end_angle, 15000)
 
-            print self.angle.value
             if math.ceil(self.angle.value) >= self.angle_to and direction == 'asc':
                 break
 
@@ -54,7 +53,7 @@ class Servo(Process):
     def rotate(self):
         pwm = self.angle.value * (config.SERVO_MAX_WIDTH / 180.0) # 1 degree = max high pulse time / 180
         pwm += config.SERVO_MIN_WIDTH  # add minimum high pulse time
-
+        print pwm
         if os.path.exists('/dev/servoblaster'):
             os.system("echo " + str(self.servo) + "=" + str(math.ceil(pwm)) + " > /dev/servoblaster")
         else:
