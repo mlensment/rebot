@@ -2,6 +2,7 @@ from multiprocessing import Process, Queue, Value
 import time
 import math
 import os
+import config
 
 class Servo(Process):
     def __init__(self, servo, angle):
@@ -42,10 +43,10 @@ class Servo(Process):
             if math.floor(self.angle.value) <= self.angle_to and direction == 'desc':
                 break
 
-            if self.angle.value > 1250:
-                self.angle.value = 1250
-            elif self.angle.value < 250:
-                self.angle.value = 250
+            if self.angle.value > config.SERVO_MAX_WIDTH:
+                self.angle.value = config.SERVO_MAX_WIDTH
+            elif self.angle.value < config.SERVO_MIN_WIDTH:
+                self.angle.value = config.SERVO_MIN_WIDTH
 
             self.rotate()
 
@@ -55,7 +56,6 @@ class Servo(Process):
         # pwm += 50  # minimum high pulse time is 0.5 milliseconds
 
         if os.path.exists('/dev/servoblaster'):
-            # os.system("echo 2=" + str(math.ceil(pwm)) + " > /dev/servoblaster")
             os.system("echo " + str(self.servo) + "=" + str(math.ceil(pwm)) + " > /dev/servoblaster")
         else:
             raise Exception('Servo driver was not found. Is servoblaster loaded?')
@@ -82,7 +82,7 @@ class Servo(Process):
 
 class App:
     def __init__(self):
-        self.spoon_angle = Value('f', 250.0) # shared memory between sub and main process
+        self.spoon_angle = Value('f', float(config.SERVO_MIN_WIDTH)) # shared memory between sub and main process
         self.init_servos()
 
     def init_servos(self):
@@ -90,7 +90,7 @@ class App:
 
     def run(self):
         i = 0
-        self.ease_spoon(2000)
+        self.ease_spoon(config.config.SERVO_MAX_WIDTH)
         while(1):
             # is_alive()
             i += 1
