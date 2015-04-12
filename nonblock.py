@@ -43,17 +43,17 @@ class Servo(Process):
             if math.floor(self.angle.value) <= self.angle_to and direction == 'desc':
                 break
 
-            if self.angle.value > config.SERVO_MAX_WIDTH:
-                self.angle.value = config.SERVO_MAX_WIDTH
-            elif self.angle.value < config.SERVO_MIN_WIDTH:
-                self.angle.value = config.SERVO_MIN_WIDTH
+            if self.angle.value > 180:
+                self.angle.value = 180
+            elif self.angle.value < 0:
+                self.angle.value = 0
 
             self.rotate()
 
     def rotate(self):
         pwm = self.angle.value
-        # pwm = deg * 0.94 # 1 degree = 0.094ms high pulse time
-        # pwm += 50  # minimum high pulse time is 0.5 milliseconds
+        pwm = deg * (config.SERVO_MAX_WIDTH / 180.0) # 1 degree = max high pulse time / 180
+        pwm += config.SERVO_MIN_WIDTH  # add minimum high pulse time
 
         if os.path.exists('/dev/servoblaster'):
             os.system("echo " + str(self.servo) + "=" + str(math.ceil(pwm)) + " > /dev/servoblaster")
@@ -82,7 +82,7 @@ class Servo(Process):
 
 class App:
     def __init__(self):
-        self.spoon_angle = Value('f', float(config.SERVO_MIN_WIDTH)) # shared memory between sub and main process
+        self.spoon_angle = Value('f', 0.0) # shared memory between sub and main process
         self.init_servos()
 
     def init_servos(self):
@@ -90,7 +90,7 @@ class App:
 
     def run(self):
         i = 0
-        self.ease_spoon(config.SERVO_MAX_WIDTH)
+        self.ease_spoon(180)
         while(1):
             # is_alive()
             i += 1
