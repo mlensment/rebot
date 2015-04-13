@@ -86,7 +86,6 @@ class App:
 
     def init_servos(self):
         self.spoon_servo = Servo(2, self.spoon_angle)
-        self.spoon_servo.start()
 
     def run(self):
         i = 0
@@ -94,7 +93,7 @@ class App:
         while(1):
             # is_alive()
             time.sleep(5)
-            self.spoon_servo.kill()
+            self.spoon_servo.terminate()
             time.sleep(5)
             self.ease_spoon(180)
             i += 1
@@ -102,7 +101,7 @@ class App:
 
     def ease_spoon(self, deg):
         self.spoon_servo.angle_to = deg
-        self.spoon_servo.ease_to(deg)
+        self.spoon_servo.start()
 
 a = App()
 a.run()
