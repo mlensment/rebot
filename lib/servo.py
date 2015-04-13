@@ -1,4 +1,4 @@
-from multiprocessing import Process, Value
+from multiprocessing import Process, Value, Manager
 import time
 import math
 import os
@@ -13,9 +13,10 @@ class Servo(Process):
         self.angle_to = Value('f', 0.0)
 
         self.daemon = True
-        self.stop_signal = False
+        self.stop_signal = Value('b', False)
 
-        self.command_queue = [{'rotate': 180, 'timeframe': 15000}]
+        manager = Manager()
+        self.command_queue = manager.list([{'rotate': 180, 'timeframe': 15000}])
 
     def run(self):
         print 'entered run'
@@ -38,7 +39,7 @@ class Servo(Process):
             time.sleep(command.get('sleep') / 1000)
 
     def stop(self):
-        self.stop_signal = True
+        self.stop_signal.value = True
 
     def rotate(self, target_angle, timeframe = 15000):
         start_angle = self.angle.value
@@ -62,11 +63,11 @@ class Servo(Process):
 
         cond = math.ceil(self.angle.value) >= target_angle and direction == 'asc'
         cond = cond or math.floor(self.angle.value) <= target_angle and direction == 'desc'
-        cond = cond or self.stop_signal == True
+        cond = cond or self.stop_signal.value == True
 
         if cond:
             self.angle_to.value = self.angle.value
-            self.stop_signal = False
+            self.stop_signal.value = False
             return True
         return False
 
