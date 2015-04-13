@@ -38,7 +38,7 @@ class Servo(Process):
             print 'SLEEPING'
             time.sleep(command.get('sleep') / 1000)
 
-    def rotate_to(deg, timeframe = None):
+    def rotate_to(self, deg, timeframe = None):
         self.command_queue.append({'rotate': deg, 'timeframe': timeframe})
 
     def stop(self):
