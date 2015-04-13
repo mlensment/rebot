@@ -49,12 +49,12 @@ class Servo(Process):
 
         if 'rotate' in command:
             print 'ROTATING'
-            self.__rotate(command.get('rotate'), command.get('timeframe'))
+            self.rot(command.get('rotate'), command.get('timeframe'))
         elif 'sleep' in command:
             print 'SLEEPING'
             time.sleep(command.get('sleep') / 1000)
 
-    def __rotate(self, target_angle, timeframe = 15000):
+    def rot(self, target_angle, timeframe = 15000):
         self.moving.value = True
         start_angle = self.angle.value
         start_time = Servo.time_in_millis()

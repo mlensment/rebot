@@ -20,7 +20,7 @@ class Arm:
         while(1):
             self.scoop()
             time.sleep(.5)
-            self.spoon_servo.__rotate(180)
+            self.spoon_servo.rot(180)
             self.update_spoon_status()
 
             # time.sleep(5)
