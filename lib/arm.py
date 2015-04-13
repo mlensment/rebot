@@ -12,7 +12,9 @@ class Arm:
 
     def init_servos(self):
         self.spoon_servo = servo.Servo(2)
+        self.leg_servo = servo.Servo(5)
         self.spoon_servo.start()
+        self.leg_servo.start()
 
     def run(self):
         i = 0
@@ -40,13 +42,13 @@ class Arm:
 
         self.spoon_status = 'scooping'
         self.spoon_servo.rotate(90, 2000) # rotate to 90 in 2 seconds
-        # self.leg_servo.rotate(0, 2000) # at the same time rotate to 0 in 2 seconds
+        self.leg_servo.rotate(0, 2000) # at the same time rotate to 0 in 2 seconds
         self.spoon_servo.rotate(0, 2000) # rotate to 0 in 2 seconds (scoop)
-        # self.leg_servo.sleep(2000) # sleep for 2 secs
-        # self.leg_servo.rotate(20, 2000) # rotate to 20 in 2 seconds
+        self.leg_servo.sleep(2000) # sleep for 2 secs
+        self.leg_servo.rotate(20, 2000) # rotate to 20 in 2 seconds
 
     def update_spoon_status(self):
-        if self.spoon_status == 'scooping' and self.spoon_servo.is_finished():
+        if self.spoon_status == 'scooping' and self.spoon_servo.is_finished() and self.leg_servo.is_finished():
             self.spoon_status = 'finished_scooping'
 
 a = Arm()

@@ -66,7 +66,6 @@ class Servo(Process):
         start_time = Servo.time_in_millis()
 
         while(1):
-            print 'rotating'
             elapsed_time = Servo.time_in_millis() - start_time
             self.angle.value = Servo.ease_in_out_sine(elapsed_time, start_angle, target_angle, timeframe)
             self.cap_angle()
