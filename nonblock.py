@@ -31,14 +31,15 @@ class Servo(Process):
 
     def rotate(self):
         start_angle = self.angle.value
+        end_angle = self.angle_to.value
         start_time = Servo.time_in_millis()
 
         while(1):
             print 'ru'
             elapsed_time = Servo.time_in_millis() - start_time
-            self.angle.value = Servo.ease_in_out_sine(elapsed_time, start_angle, self.angle_to.value, 15000)
+            self.angle.value = Servo.ease_in_out_sine(elapsed_time, start_angle, end_angle, 15000)
             self.cap_angle()
-            if self.cannot_move(): break
+            if self.cannot_move(end_angle): break
             self.alter_pwm()
 
     def cap_angle(self):
@@ -47,11 +48,11 @@ class Servo(Process):
         elif self.angle.value < 0:
             self.angle.value = 0
 
-    def cannot_move(self):
-        direction = 'asc' if self.angle.value < self.angle_to.value else 'desc'
+    def cannot_move(self, end_angle):
+        direction = 'asc' if self.angle.value < end_angle else 'desc'
 
-        cond = math.ceil(self.angle.value) >= self.angle_to.value and direction == 'asc'
-        cond = cond or math.floor(self.angle.value) <= self.angle_to.value and direction == 'desc'
+        cond = math.ceil(self.angle.value) >= end_angle and direction == 'asc'
+        cond = cond or math.floor(self.angle.value) <= end_angle and direction == 'desc'
         cond = cond or self.stop_signal.value == True
 
         if cond:
