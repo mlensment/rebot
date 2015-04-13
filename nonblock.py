@@ -37,7 +37,7 @@ class Servo(Process):
 
         while(1):
             if self.stop_signal.value == True:
-                self.angle_to.value = self.angle
+                self.angle_to.value = self.angle.value
                 self.stop_signal.value = False
                 break
 
