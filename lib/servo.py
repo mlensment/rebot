@@ -32,7 +32,7 @@ class Servo(Process):
 
         if 'rotate' in command:
             print 'ROTATING'
-            # self.rotate(command.get('rotate'), command.get('timeframe'))
+            self.rotate(command.get('rotate'), command.get('timeframe'))
         elif 'sleep' in command:
             print 'SLEEPING'
             time.sleep(command.get('sleep') / 1000)
