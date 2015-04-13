@@ -10,3 +10,11 @@ LEG_SERVO = 2
 # 5 on P1-16          GPIO-23
 # 6 on P1-18          GPIO-24
 # 7 on P1-22          GPIO-25
+
+# Default step size
+# SERVO_MIN_WIDTH = 50
+# SERVO_MAX_WIDTH = 250
+
+# servod --step-size 2
+SERVO_MIN_WIDTH = 300 #0 deg
+SERVO_MAX_WIDTH = 1200 #180 deg
