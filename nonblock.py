@@ -39,22 +39,22 @@ class Servo(Process):
             direction = 'desc'
 
         while(1):
-            # if self.stop_signal.value == True:
-            #     self.angle_to.value = self.angle.value
-            #     self.stop_signal.value = False
-            #     break
+            if self.stop_signal.value == True:
+                self.angle_to.value = self.angle.value
+                self.stop_signal.value = False
+                break
 
             elapsed_time = Servo.time_in_millis() - start_time
 
             self.angle.value = Servo.ease_in_out_sine(elapsed_time, start_angle, self.angle_to.value, 15000)
 
-            # if math.ceil(self.angle.value) >= self.angle_to.value and direction == 'asc':
-            #     break
-            #
-            # if math.floor(self.angle.value) <= self.angle_to.value and direction == 'desc':
-            #     break
+            if math.ceil(self.angle.value) >= self.angle_to.value and direction == 'asc':
+                break
 
-            if self.cannot_move(): break
+            if math.floor(self.angle.value) <= self.angle_to.value and direction == 'desc':
+                break
+
+            # if self.cannot_move(): break
 
             if self.angle.value > 180:
                 self.angle.value = 180
