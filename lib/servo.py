@@ -58,7 +58,9 @@ class Servo(Process):
             print 'SLEEPING'
             time.sleep(command.get('sleep') / 1000)
 
-    def __rotate(self, target_angle, timeframe = 15000):
+    def __rotate(self, target_angle, timeframe = None):
+        timeframe = timeframe or 15000
+
         self.moving.value = True
         start_angle = self.angle.value
         start_time = Servo.time_in_millis()
