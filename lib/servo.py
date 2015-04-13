@@ -15,7 +15,7 @@ class Servo(Process):
         self.daemon = True
         self.stop_signal = Value('b', False)
 
-        self.command_queue = [{'rotate': 90, 'timeframe': 2000}, {'sleep': 2000}, {'rotate': 0, 'timeframe': 2000}]
+        self.command_queue = [{'rotate': 180, 'timeframe': 15000}]
 
     def run(self):
         print 'entered run'
