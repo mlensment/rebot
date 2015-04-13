@@ -26,7 +26,7 @@ class Servo(Process):
         print 'thread end'
         return 0
 
-    def stop():
+    def stop(self):
         self.spoon_servo.stop_signal.value = True
 
     def move(self):
