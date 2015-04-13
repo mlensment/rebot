@@ -15,30 +15,40 @@ class Servo(Process):
         self.daemon = True
         self.stop_signal = Value('b', False)
 
+        self.command_queue = [{'rotate': 90, 'timeframe': 2000}, {'sleep': 2000}, {'rotate': 0, 'timeframe': 2000}]
+
     def run(self):
         print 'entered run'
 
         while(1):
-            if self.angle.value != self.angle_to.value:
-                print 'STARTING MOVING'
-                self.rotate()
+            self.process_queue()
 
         print 'thread end'
         return 0
 
+    def process_queue(self):
+        if len(self.command_queue) == 0: return
+        command = self.command_queue.pop(0)
+
+        if command.get('rotate'):
+            print 'ROTATING'
+            self.rotate(command.get('rotate'), command.get('timeframe'))
+        elif command.get('sleep'):
+            print 'SLEEPING'
+            time.sleep(command.get('sleep') / 1000)
+
     def stop(self):
         self.stop_signal.value = True
 
-    def rotate(self):
+    def rotate(self, target_angle, timeframe = 15000):
         start_angle = self.angle.value
-        end_angle = self.angle_to.value
         start_time = Servo.time_in_millis()
 
         while(1):
             elapsed_time = Servo.time_in_millis() - start_time
-            self.angle.value = Servo.ease_in_out_sine(elapsed_time, start_angle, end_angle, 15000)
+            self.angle.value = Servo.ease_in_out_sine(elapsed_time, start_angle, target_angle, 15000)
             self.cap_angle()
-            if self.cannot_move(end_angle): break
+            if self.cannot_move(target_angle): break
             self.alter_pwm()
 
     def cap_angle(self):
@@ -47,11 +57,11 @@ class Servo(Process):
         elif self.angle.value < 0:
             self.angle.value = 0
 
-    def cannot_move(self, end_angle):
-        direction = 'asc' if self.angle.value < end_angle else 'desc'
+    def cannot_move(self, target_angle):
+        direction = 'asc' if self.angle.value < target_angle else 'desc'
 
-        cond = math.ceil(self.angle.value) >= end_angle and direction == 'asc'
-        cond = cond or math.floor(self.angle.value) <= end_angle and direction == 'desc'
+        cond = math.ceil(self.angle.value) >= target_angle and direction == 'asc'
+        cond = cond or math.floor(self.angle.value) <= target_angle and direction == 'desc'
         cond = cond or self.stop_signal.value == True
 
         if cond:
