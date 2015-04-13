@@ -105,8 +105,7 @@ class App:
             # is_alive()
             time.sleep(5)
             self.ease_spoon(0)
-            time.sleep(5)
-            self.spoon_servo.stop()
+
             # self.spoon_servo.terminate()
             # time.sleep(5)
             # self.ease_spoon(180)
