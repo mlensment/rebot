@@ -17,12 +17,16 @@ class Servo(Process):
     def run(self):
         print 'entered run'
 
-        self.ease()
+        while(1):
+            if self.angle != self.angle_to and not self.moving:
+                print 'STARTING MOVING'
+                self.ease()
 
         print 'thread end'
         return 0
 
     def ease(self):
+        self.moving = True
         start_angle = self.angle.value
         end_angle = self.angle_to
         start_time = Servo.time_in_millis()
@@ -49,6 +53,7 @@ class Servo(Process):
                 self.angle.value = 0
 
             self.rotate()
+        self.moving = False
 
     def rotate(self):
         pwm = self.angle.value * ((config.SERVO_MAX_WIDTH - config.SERVO_MIN_WIDTH) / 180.0) # 1 degree = max high pulse time / 180
@@ -86,23 +91,23 @@ class App:
 
     def init_servos(self):
         self.spoon_servo = Servo(2, self.spoon_angle)
-        # self.spoon_servo.start()
+        self.spoon_servo.start()
 
     def run(self):
         i = 0
         self.ease_spoon(180)
         while(1):
             # is_alive()
-            time.sleep(5)
-            self.spoon_servo.terminate()
-            time.sleep(5)
-            self.ease_spoon(180)
-            i += 1
+            # time.sleep(5)
+            # self.spoon_servo.terminate()
+            # time.sleep(5)
+            # self.ease_spoon(180)
+            # i += 1
 
 
     def ease_spoon(self, deg):
         self.spoon_servo.angle_to = deg
-        self.spoon_servo.start()
+        # self.spoon_servo.start()
 
 a = App()
 a.run()
