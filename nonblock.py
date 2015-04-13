@@ -65,9 +65,11 @@ class Servo(Process):
 
     def cannot_move():
         direction = 'asc' if self.angle.value < self.angle_to.value else 'desc'
+
         cond = math.ceil(self.angle.value) >= self.angle_to.value and direction == 'asc'
-        cond ||= math.floor(self.angle.value) <= self.angle_to.value and direction == 'desc'
-        cond ||= self.stop_signal.value == True
+        cond = cond or math.floor(self.angle.value) <= self.angle_to.value and direction == 'desc'
+        cond = cond or self.stop_signal.value == True
+
         if cond:
             self.angle_to.value = self.angle.value
             self.stop_signal.value = False
