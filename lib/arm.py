@@ -19,8 +19,8 @@ class Arm:
         # self.ease_spoon(180)
         while(1):
             self.scoop()
-            time.sleep(.5)
-            self.spoon_servo.rotate_instant(180)
+            # time.sleep(.5)
+            # self.spoon_servo.rotate_instant(180)
             self.update_spoon_status()
 
             # time.sleep(5)
