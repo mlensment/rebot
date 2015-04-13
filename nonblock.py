@@ -13,6 +13,7 @@ class Servo(Process):
         self.angle_to = None
 
         self.daemon = True
+        self.moving = False
 
     def run(self):
         print 'entered run'
