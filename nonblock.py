@@ -103,7 +103,7 @@ class App:
             pass
             # is_alive()
             time.sleep(5)
-            self.spoon_servo.stop_signal = True
+            self.spoon_servo.stop_signal.value = True
             # self.spoon_servo.terminate()
             # time.sleep(5)
             # self.ease_spoon(180)
