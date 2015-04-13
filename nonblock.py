@@ -36,7 +36,7 @@ class Servo(Process):
         if self.angle.value > self.angle_to:
             direction = 'desc'
         while(self.moving):
-            print self.moving
+            # print self.moving
             elapsed_time = Servo.time_in_millis() - start_time
 
             self.angle.value = Servo.ease_in_out_sine(elapsed_time, start_angle, end_angle, 15000)
@@ -97,11 +97,9 @@ class App:
         self.ease_spoon(180)
         while(1):
             # is_alive()
-            time.sleep(5)
-            print 'SETTING FALSE'
+
+            print i
             self.spoon_servo.moving = False
-            time.sleep(5)
-            self.ease_spoon(180)
             i += 1
 
 
