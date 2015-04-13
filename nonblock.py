@@ -99,11 +99,10 @@ class App:
 
     def run(self):
         i = 0
-        self.ease_spoon(180)
         while(1):
             pass
             # is_alive()
-            time.sleep(5)
+            self.ease_spoon(180)
             self.ease_spoon(0)
 
             # self.spoon_servo.terminate()
