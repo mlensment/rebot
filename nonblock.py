@@ -21,7 +21,7 @@ class Servo(Process):
         while(1):
             if self.angle.value != self.angle_to.value:
                 print 'STARTING MOVING'
-                self.move()
+                self.rotate()
 
         print 'thread end'
         return 0
@@ -29,19 +29,16 @@ class Servo(Process):
     def stop(self):
         self.stop_signal.value = True
 
-    def move(self):
+    def rotate(self):
         start_angle = self.angle.value
         start_time = Servo.time_in_millis()
 
         while(1):
             elapsed_time = Servo.time_in_millis() - start_time
             self.angle.value = Servo.ease_in_out_sine(elapsed_time, start_angle, self.angle_to.value, 15000)
-
             self.cap_angle()
-
             if self.cannot_move(): break
-
-            self.rotate()
+            self.alter_pwm()
 
     def cap_angle(self):
         if self.angle.value > 180:
@@ -62,7 +59,7 @@ class Servo(Process):
             return True
         return False
 
-    def rotate(self):
+    def alter_pwm(self):
         pwm = self.angle.value * ((config.SERVO_MAX_WIDTH - config.SERVO_MIN_WIDTH) / 180.0) # 1 degree = max high pulse time / 180
         pwm += config.SERVO_MIN_WIDTH  # add minimum high pulse time
 
@@ -71,8 +68,6 @@ class Servo(Process):
         else:
             raise Exception('Servo driver was not found. Is servoblaster loaded?')
 
-    def validate_angle(self):
-        pass
 
     @staticmethod
     def ease_in_out_sine(elapsed_time, begin, end, timeframe):
