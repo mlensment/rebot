@@ -27,7 +27,7 @@ class Servo(Process):
         return 0
 
     def stop(self):
-        self.spoon_servo.stop_signal.value = True
+        self.stop_signal.value = True
 
     def move(self):
         start_angle = self.angle.value
