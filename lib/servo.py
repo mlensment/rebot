@@ -14,9 +14,25 @@ class Servo(Process):
 
         self.daemon = True
         self.stop_signal = Value('b', False)
+        self.moving = Value('b', False)
 
         manager = Manager()
-        self.command_queue = manager.list([{'rotate': 180, 'timeframe': 2000}])
+        self.command_queue = manager.list([])
+
+    def rotate(self, deg, timeframe = None):
+        self.command_queue.append({'rotate': deg, 'timeframe': timeframe})
+
+    def sleep(self, t):
+        self.command_queue.append({'sleep': t})
+
+    # TODO: refactor this to "moving"
+    def next(self):
+        self.stop_signal.value = True
+
+    def is_finished(self):
+        len(self.command_queue) == 0 and not self.moving.value
+
+    # PRIVATE METHODS #
 
     def run(self):
         print 'entered run'
@@ -33,18 +49,13 @@ class Servo(Process):
 
         if 'rotate' in command:
             print 'ROTATING'
-            self.rotate(command.get('rotate'), command.get('timeframe'))
+            self.__rotate(command.get('rotate'), command.get('timeframe'))
         elif 'sleep' in command:
             print 'SLEEPING'
             time.sleep(command.get('sleep') / 1000)
 
-    def rotate_to(self, deg, timeframe = None):
-        self.command_queue.append({'rotate': deg, 'timeframe': timeframe})
-
-    def stop(self):
-        self.stop_signal.value = True
-
-    def rotate(self, target_angle, timeframe = 15000):
+    def __rotate(self, target_angle, timeframe = 15000):
+        self.moving.value = True
         start_angle = self.angle.value
         start_time = Servo.time_in_millis()
 
@@ -54,6 +65,8 @@ class Servo(Process):
             self.cap_angle()
             if self.cannot_move(target_angle): break
             self.alter_pwm()
+
+        self.moving.value = False
 
     def cap_angle(self):
         if self.angle.value > 180:
