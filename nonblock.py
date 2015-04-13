@@ -44,17 +44,17 @@ class Servo(Process):
 
             self.angle.value = Servo.ease_in_out_sine(elapsed_time, start_angle, self.angle_to.value, 15000)
 
-            if math.ceil(self.angle.value) >= self.angle_to.value and direction == 'asc':
-                break
-
-            if math.floor(self.angle.value) <= self.angle_to.value and direction == 'desc':
-                break
-
-            if self.stop_signal.value == True:
-                self.angle_to.value = self.angle.value
-                self.stop_signal.value = False
-                break
-            # if self.cannot_move(): break
+            # if math.ceil(self.angle.value) >= self.angle_to.value and direction == 'asc':
+            #     break
+            #
+            # if math.floor(self.angle.value) <= self.angle_to.value and direction == 'desc':
+            #     break
+            #
+            # if self.stop_signal.value == True:
+            #     self.angle_to.value = self.angle.value
+            #     self.stop_signal.value = False
+            #     break
+            if self.cannot_move(): break
 
             if self.angle.value > 180:
                 self.angle.value = 180
@@ -73,8 +73,8 @@ class Servo(Process):
         if cond:
             self.angle_to.value = self.angle.value
             self.stop_signal.value = False
-            return False
-        return True
+            return True
+        return False
 
     def rotate(self):
         pwm = self.angle.value * ((config.SERVO_MAX_WIDTH - config.SERVO_MIN_WIDTH) / 180.0) # 1 degree = max high pulse time / 180
