@@ -10,7 +10,7 @@ class Servo(Process):
         self.servo = servo
 
         self.angle = angle
-        self.angle_to = angle
+        self.angle_to = Value('f', 0.0)
 
         self.daemon = True
         self.moving = False
@@ -19,7 +19,7 @@ class Servo(Process):
         print 'entered run'
 
         while(1):
-            if self.angle != self.angle_to and not self.moving:
+            if self.angle.value != self.angle_to.value and not self.moving:
                 print 'STARTING MOVING'
                 self.ease()
 
@@ -29,23 +29,22 @@ class Servo(Process):
     def ease(self):
         self.moving = True
         start_angle = self.angle.value
-        end_angle = self.angle_to
         start_time = Servo.time_in_millis()
 
         # one line if here
         direction = 'asc'
-        if self.angle.value > self.angle_to:
+        if self.angle.value > self.angle_to.value:
             direction = 'desc'
 
         while(1):
             elapsed_time = Servo.time_in_millis() - start_time
 
-            self.angle.value = Servo.ease_in_out_sine(elapsed_time, start_angle, end_angle, 15000)
+            self.angle.value = Servo.ease_in_out_sine(elapsed_time, start_angle, self.angle_to.value, 15000)
 
-            if math.ceil(self.angle.value) >= self.angle_to and direction == 'asc':
+            if math.ceil(self.angle.value) >= self.angle_to.value and direction == 'asc':
                 break
 
-            if math.floor(self.angle.value) <= self.angle_to and direction == 'desc':
+            if math.floor(self.angle.value) <= self.angle_to.value and direction == 'desc':
                 break
 
             if self.angle.value > 180:
@@ -108,7 +107,7 @@ class App:
 
 
     def ease_spoon(self, deg):
-        self.spoon_servo.angle_to = deg
+        self.spoon_servo.angle_to.value = float(deg)
         print 'setting angle'
         print deg
         # self.spoon_servo.start()
