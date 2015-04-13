@@ -16,7 +16,7 @@ class Servo(Process):
         self.stop_signal = Value('b', False)
 
         manager = Manager()
-        self.command_queue = manager.list([{'rotate': 180, 'timeframe': 15000}])
+        self.command_queue = manager.list([{'rotate': 180, 'timeframe': 2000}])
 
     def run(self):
         print 'entered run'
@@ -37,6 +37,9 @@ class Servo(Process):
         elif 'sleep' in command:
             print 'SLEEPING'
             time.sleep(command.get('sleep') / 1000)
+
+    def rotate_to(deg, timeframe = None):
+        self.command_queue.append({'rotate': deg, 'timeframe': timeframe})
 
     def stop(self):
         self.stop_signal.value = True

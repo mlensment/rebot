@@ -15,9 +15,10 @@ class Arm:
     def run(self):
         i = 0
         # self.ease_spoon(180)
+        self.spoon_servo.rotate_to(0, 1000)
         while(1):
-            time.sleep(5)
-            self.spoon_servo.stop()
+            # time.sleep(5)
+            # self.spoon_servo.stop()
             pass
             # is_alive()
             # self.ease_spoon(0)
