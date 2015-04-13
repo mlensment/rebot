@@ -54,7 +54,7 @@ class Servo(Process):
             # if math.floor(self.angle.value) <= self.angle_to.value and direction == 'desc':
             #     break
 
-            if cannot_move(): break
+            if self.cannot_move(): break
 
             if self.angle.value > 180:
                 self.angle.value = 180
@@ -63,7 +63,7 @@ class Servo(Process):
 
             self.rotate()
 
-    def cannot_move():
+    def cannot_move(self):
         direction = 'asc' if self.angle.value < self.angle_to.value else 'desc'
 
         cond = math.ceil(self.angle.value) >= self.angle_to.value and direction == 'asc'
