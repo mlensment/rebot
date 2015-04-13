@@ -10,7 +10,7 @@ class Servo(Process):
         self.servo = servo
 
         self.angle = angle
-        self.angle_to = None
+        self.angle_to = angle
 
         self.daemon = True
         self.moving = False
