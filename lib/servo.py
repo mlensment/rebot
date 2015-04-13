@@ -23,7 +23,7 @@ class Servo(Process):
         self.command_queue.append({'rotate': deg, 'timeframe': timeframe})
 
     def rotate_instant(self, deg, timeframe = None):
-        self.command_queue.prepend({'rotate': deg, 'timeframe': timeframe})
+        self.command_queue.insert(0, {'rotate': deg, 'timeframe': timeframe})
         self.next()
 
     def sleep(self, t):
