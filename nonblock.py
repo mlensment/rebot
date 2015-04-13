@@ -19,7 +19,6 @@ class Servo(Process):
         print 'entered run'
 
         while(1):
-            print self.angle_to
             if self.angle != self.angle_to and not self.moving:
                 print 'STARTING MOVING'
                 self.ease()
@@ -110,6 +109,8 @@ class App:
 
     def ease_spoon(self, deg):
         self.spoon_servo.angle_to = deg
+        print 'setting angle'
+        print deg
         # self.spoon_servo.start()
 
 a = App()
