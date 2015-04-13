@@ -94,6 +94,8 @@ class App:
             # is_alive()
             time.sleep(5)
             self.spoon_servo.terminate()
+            time.sleep(5)
+            self.spoon_servo(180)
             i += 1
 
 
