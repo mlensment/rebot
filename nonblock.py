@@ -22,7 +22,7 @@ class Servo(Process):
     #     print 'thread end'
     #     return 0
 
-    def stop():
+    def stop(self):
         self.moving = False
 
     def ease(self):
