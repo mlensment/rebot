@@ -14,15 +14,19 @@ class Servo(Process):
 
         self.daemon = True
 
-    def run(self):
-        print 'entered run'
+    # def run(self):
+    #     print 'entered run'
+    #
+    #     self.ease()
+    #
+    #     print 'thread end'
+    #     return 0
 
-        self.ease()
-
-        print 'thread end'
-        return 0
+    def stop():
+        self.moving = False
 
     def ease(self):
+        self.moving = True
         start_angle = self.angle.value
         end_angle = self.angle_to
         start_time = Servo.time_in_millis()
@@ -32,7 +36,7 @@ class Servo(Process):
         if self.angle.value > self.angle_to:
             direction = 'desc'
 
-        while(1):
+        while(self.moving):
             elapsed_time = Servo.time_in_millis() - start_time
 
             self.angle.value = Servo.ease_in_out_sine(elapsed_time, start_angle, end_angle, 15000)
@@ -86,6 +90,7 @@ class App:
 
     def init_servos(self):
         self.spoon_servo = Servo(2, self.spoon_angle)
+        self.spoon_servo.start()
 
     def run(self):
         i = 0
@@ -93,7 +98,7 @@ class App:
         while(1):
             # is_alive()
             time.sleep(5)
-            self.spoon_servo.kill()
+            self.spoon_servo.stop()
             time.sleep(5)
             self.ease_spoon(180)
             i += 1
@@ -101,7 +106,7 @@ class App:
 
     def ease_spoon(self, deg):
         self.spoon_servo.angle_to = deg
-        self.spoon_servo.start()
+        self.spoon_servo.ease()
 
 a = App()
 a.run()
