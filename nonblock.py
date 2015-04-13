@@ -17,7 +17,7 @@ class Servo(Process):
     def run(self):
         print 'entered run'
 
-        # self.ease()
+        self.ease()
 
         print 'thread end'
         return 0
@@ -86,7 +86,7 @@ class App:
 
     def init_servos(self):
         self.spoon_servo = Servo(2, self.spoon_angle)
-        self.spoon_servo.start()
+        # self.spoon_servo.start()
 
     def run(self):
         i = 0
@@ -102,7 +102,7 @@ class App:
 
     def ease_spoon(self, deg):
         self.spoon_servo.angle_to = deg
-        self.spoon_servo.ease()
+        self.spoon_servo.start()
 
 a = App()
 a.run()
