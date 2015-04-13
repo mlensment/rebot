@@ -39,10 +39,6 @@ class Servo(Process):
             direction = 'desc'
 
         while(1):
-            if self.stop_signal.value == True:
-                self.angle_to.value = self.angle.value
-                self.stop_signal.value = False
-                break
 
             elapsed_time = Servo.time_in_millis() - start_time
 
@@ -54,6 +50,10 @@ class Servo(Process):
             if math.floor(self.angle.value) <= self.angle_to.value and direction == 'desc':
                 break
 
+            if self.stop_signal.value == True:
+                self.angle_to.value = self.angle.value
+                self.stop_signal.value = False
+                break
             # if self.cannot_move(): break
 
             if self.angle.value > 180:
