@@ -97,6 +97,7 @@ class App:
         i = 0
         self.ease_spoon(180)
         while(1):
+            pass
             # is_alive()
             # time.sleep(5)
             # self.spoon_servo.terminate()
