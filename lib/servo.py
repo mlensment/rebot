@@ -46,7 +46,7 @@ class Servo(Process):
 
         while(1):
             elapsed_time = Servo.time_in_millis() - start_time
-            self.angle.value = Servo.ease_in_out_sine(elapsed_time, start_angle, target_angle, 15000)
+            self.angle.value = Servo.ease_in_out_sine(elapsed_time, start_angle, target_angle, timeframe)
             self.cap_angle()
             if self.cannot_move(target_angle): break
             self.alter_pwm()
