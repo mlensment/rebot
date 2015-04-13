@@ -93,7 +93,7 @@ class App:
         while(1):
             # is_alive()
             time.sleep(5)
-            self.spoon_servo.close()
+            self.spoon_servo.terminate()
             i += 1
 
 
