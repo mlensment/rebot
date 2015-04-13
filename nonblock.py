@@ -26,6 +26,9 @@ class Servo(Process):
         print 'thread end'
         return 0
 
+    def stop():
+        self.spoon_servo.stop_signal.value = True
+
     def move(self):
         start_angle = self.angle.value
         start_time = Servo.time_in_millis()
@@ -103,7 +106,7 @@ class App:
             pass
             # is_alive()
             time.sleep(5)
-            self.spoon_servo.stop_signal.value = True
+            self.spoon_servo.stop()
             # self.spoon_servo.terminate()
             # time.sleep(5)
             # self.ease_spoon(180)
