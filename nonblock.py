@@ -35,7 +35,7 @@ class Servo(Process):
         direction = 'asc'
         if self.angle.value > self.angle_to:
             direction = 'desc'
-
+        print self.moving
         while(self.moving):
             elapsed_time = Servo.time_in_millis() - start_time
 
