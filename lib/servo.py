@@ -98,7 +98,7 @@ class Servo(Process):
 
         if os.path.exists('/dev/servoblaster'):
             print 'rotating servo ' + str(self.servo) + ' to ' + str(math.ceil(pwm))
-            # os.system("echo " + str(self.servo) + "=" + str(math.ceil(pwm)) + " > /dev/servoblaster")
+            os.system("echo " + str(self.servo) + "=" + str(math.ceil(pwm)) + " > /dev/servoblaster")
         else:
             raise Exception('Servo driver was not found. Is servoblaster loaded?')
 
