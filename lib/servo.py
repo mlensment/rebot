@@ -52,7 +52,6 @@ class Servo(Process):
         command = self.command_queue.pop(0)
 
         if 'rotate' in command:
-            print 'ROTATING'
             self.__rotate(command.get('rotate'), command.get('timeframe'))
         elif 'sleep' in command:
             print 'SLEEPING'
@@ -66,7 +65,6 @@ class Servo(Process):
         start_time = Servo.time_in_millis()
 
         while(1):
-            print str(self.servo) + ' is rotating'
             elapsed_time = Servo.time_in_millis() - start_time
             self.angle.value = Servo.ease_in_out_sine(elapsed_time, start_angle, target_angle, timeframe)
             self.cap_angle()
@@ -98,8 +96,8 @@ class Servo(Process):
         pwm = self.angle.value * ((config.SERVO_MAX_WIDTH - config.SERVO_MIN_WIDTH) / 180.0) # 1 degree = max high pulse time / 180
         pwm += config.SERVO_MIN_WIDTH  # add minimum high pulse time
 
-        if os.path.exists('/dev/servoblaster'):
-            pass
+        if not os.path.exists('/dev/servoblaster'):
+            print 'rotating servo ' + str(self.servo) + ' to ' + str(math.ceil(pwm))
             # os.system("echo " + str(self.servo) + "=" + str(math.ceil(pwm)) + " > /dev/servoblaster")
         else:
             raise Exception('Servo driver was not found. Is servoblaster loaded?')
