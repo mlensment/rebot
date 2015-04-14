@@ -66,6 +66,7 @@ class Servo(Process):
         start_time = Servo.time_in_millis()
 
         while(1):
+            print str(self.servo) + ' is rotating'
             elapsed_time = Servo.time_in_millis() - start_time
             self.angle.value = Servo.ease_in_out_sine(elapsed_time, start_angle, target_angle, timeframe)
             self.cap_angle()
@@ -98,7 +99,7 @@ class Servo(Process):
         pwm += config.SERVO_MIN_WIDTH  # add minimum high pulse time
 
         if os.path.exists('/dev/servoblaster'):
-            os.system("echo " + str(self.servo) + "=" + str(math.ceil(pwm)) + " > /dev/servoblaster")
+            # os.system("echo " + str(self.servo) + "=" + str(math.ceil(pwm)) + " > /dev/servoblaster")
         else:
             raise Exception('Servo driver was not found. Is servoblaster loaded?')
 
