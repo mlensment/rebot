@@ -12,7 +12,7 @@ class Servo(Process):
         self.angle = Value('f', 0.0)
         self.angle_to = Value('f', 0.0)
 
-        self.daemon = True
+        # self.daemon = True
         self.stop_signal = Value('b', False)
         self.moving = Value('b', False)
 
