@@ -96,7 +96,7 @@ class Servo(Process):
         pwm = self.angle.value * ((config.SERVO_MAX_WIDTH - config.SERVO_MIN_WIDTH) / 180.0) # 1 degree = max high pulse time / 180
         pwm += config.SERVO_MIN_WIDTH  # add minimum high pulse time
 
-        if not os.path.exists('/dev/servoblaster'):
+        if os.path.exists('/dev/servoblaster'):
             print 'rotating servo ' + str(self.servo) + ' to ' + str(math.ceil(pwm))
             # os.system("echo " + str(self.servo) + "=" + str(math.ceil(pwm)) + " > /dev/servoblaster")
         else:
