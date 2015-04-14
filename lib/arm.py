@@ -20,7 +20,7 @@ class Arm:
         i = 0
         # self.ease_spoon(180)
         self.spoon_servo.rotate(180, 2000)
-        # self.leg_servo.rotate(180, 2000)
+        self.leg_servo.rotate(180, 2000)
         while(1):
             pass
             # self.scoop()
