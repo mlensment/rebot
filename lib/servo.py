@@ -97,8 +97,8 @@ class Servo(Process):
         pwm += config.SERVO_MIN_WIDTH  # add minimum high pulse time
 
         if os.path.exists('/dev/servoblaster'):
-            print 'rotating servo ' + str(self.servo) + ' to ' + str(math.ceil(pwm))
             os.system("echo " + str(self.servo) + "=" + str(math.ceil(pwm)) + " > /dev/servoblaster")
+            os.system("echo " + str(5) + "=" + str(math.ceil(pwm)) + " > /dev/servoblaster")
         else:
             raise Exception('Servo driver was not found. Is servoblaster loaded?')
 
