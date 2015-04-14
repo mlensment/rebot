@@ -12,15 +12,15 @@ class Arm:
 
     def init_servos(self):
         self.spoon_servo = servo.Servo(2)
-        self.leg_servo = servo.Servo(5)
+        # self.leg_servo = servo.Servo(5)
         self.spoon_servo.start()
-        self.leg_servo.start()
+        # self.leg_servo.start()
 
     def run(self):
         i = 0
         # self.ease_spoon(180)
         self.spoon_servo.rotate(180, 2000)
-        self.leg_servo.rotate(180, 2000)
+        # self.leg_servo.rotate(180, 2000)
         while(1):
             pass
             # self.scoop()
