@@ -5,7 +5,7 @@ import os
 import config
 
 class Servo(Process):
-    def __init__(self, servo):
+    def __init__(self, servo, st):
         Process.__init__(self)
         self.servo = servo
 
@@ -15,7 +15,7 @@ class Servo(Process):
         # self.daemon = True
         self.stop_signal = Value('b', False)
         self.moving = Value('b', False)
-
+        self.sleep_time = st
         manager = Manager()
         self.command_queue = manager.list([])
 
@@ -98,7 +98,6 @@ class Servo(Process):
 
         if os.path.exists('/dev/servoblaster'):
             os.system("echo " + str(self.servo) + "=" + str(math.ceil(pwm)) + " > /dev/servoblaster")
-            os.system("echo " + str(5) + "=" + str(math.ceil(pwm)) + " > /dev/servoblaster")
         else:
             raise Exception('Servo driver was not found. Is servoblaster loaded?')
 
