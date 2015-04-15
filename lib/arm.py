@@ -2,7 +2,7 @@ import argparse
 import os
 import math
 import time
-import servo
+import servo_process as sp
 
 class Arm:
     def __init__(self):
@@ -11,18 +11,21 @@ class Arm:
         self.spoon_status = ''
 
     def init_servos(self):
-        self.spoon_servo = servo.Servo(2, .1)
-        self.leg_servo = servo.Servo(5, .2)
-        self.spoon_servo.start()
-        self.leg_servo.start()
+        self.sp = sp.ServoProcess()
+        self.sp.start()
+
+        # self.leg_servo = servo.Servo(5, .2)
+        # self.spoon_servo.start()
+        # self.leg_servo.start()
 
     def run(self):
         i = 0
         # self.ease_spoon(180)
-        self.spoon_servo.rotate(180, 2000)
-        self.leg_servo.rotate(180, 2000)
+        self.sp.spoon.rotate(180, 2000)
+        self.sp.spoon.rotate(90, 2000)
+        # self.leg_servo.rotate(180, 2000)
         while(1):
-            pass
+            print self.sp.spoon.finished()
             # self.scoop()
             # # time.sleep(.5)
             # # self.spoon_servo.rotate_instant(180)
