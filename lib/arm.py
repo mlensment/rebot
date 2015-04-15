@@ -25,6 +25,7 @@ class Arm:
         self.sp.spoon.rotate(90, 2000)
         # self.leg_servo.rotate(180, 2000)
         while(1):
+            time.sleep(1)
             print self.sp.spoon.finished()
             # self.scoop()
             # # time.sleep(.5)
