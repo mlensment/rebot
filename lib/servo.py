@@ -77,7 +77,7 @@ class Servo:
         return cannot
 
     def alter_pwm(self):
-        if self.finished(): return
+        if self.is_finished(): return
         pwm = self.angle.value * ((config.SERVO_MAX_WIDTH - config.SERVO_MIN_WIDTH) / 180.0) # 1 degree = max high pulse time / 180
         pwm += config.SERVO_MIN_WIDTH  # add minimum high pulse time
 
