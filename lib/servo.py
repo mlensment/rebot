@@ -5,9 +5,9 @@ import os
 import config
 
 class Servo:
-    def __init__(self, servo_id):
+    def __init__(self, servo_id, initial_angle):
         self.servo_id = servo_id
-        self.angle = Value('f', 0.0)
+        self.angle = Value('f', initial_angle)
         self.stop_signal = Value('b', False)
 
         manager = Manager()
