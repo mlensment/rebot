@@ -50,6 +50,7 @@ class Servo:
             self.angle.value = 0
 
     def next_command(self):
+        self.stop_signal.value = False
         self.current_command.clear()
         if len(self.command_queue) == 0: return
         self.current_command.update(self.command_queue.pop(0))

@@ -23,8 +23,8 @@ class Arm:
         # self.ease_spoon(180)
         self.sp.spoon.rotate(180, 2000)
         self.sp.spoon.rotate(90, 2000)
-        self.sp.leg.rotate(180, 2000)
-        self.sp.leg.rotate(90, 2000)
+        # self.sp.leg.rotate(180, 2000)
+        # self.sp.leg.rotate(90, 2000)
         # self.leg_servo.rotate(180, 2000)
         while(1):
             pass
