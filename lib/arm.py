@@ -14,14 +14,11 @@ class Arm:
         self.sp = sp.ServoProcess()
         self.sp.start()
 
-        # self.leg_servo = servo.Servo(5, .2)
-        # self.spoon_servo.start()
-        # self.leg_servo.start()
-
     def run(self):
         i = 0
         # self.ease_spoon(180)
         self.sp.spoon.rotate(180, 2000)
+        self.sp.spoon.sleep(2000)
         self.sp.spoon.rotate(90, 2000)
         self.sp.leg.rotate(180, 2000)
         self.sp.leg.rotate(90, 2000)

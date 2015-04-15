@@ -20,6 +20,10 @@ class Servo:
         if not self.current_command: self.next_command()
         # print self.current_command
 
+    def sleep(self, timeframe):
+        self.command_queue.append({'timeframe': timeframe})
+        if not self.current_command: self.next_command()
+
     def finished(self):
         return not self.current_command and len(self.command_queue) == 0
 
@@ -39,9 +43,11 @@ class Servo:
             self.cap_angle()
             self.can_rotate()
 
-        if self.stop_signal.value: self.next_command()
-        # elif: 'sleep' in self.current_command:
-        # if elapsed_time > self.current_command['timeframe']: self.next_command()
+        if elapsed_time > self.current_command['timeframe']:
+            self.next_command()
+
+        if self.stop_signal.value:
+            self.next_command()
 
     def cap_angle(self):
         if self.angle.value > 180:
@@ -67,7 +73,6 @@ class Servo:
         cannot = cannot or math.floor(self.angle.value) <= self.current_command['target_angle'] and direction == 'desc'
 
         if cannot: self.stop_signal.value = True
-        # cond = cond or self.stop_signal.value == True
 
         return cannot
 
