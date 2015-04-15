@@ -26,6 +26,10 @@ class Arm:
         while(1):
             self.scoop()
             self.update_spoon_status()
+
+            if self.spoon_status == 'finished_scooping':
+                self.reset_position()
+                break
             # print self.sp.leg.finished()
             # time.sleep(1)
             # self.sp.spoon.stop()
@@ -65,6 +69,10 @@ class Arm:
     def update_spoon_status(self):
         if self.spoon_status == 'scooping' and self.sp.spoon.is_finished() and self.sp.leg.is_finished():
             self.spoon_status = 'finished_scooping'
+
+    def reset_position(self):
+        self.sp.spoon.rotate(0, 15000)
+        self.sp.leg.rotate(20, 15000)
 
 a = Arm()
 a.run()
