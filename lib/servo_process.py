@@ -8,15 +8,18 @@ import servo
 class ServoProcess(Process):
     def __init__(self):
         Process.__init__(self)
-        self.spoon = servo.Servo()
+        self.spoon = servo.Servo(2)
+        self.leg = servo.Servo(5)
 
     def run(self):
         print 'entered run'
 
         while(1):
-            pass
             self.spoon.update()
             self.spoon.alter_pwm()
+
+            self.leg.update()
+            self.leg.alter_pwm()
 
         print 'thread end'
         return 0

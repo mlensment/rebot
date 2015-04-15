@@ -5,7 +5,8 @@ import os
 import config
 
 class Servo:
-    def __init__(self):
+    def __init__(self, servo_id):
+        self.servo_id = servo_id
         self.angle = Value('f', 0.0)
         self.stop_signal = Value('b', False)
 
@@ -76,7 +77,7 @@ class Servo:
 
         if os.path.exists('/dev/servoblaster'):
             # print str(math.ceil(pwm))
-            os.system("echo " + str(2) + "=" + str(math.ceil(pwm)) + " > /dev/servoblaster")
+            os.system("echo " + str(self.servo_id) + "=" + str(math.ceil(pwm)) + " > /dev/servoblaster")
         else:
             pass
             # raise Exception('Servo driver was not found. Is servoblaster loaded?')
