@@ -7,6 +7,7 @@ import config
 class Servo:
     def __init__(self):
         self.angle = Value('f', 0.0)
+        self.stop_signal = Value('b', False)
 
         manager = Manager()
         self.command_queue = manager.list([])
@@ -21,6 +22,10 @@ class Servo:
     def finished(self):
         return not self.current_command and len(self.command_queue) == 0
 
+    def stop(self):
+        del self.command_queue[:]
+        self.stop_signal.value = True
+
     def update(self):
         if not self.current_command: return
         elapsed_time = Servo.time_in_millis() - self.current_command['start_time']
@@ -31,8 +36,9 @@ class Servo:
             )
 
             self.cap_angle()
-            if self.cannot_rotate(): self.next_command()
+            self.can_rotate()
 
+        if self.stop_signal.value: self.next_command()
         # elif: 'sleep' in self.current_command:
         # if elapsed_time > self.current_command['timeframe']: self.next_command()
 
@@ -52,12 +58,13 @@ class Servo:
 
         self.current_command['start_time'] = Servo.time_in_millis()
 
-    def cannot_rotate(self):
+    def can_rotate(self):
         direction = 'asc' if self.angle.value < self.current_command['target_angle'] else 'desc'
 
         cannot = math.ceil(self.angle.value) >= self.current_command['target_angle'] and direction == 'asc'
         cannot = cannot or math.floor(self.angle.value) <= self.current_command['target_angle'] and direction == 'desc'
 
+        if cannot: self.stop_signal.value = True
         # cond = cond or self.stop_signal.value == True
 
         return cannot
@@ -71,7 +78,8 @@ class Servo:
             # print str(math.ceil(pwm))
             os.system("echo " + str(2) + "=" + str(math.ceil(pwm)) + " > /dev/servoblaster")
         else:
-            raise Exception('Servo driver was not found. Is servoblaster loaded?')
+            pass
+            # raise Exception('Servo driver was not found. Is servoblaster loaded?')
 
     @staticmethod
     def ease_in_out_sine(elapsed_time, begin, end, timeframe):
