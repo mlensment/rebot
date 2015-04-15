@@ -50,11 +50,17 @@ class Arm:
         if self.spoon_status in ['scooping', 'finished_scooping']: return
         print 'SCOOPING'
         self.spoon_status = 'scooping'
-        self.sp.spoon.rotate(90, 2000) # rotate to 90 in 2 seconds
-        self.sp.leg.rotate(0, 2000) # at the same time rotate to 0 in 2 seconds
-        self.sp.spoon.rotate(0, 2000) # rotate to 0 in 2 seconds (scoop)
-        self.sp.leg.sleep(2000) # sleep for 2 secs
-        self.sp.leg.rotate(20, 2000) # rotate to 20 in 2 seconds
+
+        self.sp.spoon.rotate(90, 2000)
+        self.sp.leg.sleep(2000)
+
+        self.sp.leg.rotate(0, 2000)
+        self.sp.spoon.sleep(2000)
+
+        self.sp.spoon.rotate(0, 2000)
+        self.sp.leg.sleep(2000)
+
+        self.sp.leg.rotate(20, 2000)
 
     def update_spoon_status(self):
         if self.spoon_status == 'scooping' and self.sp.spoon.is_finished() and self.sp.leg.is_finished():
