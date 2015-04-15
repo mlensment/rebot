@@ -17,14 +17,15 @@ class Arm:
     def run(self):
         i = 0
         # self.ease_spoon(180)
-        self.sp.spoon.rotate(180, 2000)
-        self.sp.spoon.sleep(2000)
-        self.sp.spoon.rotate(90, 2000)
-        self.sp.leg.rotate(180, 2000)
-        self.sp.leg.rotate(90, 2000)
+        # self.sp.spoon.rotate(180, 2000)
+        # self.sp.spoon.sleep(2000)
+        # self.sp.spoon.rotate(90, 2000)
+        # self.sp.leg.rotate(180, 2000)
+        # self.sp.leg.rotate(90, 2000)
         # self.leg_servo.rotate(180, 2000)
         while(1):
-            pass
+            self.scoop()
+            self.update_spoon_status()
             # print self.sp.leg.finished()
             # time.sleep(1)
             # self.sp.spoon.stop()
@@ -47,16 +48,16 @@ class Arm:
 
     def scoop(self):
         if self.spoon_status in ['scooping', 'finished_scooping']: return
-
+        print 'SCOOPING'
         self.spoon_status = 'scooping'
-        self.spoon_servo.rotate(90, 2000) # rotate to 90 in 2 seconds
-        self.leg_servo.rotate(0, 2000) # at the same time rotate to 0 in 2 seconds
-        self.spoon_servo.rotate(0, 2000) # rotate to 0 in 2 seconds (scoop)
-        self.leg_servo.sleep(2000) # sleep for 2 secs
-        self.leg_servo.rotate(20, 2000) # rotate to 20 in 2 seconds
+        self.sp.spoon.rotate(90, 2000) # rotate to 90 in 2 seconds
+        self.sp.leg.rotate(0, 2000) # at the same time rotate to 0 in 2 seconds
+        self.sp.spoon.rotate(0, 2000) # rotate to 0 in 2 seconds (scoop)
+        self.sp.leg.sleep(2000) # sleep for 2 secs
+        self.sp.leg.rotate(20, 2000) # rotate to 20 in 2 seconds
 
     def update_spoon_status(self):
-        if self.spoon_status == 'scooping' and self.spoon_servo.is_finished() and self.leg_servo.is_finished():
+        if self.spoon_status == 'scooping' and self.sp.spoon.is_finished() and self.sp.leg.is_finished():
             self.spoon_status = 'finished_scooping'
 
 a = Arm()

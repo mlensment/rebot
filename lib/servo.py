@@ -24,7 +24,7 @@ class Servo:
         self.command_queue.append({'timeframe': timeframe})
         if not self.current_command: self.next_command()
 
-    def finished(self):
+    def is_finished(self):
         return not self.current_command and len(self.command_queue) == 0
 
     def stop(self):
