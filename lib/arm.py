@@ -27,9 +27,9 @@ class Arm:
             self.scoop()
             self.update_spoon_status()
 
-            if self.spoon_status == 'finished_scooping':
-                self.reset_position()
-                break
+            # if self.spoon_status == 'finished_scooping':
+            #     self.reset_position()
+            #     break
             # print self.sp.leg.finished()
             # time.sleep(1)
             # self.sp.spoon.stop()
