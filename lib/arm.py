@@ -24,9 +24,10 @@ class Arm:
         # self.sp.leg.rotate(90, 2000)
         # self.leg_servo.rotate(180, 2000)
         self.reset_position()
-        # while(1):
-        #     self.scoop()
-        #     self.update_spoon_status()
+        while(1):
+            pass
+            # self.scoop()
+            # self.update_spoon_status()
 
             # if self.spoon_status == 'finished_scooping':
             #     self.reset_position()
