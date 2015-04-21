@@ -9,6 +9,7 @@ class Arm:
         self.init_servos()
         # 'scooping', ''
         self.spoon_status = ''
+        self.status = ''
 
     def init_servos(self):
         self.sp = sp.ServoProcess()
@@ -28,6 +29,15 @@ class Arm:
             # pass
             self.scoop()
             self.update_spoon_status()
+
+            if self.spoon_status == 'finished_scooping':
+                self.reset_position();
+
+            if self.status == 'reset':
+                print 'SHUTTING DOWN'
+                break
+
+            self.update_status()
 
             # if self.spoon_status == 'finished_scooping':
             #     self.reset_position()
@@ -50,8 +60,6 @@ class Arm:
             # self.ease_spoon(180)
             # i += 1
 
-
-
     def scoop(self):
         if self.spoon_status in ['scooping', 'finished_scooping']: return
         print 'SCOOPING'
@@ -72,9 +80,16 @@ class Arm:
         if self.spoon_status == 'scooping' and self.sp.spoon.is_finished() and self.sp.leg.is_finished():
             self.spoon_status = 'finished_scooping'
 
+    def update_status(self):
+        if self.sp.spoon.is_finished() and self.sp.leg.is_finished():
+            self.status = 'reset'
+
     def reset_position(self):
-        self.sp.spoon.rotate(0, 15000)
-        self.sp.leg.rotate(0, 15000)
+        if self.status in ['resetting', 'reset']: return
+        print 'RESETTING'
+        self.status = 'resetting'
+        self.sp.spoon.rotate(0, 2000)
+        self.sp.leg.rotate(0, 2000)
 
 a = Arm()
 a.run()
