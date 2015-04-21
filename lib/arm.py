@@ -81,10 +81,12 @@ class Arm:
             self.spoon_status = 'finished_scooping'
 
     def update_status(self):
-        if self.sp.spoon.is_finished() and self.sp.leg.is_finished():
+        if self.status == 'resetting' and self.sp.spoon.is_finished() and self.sp.leg.is_finished():
+            print 'RESET'
             self.status = 'reset'
 
     def reset_position(self):
+        # TODO: Gradually decrease angle until error, then servos are 0 position
         if self.status in ['resetting', 'reset']: return
         print 'RESETTING'
         self.status = 'resetting'

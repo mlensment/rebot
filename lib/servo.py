@@ -32,19 +32,22 @@ class Servo:
         self.stop_signal.value = True
 
     def update(self):
-        if not self.current_command: return
-        elapsed_time = Servo.time_in_millis() - self.current_command['start_time']
+        try:
+            if not self.current_command: return
+            elapsed_time = Servo.time_in_millis() - self.current_command['start_time']
 
-        if 'target_angle' in self.current_command:
-            self.angle.value = Servo.ease_in_out_sine(
-                elapsed_time, self.current_command['start_angle'], self.current_command['target_angle'], self.current_command['timeframe']
-            )
+            if 'target_angle' in self.current_command:
+                self.angle.value = Servo.ease_in_out_sine(
+                    elapsed_time, self.current_command['start_angle'], self.current_command['target_angle'], self.current_command['timeframe']
+                )
 
-            self.cap_angle()
-            self.can_rotate()
+                self.cap_angle()
+                self.can_rotate()
 
-        if elapsed_time > self.current_command['timeframe']:
-            self.next_command()
+            if elapsed_time > self.current_command['timeframe']:
+                self.next_command()
+        except:
+            pass
 
         if self.stop_signal.value:
             self.next_command()
