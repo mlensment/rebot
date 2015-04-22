@@ -94,7 +94,7 @@ class Arm:
 
         print 'EXTENDING'
         self.leg_status = 'extending'
-        self.sp.leg.rotate(90, 5000)
+        self.sp.leg.rotate(80, 5000)
         self.sp.spoon.sleep(5000)
 
     def shut_down(self):
