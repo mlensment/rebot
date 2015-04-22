@@ -107,6 +107,7 @@ class Arm:
 
     def update_leg_status(self):
         if self.leg_status == 'extending' and self.is_finished():
+            print 'EXTENDED'
             self.leg_status = 'extended'
 
     def is_finished(self):
