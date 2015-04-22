@@ -36,6 +36,9 @@ class Arm:
             if self.leg_status in ['extended']:
                 self.shut_down()
 
+            if self.leg_status in ['shut_down'] and self.spoon_status in ['shut_down']:
+                break
+
             # if self.spoon_status == 'finished_scooping':
             #     self.reset_position();
 
@@ -98,18 +101,25 @@ class Arm:
         if self.not_finished(): return
 
         print 'SHUTTING DOWN'
+        self.spoon_status = 'shutting_down'
+        self.leg_status = 'shutting_down'
+
         self.sp.spoon.rotate(0, 5000)
         self.sp.leg.rotate(0, 5000)
 
     def update_spoon_status(self):
         if self.spoon_status == 'scooping' and self.is_finished():
             self.spoon_status = 'full'
+        if self.spoon_status == 'shutting_down' and self.is_finished():
+            self.spoon_status = 'shut_down'
+
 
     def update_leg_status(self):
         if self.leg_status == 'extending' and self.is_finished():
-            print self.is_finished()
-            print 'EXTENDED'
             self.leg_status = 'extended'
+
+        if self.leg_status == 'shutting_down' and self.is_finished():
+            self.leg_status = 'shut_down'
 
     def is_finished(self):
         return self.sp.spoon.is_finished() and self.sp.leg.is_finished()

@@ -38,7 +38,7 @@ class Servo:
             self.finished.value = True
         else:
             self.finished.value = False
-            
+
         try:
             # if not self.current_command: return
             elapsed_time = Servo.time_in_millis() - self.current_command['start_time']
@@ -60,10 +60,10 @@ class Servo:
         if self.stop_signal.value:
             self.next_command()
 
-        if not self.current_command and len(self.command_queue) == 0:
-            self.finished.value = True
-        else:
-            self.finished.value = False
+        # if not self.current_command and len(self.command_queue) == 0:
+        #     self.finished.value = True
+        # else:
+        #     self.finished.value = False
 
     def cap_angle(self):
         if self.angle.value > 180:
