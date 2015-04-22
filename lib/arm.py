@@ -74,7 +74,7 @@ class Arm:
         # self.sp.spoon.rotate(90, 2000)
         # self.sp.leg.sleep(2000)
         #
-        # self.sp.leg.rotate(20, 2000)
+        self.sp.leg.rotate(20, 2000)
 
     def update_spoon_status(self):
         if self.spoon_status == 'scooping' and self.sp.spoon.is_finished() and self.sp.leg.is_finished():
