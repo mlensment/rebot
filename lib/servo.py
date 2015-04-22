@@ -34,6 +34,11 @@ class Servo:
         self.stop_signal.value = True
 
     def update(self):
+        if not self.current_command and len(self.command_queue) == 0:
+            self.finished.value = True
+        else:
+            self.finished.value = False
+            
         try:
             # if not self.current_command: return
             elapsed_time = Servo.time_in_millis() - self.current_command['start_time']
