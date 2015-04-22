@@ -79,6 +79,10 @@ class Arm:
     def update_spoon_status(self):
         if self.spoon_status == 'scooping' and self.sp.spoon.is_finished() and self.sp.leg.is_finished():
             print 'FINISHED SCOOPING'
+            print str(self.sp.spoon.command_queue)
+            print str(self.sp.spoon.current_command)
+            print str(self.sp.leg.command_queue)
+            print str(self.sp.leg.current_command)
             self.spoon_status = 'finished_scooping'
 
     def update_status(self):
