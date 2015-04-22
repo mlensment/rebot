@@ -33,11 +33,17 @@ class Arm:
             if self.spoon_status in ['full'] and self.leg_status in ['retracted', 'retracting']: # and is watching target
                 self.extend()
 
-            if self.leg_status in ['extended']:
-                self.shut_down()
+            if self.leg_status == 'extended':
+                self.feed()
 
-            if self.leg_status in ['shut_down'] and self.spoon_status in ['shut_down']:
-                break
+            if self.leg_status == 'fed' and self.spoon_status == 'empty':
+                self.retract()
+
+            # if self.leg_status in ['extended']:
+            #     self.shut_down()
+            #
+            # if self.leg_status in ['shut_down'] and self.spoon_status in ['shut_down']:
+            #     break
 
             # if self.spoon_status == 'finished_scooping':
             #     self.reset_position();
@@ -97,6 +103,23 @@ class Arm:
         self.sp.leg.rotate(80, 5000)
         self.sp.spoon.sleep(5000)
 
+    def feed(self):
+        if self.not_finished(): return
+
+        print 'FEEDING'
+        self.leg_status = 'feeding'
+        self.spoon_status = 'feeding'
+        self.sp.spoon.sleep(5000)
+        self.sp.leg.sleep(5000)
+
+    def retract(self):
+        if self.not_finished(): return
+
+        print 'RETRACTING'
+        self.leg_status = 'retracting'
+        self.sp.leg.rotate(20, 5000)
+        self.sp.spoon.sleep(5000)
+
     def shut_down(self):
         if self.not_finished(): return
 
@@ -110,16 +133,27 @@ class Arm:
     def update_spoon_status(self):
         if self.spoon_status == 'scooping' and self.is_finished():
             self.spoon_status = 'full'
+
         if self.spoon_status == 'shutting_down' and self.is_finished():
             self.spoon_status = 'shut_down'
+
+        if self.spoon_status == 'feeding' and self.is_finished():
+            self.spoon_status = 'empty'
 
 
     def update_leg_status(self):
         if self.leg_status == 'extending' and self.is_finished():
             self.leg_status = 'extended'
 
+        if self.leg_status == 'feeding' and self.is_finished():
+            self.leg_status = 'fed'
+
+        if self.leg_status == 'retracting' and self.is_finished():
+            self.leg_status = 'retracted'
+
         if self.leg_status == 'shutting_down' and self.is_finished():
             self.leg_status = 'shut_down'
+
 
     def is_finished(self):
         return self.sp.spoon.is_finished() and self.sp.leg.is_finished()
