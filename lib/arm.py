@@ -88,7 +88,7 @@ class Arm:
             print str(self.sp.leg.command_queue)
             print str(self.sp.leg.current_command)
             if self.sp.leg.current_command:
-                raise Exception 'bla'
+                raise Exception('bla')
             self.spoon_status = 'finished_scooping'
 
     def update_status(self):
