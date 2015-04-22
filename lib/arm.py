@@ -30,14 +30,14 @@ class Arm:
             self.scoop()
             self.update_spoon_status()
 
-            if self.spoon_status == 'finished_scooping':
-                self.reset_position();
-
-            if self.status == 'reset':
-                print 'SHUTTING DOWN'
-                break
-
-            self.update_status()
+            # if self.spoon_status == 'finished_scooping':
+            #     self.reset_position();
+            #
+            # if self.status == 'reset':
+            #     print 'SHUTTING DOWN'
+            #     break
+            #
+            # self.update_status()
 
             # if self.spoon_status == 'finished_scooping':
             #     self.reset_position()

@@ -47,7 +47,7 @@ class Servo:
             if elapsed_time > self.current_command['timeframe']:
                 self.next_command()
         except:
-            pass
+            print 'update failed ' + str(self.servo_id)
 
         if self.stop_signal.value:
             self.next_command()
