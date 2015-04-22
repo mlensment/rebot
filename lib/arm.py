@@ -77,18 +77,7 @@ class Arm:
         self.sp.leg.rotate(20, 2000)
 
     def update_spoon_status(self):
-        print str(self.sp.spoon.command_queue)
-        print str(self.sp.spoon.current_command)
-        print str(self.sp.leg.command_queue)
-        print str(self.sp.leg.current_command)
         if self.spoon_status == 'scooping' and self.sp.spoon.is_finished() and self.sp.leg.is_finished():
-            print 'FINISHED SCOOPING'
-            print str(self.sp.spoon.command_queue)
-            print str(self.sp.spoon.current_command)
-            print str(self.sp.leg.command_queue)
-            print str(self.sp.leg.current_command)
-            if self.sp.leg.current_command:
-                raise Exception('bla')
             self.spoon_status = 'finished_scooping'
 
     def update_status(self):
