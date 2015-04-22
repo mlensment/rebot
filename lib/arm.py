@@ -112,6 +112,6 @@ class Arm:
         return self.sp.spoon.is_finished() and self.sp.leg.is_finished()
 
     def not_finished(self):
-        return !self.is_finished()
+        return not self.is_finished()
 a = Arm()
 a.run()
