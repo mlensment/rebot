@@ -14,6 +14,8 @@ class Servo:
         self.command_queue = manager.list([])
         self.current_command = manager.dict()
 
+        self.finished = Value('b', True)
+
 
     def rotate(self, deg, timeframe = None):
         self.command_queue.append({'target_angle': deg, 'timeframe': timeframe})
@@ -25,9 +27,7 @@ class Servo:
         if not self.current_command: self.next_command()
 
     def is_finished(self):
-        print str(self.servo_id) + ' ' + str(len(self.command_queue))
-        print str(self.servo_id) + ' ' + str(self.current_command)
-        return not self.current_command and len(self.command_queue) == 0
+        return self.finished.value
 
     def stop(self):
         del self.command_queue[:]
@@ -53,6 +53,11 @@ class Servo:
 
         if self.stop_signal.value:
             self.next_command()
+
+        if not self.current_command and len(self.command_queue) == 0:
+            self.finished.value = True
+        else:
+            self.finished.value = False
 
     def cap_angle(self):
         if self.angle.value > 180:
