@@ -30,8 +30,8 @@ class Arm:
             self.scoop()
             self.update_spoon_status()
 
-            # if self.spoon_status == 'finished_scooping':
-            #     self.reset_position();
+            if self.spoon_status == 'finished_scooping':
+                self.reset_position();
             #
             # if self.status == 'reset':
             #     print 'SHUTTING DOWN'
@@ -66,15 +66,15 @@ class Arm:
         self.spoon_status = 'scooping'
 
         self.sp.spoon.rotate(0, 2000)
-        self.sp.leg.sleep(2000)
-
-        self.sp.leg.rotate(0, 2000)
-        self.sp.spoon.sleep(2000)
-
-        self.sp.spoon.rotate(90, 2000)
-        self.sp.leg.sleep(2000)
-
-        self.sp.leg.rotate(20, 2000)
+        # self.sp.leg.sleep(2000)
+        #
+        # self.sp.leg.rotate(0, 2000)
+        # self.sp.spoon.sleep(2000)
+        #
+        # self.sp.spoon.rotate(90, 2000)
+        # self.sp.leg.sleep(2000)
+        #
+        # self.sp.leg.rotate(20, 2000)
 
     def update_spoon_status(self):
         if self.spoon_status == 'scooping' and self.sp.spoon.is_finished() and self.sp.leg.is_finished():
