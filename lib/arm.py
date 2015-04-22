@@ -77,6 +77,8 @@ class Arm:
         self.sp.leg.rotate(20, 2000)
 
     def update_spoon_status(self):
+        print 'spoon: ' + str(self.sp.spoon.is_finished())
+        print 'leg: ' + str(self.sp.leg.is_finished())
         if self.spoon_status == 'scooping' and self.sp.spoon.is_finished() and self.sp.leg.is_finished():
             print 'FINISHED SCOOPING'
             self.spoon_status = 'finished_scooping'
