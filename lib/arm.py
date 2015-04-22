@@ -8,8 +8,8 @@ class Arm:
     def __init__(self):
         self.init_servos()
         # 'scooping', ''
-        self.spoon_status = ''
-        self.status = ''
+        self.spoon_status = 'empty'
+        self.leg_status = 'retracted'
 
     def init_servos(self):
         self.sp = sp.ServoProcess()
@@ -27,11 +27,20 @@ class Arm:
         # self.reset_position()
         while(1):
             # pass
-            self.scoop()
-            self.update_spoon_status()
+            if self.spoon_status in ['empty'] and self.leg_status in ['retracted']:
+                self.scoop()
 
-            if self.spoon_status == 'finished_scooping':
-                self.reset_position();
+            if self.spoon_status in ['full']: # and is watching target
+                self.extend()
+
+            if self.leg_status in ['extended']:
+                self.shut_down()
+
+            # if self.spoon_status == 'finished_scooping':
+            #     self.reset_position();
+
+            self.update_spoon_status()
+            self.update_leg_status()
             #
             # if self.status == 'reset':
             #     print 'SHUTTING DOWN'
@@ -61,7 +70,8 @@ class Arm:
             # i += 1
 
     def scoop(self):
-        if self.spoon_status in ['scooping', 'finished_scooping']: return
+        if self.not_finished(): return
+
         print 'SCOOPING'
         self.spoon_status = 'scooping'
 
@@ -76,22 +86,32 @@ class Arm:
 
         self.sp.leg.rotate(20, 2000)
 
+    def extend(self):
+        if self.not_finished(): return
+
+        print 'EXTENDING'
+        self.leg_status = 'extending'
+        self.sp.leg.rotate(30, 5000)
+        self.sp.spoon.sleep(5000)
+
+    def shut_down(self):
+        if self.not_finished(): return
+
+        self.sp.spoon.rotate(0, 5000)
+        self.sp.leg.rotate(0, 5000)
+
     def update_spoon_status(self):
-        if self.spoon_status == 'scooping' and self.sp.spoon.is_finished() and self.sp.leg.is_finished():
-            self.spoon_status = 'finished_scooping'
+        if self.spoon_status == 'scooping' and self.is_finished():
+            self.spoon_status = 'full'
 
-    def update_status(self):
-        if self.status == 'resetting' and self.sp.spoon.is_finished() and self.sp.leg.is_finished():
-            print 'RESET'
-            self.status = 'reset'
+    def update_leg_status(self):
+        if self.leg_status == 'extending' and self.is_finished():
+            self.leg_status = 'extended'
 
-    def reset_position(self):
-        # TODO: Gradually decrease angle until error, then servos are 0 position
-        if self.status in ['resetting', 'reset']: return
-        print 'RESETTING'
-        self.status = 'resetting'
-        self.sp.spoon.rotate(0, 2000)
-        self.sp.leg.rotate(0, 2000)
+    def is_finished(self):
+        return self.sp.spoon.is_finished() and self.sp.leg.is_finished()
 
+    def not_finished(self):
+        return !self.is_finished()
 a = Arm()
 a.run()
