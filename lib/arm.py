@@ -30,7 +30,7 @@ class Arm:
             if self.spoon_status in ['empty'] and self.leg_status in ['retracted']:
                 self.scoop()
 
-            if self.spoon_status in ['full']: # and is watching target
+            if self.spoon_status in ['full'] and self.leg_status in ['retracted', 'retracting']: # and is watching target
                 self.extend()
 
             if self.leg_status in ['extended']:
@@ -97,6 +97,7 @@ class Arm:
     def shut_down(self):
         if self.not_finished(): return
 
+        print 'SHUTTING DOWN'
         self.sp.spoon.rotate(0, 5000)
         self.sp.leg.rotate(0, 5000)
 

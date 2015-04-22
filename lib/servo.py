@@ -35,7 +35,7 @@ class Servo:
 
     def update(self):
         try:
-            if not self.current_command: return
+            # if not self.current_command: return
             elapsed_time = Servo.time_in_millis() - self.current_command['start_time']
 
             if 'target_angle' in self.current_command:
@@ -49,7 +49,8 @@ class Servo:
             if elapsed_time > self.current_command['timeframe']:
                 self.next_command()
         except:
-            print 'update failed ' + str(self.servo_id)
+            pass
+            # print 'update failed ' + str(self.servo_id)
 
         if self.stop_signal.value:
             self.next_command()
