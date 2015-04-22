@@ -14,7 +14,7 @@ class Servo:
         self.command_queue = manager.list([])
         self.current_command = manager.dict()
 
-        self.finished = Value('b', True)
+        self.finished = Value('b', False)
 
 
     def rotate(self, deg, timeframe = None):
