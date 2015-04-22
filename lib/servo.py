@@ -25,6 +25,8 @@ class Servo:
         if not self.current_command: self.next_command()
 
     def is_finished(self):
+        print self.servo_id + ' ' + str(len(self.command_queue))
+        print self.servo_id + ' ' + str(self.current_command)
         return not self.current_command and len(self.command_queue) == 0
 
     def stop(self):
