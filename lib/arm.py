@@ -66,14 +66,14 @@ class Arm:
         self.spoon_status = 'scooping'
 
         self.sp.spoon.rotate(0, 2000)
-        # self.sp.leg.sleep(2000)
-        #
-        # self.sp.leg.rotate(0, 2000)
-        # self.sp.spoon.sleep(2000)
-        #
-        # self.sp.spoon.rotate(90, 2000)
-        # self.sp.leg.sleep(2000)
-        #
+        self.sp.leg.sleep(2000)
+
+        self.sp.leg.rotate(0, 2000)
+        self.sp.spoon.sleep(2000)
+
+        self.sp.spoon.rotate(90, 2000)
+        self.sp.leg.sleep(2000)
+
         self.sp.leg.rotate(20, 2000)
 
     def update_spoon_status(self):
