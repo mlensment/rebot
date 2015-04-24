@@ -8,7 +8,7 @@ import servo
 class ServoProcess(Process):
     def __init__(self):
         print '-----> Initializing servo process...'
-        if os.path.exists('/dev/servoblaster'):
+        if not os.path.exists('/dev/servoblaster'):
             raise Exception('-----> ERROR: Servo driver was not found. Is servoblaster loaded?')
 
         Process.__init__(self)
