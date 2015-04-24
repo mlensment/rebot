@@ -11,7 +11,7 @@ class Eye:
 
     def is_looking_at_target(self):
         if not self.x or not self.y: return Eye.current_target_gaze
-        print self.update_target_gaze_cache
+        print Eye.target_gaze_cache
         error = 20.0
 
         if math.fabs(self.x - Eye.target[0]) <= error and math.fabs(self.y - Eye.target[1]) <= error:
