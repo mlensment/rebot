@@ -13,9 +13,9 @@ class Eye:
         error = 20.0
 
         if math.fabs(self.x - Eye.target[0]) <= error and math.fabs(self.y - Eye.target[1]) <= error:
-            update_target_gaze_cache(True)
+            self.update_target_gaze_cache(True)
         else:
-            update_target_gaze_cache(False)
+            self.update_target_gaze_cache(False)
 
         if sum(i for i in a) == 3:
             Eye.current_target_gaze = True
