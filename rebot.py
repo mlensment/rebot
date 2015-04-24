@@ -46,11 +46,11 @@ class Rebot:
             x_sum = i[0] + x_sum
             y_sum = i[1] + y_sum
 
-        self.target = [x_sum / len(readings), y_sum / len(readings)]
+        self.target = [round(x_sum / len(readings), 2), round(y_sum / len(readings), 2)]
         print str(self.target)
 
         # beep
-        print '-----> Calibration completed'
+        print '-----> Calibration complete
 
     def run(self):
         self.calibrate()
