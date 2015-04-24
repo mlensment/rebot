@@ -6,6 +6,7 @@ from lib import camera, frame
 # import eye
 # import arm
 import cv2
+import time
 
 class Rebot:
     def __init__(self, frame_path = None):
