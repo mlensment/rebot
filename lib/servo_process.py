@@ -9,7 +9,7 @@ class ServoProcess(Process):
     def __init__(self):
         print '-----> Initializing servo process...'
         if not os.path.exists('/dev/servoblaster'):
-            raise Exception('-----> ERROR: Servo driver was not found. Is servoblaster loaded?')
+            raise Exception('Servo driver was not found. Is servoblaster loaded?')
 
         Process.__init__(self)
         self.spoon = servo.Servo(2, 0.0)
@@ -20,6 +20,7 @@ class ServoProcess(Process):
 
         i = config.SERVO_MAX_WIDTH - config.SERVO_MIN_WIDTH
         while(i > 0):
+            print i
             self.spoon.decrease_pwm(1)
             i -= 1
 
