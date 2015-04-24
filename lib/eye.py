@@ -17,10 +17,10 @@ class Eye:
         else:
             self.update_target_gaze_cache(False)
 
-        if sum(i for i in a) == 3:
+        if sum(i for i in Eye.target_gaze_cache) == 3:
             Eye.current_target_gaze = True
 
-        if sum(not i for i in a) == 3:
+        if sum(not i for i in Eye.target_gaze_cache) == 3:
             Eye.current_target_gaze = False
 
         return Eye.current_target_gaze
