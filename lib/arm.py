@@ -25,11 +25,11 @@ class Arm:
         if self.leg_status == 'fed' and self.spoon_status == 'empty':
             self.retract()
 
-        if is_looking_at_target():
+        if eye.is_looking_at_target():
             if self.spoon_status in ['full'] and self.leg_status in ['retracted', 'retracting']:
                 self.extend()
 
-        if is_not_looking_at_target():
+        if eye.is_not_looking_at_target():
             if self.spoon_status in ['full'] and self.leg_status in ['extending']:
                 self.stop()
                 self.spoon_status = 'empty'
