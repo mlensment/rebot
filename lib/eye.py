@@ -5,11 +5,13 @@ class Eye:
     current_target_gaze = False
     target_gaze_cache = []
 
-    def __init__(self, x, y):
+    def __init__(self, x = None, y = None):
         self.x = x
         self.y = y
 
     def is_looking_at_target(self):
+        if not x or not y: return Eye.current_target_gaze
+        print self.update_target_gaze_cache
         error = 20.0
 
         if math.fabs(self.x - Eye.target[0]) <= error and math.fabs(self.y - Eye.target[1]) <= error:

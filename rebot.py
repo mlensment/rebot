@@ -61,6 +61,7 @@ class Rebot:
             frame = self.camera.read_frame()
             e = frame.find_eye()
             print e.is_looking_at_target()
+            time.sleep(.5)
 
             if cv2.waitKey(1) & 0xFF == ord('/'):
                 break

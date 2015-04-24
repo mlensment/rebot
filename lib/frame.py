@@ -101,7 +101,7 @@ class Frame:
 
         cv2.imshow('3', self.processed)
 
-        return None
+        return eye.Eye()
         # cv2.imshow(config.WINDOW_NAME, img)
         # edges = cv2.Canny(img, 0, 200)
         # #
