@@ -31,6 +31,9 @@ class Eye:
 
         return Eye.current_target_gaze
 
+    def is_not_looking_at_target(self):
+        return not self.is_looking_at_target()
+        
     def update_target_gaze_cache(self, b):
         Eye.target_gaze_cache.append(b)
         if len(Eye.target_gaze_cache) > 3:

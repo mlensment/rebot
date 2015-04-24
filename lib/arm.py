@@ -19,14 +19,23 @@ class Arm:
         if self.spoon_status in ['empty'] and self.leg_status in ['retracted']:
             self.scoop()
 
-        if self.spoon_status in ['full'] and self.leg_status in ['retracted', 'retracting']: # and is watching target
-            self.extend()
-
         if self.leg_status == 'extended':
             self.feed()
 
         if self.leg_status == 'fed' and self.spoon_status == 'empty':
             self.retract()
+
+        if is_looking_at_target():
+            if self.spoon_status in ['full'] and self.leg_status in ['retracted', 'retracting']:
+                self.extend()
+
+        if is_not_looking_at_target():
+            self.spoon_status in ['full'] and self.leg_status in ['extending']:
+                self.stop()
+                self.spoon_status = 'empty'
+                self.retract()
+
+
 
             # if self.leg_status in ['extended']:
             #     self.shut_down()
@@ -81,6 +90,10 @@ class Arm:
         self.leg_status = 'retracting'
         self.sp.leg.rotate(20, 5000)
         self.sp.spoon.sleep(5000)
+
+    def stop(self):
+        self.sp.leg.stop()
+        self.sp.spoon.stop()
 
     def shut_down(self):
         if self.not_finished(): return

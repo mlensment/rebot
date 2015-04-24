@@ -46,7 +46,7 @@ class Rebot:
                 y_readings.append(e.y)
 
         eye.Eye.target = (round(numpy.median(x_readings), 2), round(numpy.median(y_readings), 2))
-        print str(eye.Eye.target)
+        # print str(eye.Eye.target)
 
         # beep
         print '-----> Calibration complete'
