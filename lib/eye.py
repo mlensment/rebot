@@ -31,5 +31,5 @@ class Eye:
     def update_target_gaze_cache(self, b):
         Eye.target_gaze_cache.append(b)
         if len(Eye.target_gaze_cache) > 3:
-            Eye.target_gaze_cache.pop()
+            Eye.target_gaze_cache.pop(0)
         return b
