@@ -12,7 +12,7 @@ class ServoProcess(Process):
         self.leg = servo.Servo(5, 0.0)
 
     def run(self):
-        print 'entered run'
+        print '-----> Servo process initialized'
 
         while(1):
             self.spoon.update()
@@ -20,6 +20,3 @@ class ServoProcess(Process):
 
             self.leg.update()
             self.leg.alter_pwm()
-
-        print 'thread end'
-        return 0

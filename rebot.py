@@ -2,7 +2,7 @@
 
 import argparse
 import config
-from lib import camera, frame, eye
+from lib import camera, frame, eye, arm
 # import eye
 # import arm
 import cv2
@@ -11,6 +11,7 @@ import time
 class Rebot:
     def __init__(self, frame_path = None):
         self.camera = camera.Camera(frame_path)
+        self.arm = arm.Arm()
         # self.arm = arm.Arm()
 
         # create a window for displaying image and move it to a reasonable spot
@@ -54,13 +55,21 @@ class Rebot:
         print '-----> Calibration complete'
 
     def run(self):
+        print '-----> Initiating servo process...'
+        self.arm.init_servos()
+        # TODO: Gradual startup
         self.calibrate()
 
         print '-----> Initiating main loop...'
+        print '-----> Rebot is running'
         while(1):
             frame = self.camera.read_frame()
             e = frame.find_eye()
-            print e.is_looking_at_target()
+
+            if e.is_visible():
+                self.arm.update(e)
+
+            # print e.is_looking_at_target()
 
             if cv2.waitKey(1) & 0xFF == ord('/'):
                 break

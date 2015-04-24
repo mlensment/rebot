@@ -6,7 +6,7 @@ import servo_process as sp
 
 class Arm:
     def __init__(self):
-        self.init_servos()
+        # self.init_servos()
         # 'scooping', ''
         self.spoon_status = 'empty'
         self.leg_status = 'retracted'
@@ -15,29 +15,18 @@ class Arm:
         self.sp = sp.ServoProcess()
         self.sp.start()
 
-    def run(self):
-        i = 0
-        # self.ease_spoon(180)
-        # self.sp.spoon.rotate(180, 2000)
-        # self.sp.spoon.sleep(2000)
-        # self.sp.spoon.rotate(90, 2000)
-        # self.sp.leg.rotate(180, 2000)
-        # self.sp.leg.rotate(90, 2000)
-        # self.leg_servo.rotate(180, 2000)
-        # self.reset_position()
-        while(1):
-            # pass
-            if self.spoon_status in ['empty'] and self.leg_status in ['retracted']:
-                self.scoop()
+    def update(self, eye):
+        if self.spoon_status in ['empty'] and self.leg_status in ['retracted']:
+            self.scoop()
 
-            if self.spoon_status in ['full'] and self.leg_status in ['retracted', 'retracting']: # and is watching target
-                self.extend()
+        if self.spoon_status in ['full'] and self.leg_status in ['retracted', 'retracting']: # and is watching target
+            self.extend()
 
-            if self.leg_status == 'extended':
-                self.feed()
+        if self.leg_status == 'extended':
+            self.feed()
 
-            if self.leg_status == 'fed' and self.spoon_status == 'empty':
-                self.retract()
+        if self.leg_status == 'fed' and self.spoon_status == 'empty':
+            self.retract()
 
             # if self.leg_status in ['extended']:
             #     self.shut_down()
@@ -48,35 +37,8 @@ class Arm:
             # if self.spoon_status == 'finished_scooping':
             #     self.reset_position();
 
-            self.update_spoon_status()
-            self.update_leg_status()
-            #
-            # if self.status == 'reset':
-            #     print 'SHUTTING DOWN'
-            #     break
-            #
-            # self.update_status()
-
-            # if self.spoon_status == 'finished_scooping':
-            #     self.reset_position()
-            #     break
-            # print self.sp.leg.finished()
-            # time.sleep(1)
-            # self.sp.spoon.stop()
-            # self.scoop()
-            # # time.sleep(.5)
-            # # self.spoon_servo.rotate_instant(180)
-            # self.update_spoon_status()
-
-            # time.sleep(5)
-            # self.spoon_servo.stop()
-            # is_alive()
-            # self.ease_spoon(0)
-
-            # self.spoon_servo.terminate()
-            # time.sleep(5)
-            # self.ease_spoon(180)
-            # i += 1
+        self.update_spoon_status()
+        self.update_leg_status()
 
     def scoop(self):
         if self.not_finished(): return
@@ -160,5 +122,5 @@ class Arm:
 
     def not_finished(self):
         return not self.is_finished()
-a = Arm()
-a.run()
+# a = Arm()
+# a.run()
