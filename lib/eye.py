@@ -10,7 +10,7 @@ class Eye:
         self.y = y
 
     def is_looking_at_target(self):
-        if not x or not y: return Eye.current_target_gaze
+        if not self.x or not self.y: return Eye.current_target_gaze
         print self.update_target_gaze_cache
         error = 20.0
 
