@@ -38,13 +38,13 @@ class Rebot:
             eye = frame.find_eye()
 
             if eye:
-                readings.push(eye)
+                readings.append((eye.x, eye.y))
 
         x_sum = 0.0
         y_sum = 0.0
         for i in readings:
-            x_sum = readings[i].x + x_sum
-            y_sum = readings[i].x + y_sum
+            x_sum = readings[i][0] + x_sum
+            y_sum = readings[i][1] + y_sum
 
         self.target = [x_sum / len(readings), y_sum / len(readings)]
         print str(self.target)
