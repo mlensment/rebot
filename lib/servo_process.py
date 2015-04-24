@@ -16,7 +16,7 @@ class ServoProcess(Process):
         print '-----> Calibrating servos...'
 
         i = config.SERVO_MAX_WIDTH - config.SERVO_MIN_WIDTH
-        while(i > 0)
+        while(i > 0):
             self.spoon.decrease_pwm(1)
             i -= 1
 
