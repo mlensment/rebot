@@ -30,7 +30,7 @@ class Rebot:
         print '-----> Initiating calibration sequence...'
         readings = []
         # beep / flash
-        time.sleep(1)
+        # time.sleep(1)
         # beep beep
 
         print '-----> Calibrating...'
@@ -56,15 +56,15 @@ class Rebot:
     def run(self):
         self.calibrate()
 
-        # print '-----> Initiating main loop...'
-        # while(1):
-        #     frame = self.camera.read_frame()
-        #     eye = frame.find_eye()
-        #     # frame.show()
-        #
-        #     if cv2.waitKey(1) & 0xFF == ord('/'):
-        #         break
-        #
+        print '-----> Initiating main loop...'
+        while(1):
+            frame = self.camera.read_frame()
+            e = frame.find_eye()
+            print e.is_looking_at_target()
+
+            if cv2.waitKey(1) & 0xFF == ord('/'):
+                break
+
         # self.camera.close()
         # cv2.destroyAllWindows()
 
