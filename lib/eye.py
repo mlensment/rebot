@@ -10,7 +10,7 @@ class Eye:
         self.y = y
 
     def is_visible(self):
-        self.x and self.y
+        return self.x and self.y
 
     def is_looking_at_target(self):
         if not self.is_visible(): return Eye.current_target_gaze
