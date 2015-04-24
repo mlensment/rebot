@@ -56,15 +56,15 @@ class Rebot:
     def run(self):
         self.calibrate()
 
-        print '-----> Initiating main loop...'
-        while(1):
-            frame = self.camera.read_frame()
-            e = frame.find_eye()
-            print e.is_looking_at_target()
-            time.sleep(.5)
-
-            if cv2.waitKey(1) & 0xFF == ord('/'):
-                break
+        # print '-----> Initiating main loop...'
+        # while(1):
+        #     frame = self.camera.read_frame()
+        #     e = frame.find_eye()
+        #     print e.is_looking_at_target()
+        #     time.sleep(.5)
+        #
+        #     if cv2.waitKey(1) & 0xFF == ord('/'):
+        #         break
 
         # self.camera.close()
         # cv2.destroyAllWindows()
