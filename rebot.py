@@ -10,6 +10,7 @@ import cv2
 class Rebot:
     def __init__(self, frame_path = None):
         self.camera = camera.Camera(frame_path)
+        self.target = []
         # self.arm = arm.Arm()
 
         # create a window for displaying image and move it to a reasonable spot
@@ -25,14 +26,42 @@ class Rebot:
         cv2.namedWindow('4')
         cv2.moveWindow('4', 100, 500)
 
-    def run(self):
-        while(1):
+    def calibrate(self):
+        print '-----> Initiating calibration sequence...'
+        readings = []
+        # beep / flash
+        time.sleep(1)
+        # beep beep
+        while(len(readings) <= 100):
             frame = self.camera.read_frame()
-            frame.find_glints()
-            # frame.show()
+            eye = frame.find_eye()
 
-            if cv2.waitKey(1) & 0xFF == ord('/'):
-                break
+            if eye:
+                readings.push(eye)
+
+        x_sum = 0.0
+        y_sum = 0.0
+        for i in readings:
+            x_sum = readings[i].x + x_sum
+            y_sum = readings[i].x + y_sum
+
+        self.target = [x_sum / len(readings), y_sum / len(readings)]
+        print str(self.target)
+
+        # beep
+        print '-----> Calibration completed'
+
+    def run(self):
+        self.calibrate()
+
+        print '-----> Initiating main loop...'
+        # while(1):
+        #     frame = self.camera.read_frame()
+        #     frame.find_glints()
+        #     # frame.show()
+        #
+        #     if cv2.waitKey(1) & 0xFF == ord('/'):
+        #         break
 
         self.camera.close()
         cv2.destroyAllWindows()
