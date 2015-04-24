@@ -21,7 +21,7 @@ class Eye:
         else:
             self.update_target_gaze_cache(False)
 
-        print str(math.fabs(self.x - Eye.target[0])) + ' ' + str(math.fabs(self.y - Eye.target[1]))
+        # print str(math.fabs(self.x - Eye.target[0])) + ' ' + str(math.fabs(self.y - Eye.target[1]))
 
         if sum(i for i in Eye.target_gaze_cache) == 3:
             Eye.current_target_gaze = True
@@ -33,7 +33,7 @@ class Eye:
 
     def is_not_looking_at_target(self):
         return not self.is_looking_at_target()
-        
+
     def update_target_gaze_cache(self, b):
         Eye.target_gaze_cache.append(b)
         if len(Eye.target_gaze_cache) > 3:
