@@ -33,6 +33,7 @@ class Arm:
             if self.spoon_status in ['full'] and self.leg_status in ['extending']:
                 self.stop()
                 self.spoon_status = 'empty'
+                print 'STARTIN RETRACTING'
                 self.retract()
 
 
