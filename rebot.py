@@ -50,7 +50,7 @@ class Rebot:
         print str(self.target)
 
         # beep
-        print '-----> Calibration complete
+        print '-----> Calibration complete'
 
     def run(self):
         self.calibrate()
