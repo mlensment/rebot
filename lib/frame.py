@@ -3,6 +3,7 @@ import cv2
 import cv2.cv as cv
 import numpy as np
 from pylab import array
+import eye
 
 class Frame:
     def __init__(self, original):
