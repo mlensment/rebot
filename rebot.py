@@ -53,21 +53,21 @@ class Rebot:
 
     def run(self):
         self.arm.init_servos()
-        # self.calibrate()
-        #
-        # print '-----> Initiating main loop...'
-        # print '-----> Rebot is running'
-        # while(1):
-        #     frame = self.camera.read_frame()
-        #     e = frame.find_eye()
-        #
-        #     if e.is_visible():
-        #         self.arm.update(e)
-        #
-        #     # print e.is_looking_at_target()
-        #
-        #     if cv2.waitKey(1) & 0xFF == ord('/'):
-        #         break
+        self.calibrate()
+
+        print '-----> Initiating main loop...'
+        print '-----> Rebot is running'
+        while(1):
+            frame = self.camera.read_frame()
+            e = frame.find_eye()
+
+            if e.is_visible():
+                self.arm.update(e)
+
+            # print e.is_looking_at_target()
+
+            if cv2.waitKey(1) & 0xFF == ord('/'):
+                break
 
         # self.camera.close()
         # cv2.destroyAllWindows()
