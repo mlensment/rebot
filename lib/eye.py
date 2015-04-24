@@ -21,6 +21,8 @@ class Eye:
         else:
             self.update_target_gaze_cache(False)
 
+        print str(math.fabs(self.x - Eye.target[0])) + ' ' + math.fabs(self.y - Eye.target[1])
+        
         if sum(i for i in Eye.target_gaze_cache) == 3:
             Eye.current_target_gaze = True
 
