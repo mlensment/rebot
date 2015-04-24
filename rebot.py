@@ -2,7 +2,7 @@
 
 import argparse
 import config
-from lib import camera, frame
+from lib import camera, frame, eye
 # import eye
 # import arm
 import cv2
@@ -11,7 +11,6 @@ import time
 class Rebot:
     def __init__(self, frame_path = None):
         self.camera = camera.Camera(frame_path)
-        self.target = []
         # self.arm = arm.Arm()
 
         # create a window for displaying image and move it to a reasonable spot
@@ -33,6 +32,8 @@ class Rebot:
         # beep / flash
         time.sleep(1)
         # beep beep
+
+        print '-----> Calibrating...'
         while(len(readings) <= 10):
             frame = self.camera.read_frame()
             eye = frame.find_eye()
@@ -46,8 +47,8 @@ class Rebot:
             x_sum = i[0] + x_sum
             y_sum = i[1] + y_sum
 
-        self.target = [round(x_sum / len(readings), 2), round(y_sum / len(readings), 2)]
-        print str(self.target)
+        eye.Eye.target = (round(x_sum / len(readings), 2), round(y_sum / len(readings), 2))
+        print str(eye.Eye.target)
 
         # beep
         print '-----> Calibration complete'
@@ -55,17 +56,17 @@ class Rebot:
     def run(self):
         self.calibrate()
 
-        print '-----> Initiating main loop...'
+        # print '-----> Initiating main loop...'
         # while(1):
         #     frame = self.camera.read_frame()
-        #     frame.find_glints()
+        #     eye = frame.find_eye()
         #     # frame.show()
         #
         #     if cv2.waitKey(1) & 0xFF == ord('/'):
         #         break
-
-        self.camera.close()
-        cv2.destroyAllWindows()
+        #
+        # self.camera.close()
+        # cv2.destroyAllWindows()
 
         # eye = frame.find_eye()
         # if eye.looks_at_target():
