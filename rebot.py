@@ -7,6 +7,7 @@ from lib import camera, frame, eye, arm
 # import arm
 import cv2
 import time
+import numpy
 
 class Rebot:
     def __init__(self, frame_path = None):
@@ -29,7 +30,8 @@ class Rebot:
 
     def calibrate(self):
         print '-----> Initiating calibration sequence...'
-        readings = []
+        x_readings = []
+        y_readings = []
         # beep / flash
         # time.sleep(1)
         # beep beep
@@ -40,15 +42,10 @@ class Rebot:
             e = frame.find_eye()
 
             if e.is_visible():
-                readings.append((e.x, e.y))
+                x_readings.append(e.x)
+                y_readings.append(e.y)
 
-        x_sum = 0.0
-        y_sum = 0.0
-        for i in readings:
-            x_sum = i[0] + x_sum
-            y_sum = i[1] + y_sum
-
-        eye.Eye.target = (round(x_sum / len(readings), 2), round(y_sum / len(readings), 2))
+        eye.Eye.target = (round(numpy.median(x_readings), 2), round(numpy.median(y_readings), 2))
         print str(eye.Eye.target)
 
         # beep
