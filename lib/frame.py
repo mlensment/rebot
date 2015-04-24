@@ -3,7 +3,7 @@ import cv2
 import cv2.cv as cv
 import numpy as np
 from pylab import array
-import Eye
+import eye
 
 class Frame:
     def __init__(self, original):
@@ -97,7 +97,7 @@ class Frame:
             cv2.putText(self.processed, 'Largest contour area: ' + str(round(largest_area, 2)), (10,30), font, 0.5, (255,255,255), 2)
             cv2.putText(self.processed, 'Center of the contour: (' + str(round(x, 2)) + ', ' + str(round(y, 2)) + ')', (10,60), font, 0.5, (255,255,255), 2)
             cv2.putText(self.processed, 'Radius of the contour: ' + str(round(radius, 2)), (10,90), font, 0.5, (255,255,255), 2)
-            return Eye(round(x, 2), round(y, 2))
+            return eye.Eye(round(x, 2), round(y, 2))
 
         cv2.imshow('3', self.processed)
 
