@@ -20,9 +20,8 @@ class ServoProcess(Process):
 
         i = config.SERVO_MAX_WIDTH - config.SERVO_MIN_WIDTH
         while(i > 0):
-            print i
-            # self.spoon.decrease_pwm(1)
-            # self.leg.decrease_pwm(1)
+            self.spoon.decrease_pwm(10)
+            self.leg.decrease_pwm(10)
             i -= 1
 
         print '-----> Servo calibration complete'
