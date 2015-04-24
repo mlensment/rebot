@@ -30,7 +30,7 @@ class Arm:
                 self.extend()
 
         if is_not_looking_at_target():
-            self.spoon_status in ['full'] and self.leg_status in ['extending']:
+            if self.spoon_status in ['full'] and self.leg_status in ['extending']:
                 self.stop()
                 self.spoon_status = 'empty'
                 self.retract()
