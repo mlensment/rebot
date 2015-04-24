@@ -95,7 +95,7 @@ class Arm:
     def stop(self):
         self.sp.leg.stop()
         self.sp.spoon.stop()
-        time.sleep(.1)
+        time.sleep(.1) # wait until servo buffers clear
 
     def shut_down(self):
         if self.not_finished(): return

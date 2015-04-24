@@ -7,11 +7,20 @@ import servo
 
 class ServoProcess(Process):
     def __init__(self):
+        print '-----> Initializing servo process...'
         Process.__init__(self)
         self.spoon = servo.Servo(2, 0.0)
         self.leg = servo.Servo(5, 0.0)
 
     def run(self):
+        print '-----> Calibrating servos...'
+
+        i = config.SERVO_MAX_WIDTH - config.SERVO_MIN_WIDTH
+        while(i > 0)
+            self.spoon.decrease_pwm(1)
+            i -= 1
+
+        print '-----> Servo calibration complete'
         print '-----> Servo process initialized'
 
         while(1):

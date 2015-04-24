@@ -97,12 +97,16 @@ class Servo:
         pwm = self.angle.value * ((config.SERVO_MAX_WIDTH - config.SERVO_MIN_WIDTH) / 180.0) # 1 degree = max high pulse time / 180
         pwm += config.SERVO_MIN_WIDTH  # add minimum high pulse time
 
+        # TODO: Move this to init
         if os.path.exists('/dev/servoblaster'):
             # print str(math.ceil(pwm))
             os.system("echo " + str(self.servo_id) + "=" + str(math.ceil(pwm)) + " > /dev/servoblaster")
         else:
             pass
             # raise Exception('Servo driver was not found. Is servoblaster loaded?')
+
+    def decrease_pwm(self, val):
+        os.system("echo " + str(self.servo_id) + "=-" + str(val) + " > /dev/servoblaster")
 
     @staticmethod
     def ease_in_out_sine(elapsed_time, begin, end, timeframe):
