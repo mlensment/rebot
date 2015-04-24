@@ -22,7 +22,7 @@ class ServoProcess(Process):
         while(i > 0):
             self.spoon.decrease_pwm(10)
             self.leg.decrease_pwm(10)
-            i -= 1
+            i -= 10
 
         print '-----> Servo calibration complete'
         print '-----> Servo process initialized'
