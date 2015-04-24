@@ -36,7 +36,7 @@ class Rebot:
         print '-----> Calibrating...'
         while(len(readings) <= 10):
             frame = self.camera.read_frame()
-            eye = frame.find_eye()
+            e = frame.find_eye()
 
             if e:
                 readings.append((e.x, e.y))
