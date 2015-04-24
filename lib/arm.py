@@ -95,6 +95,7 @@ class Arm:
     def stop(self):
         self.sp.leg.stop()
         self.sp.spoon.stop()
+        time.sleep(.1)
 
     def shut_down(self):
         if self.not_finished(): return
