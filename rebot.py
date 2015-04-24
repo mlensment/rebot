@@ -38,8 +38,8 @@ class Rebot:
             frame = self.camera.read_frame()
             eye = frame.find_eye()
 
-            if eye:
-                readings.append((eye.x, eye.y))
+            if e:
+                readings.append((e.x, e.y))
 
         x_sum = 0.0
         y_sum = 0.0
