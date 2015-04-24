@@ -33,7 +33,7 @@ class Rebot:
         # beep / flash
         time.sleep(1)
         # beep beep
-        while(len(readings) <= 100):
+        while(len(readings) <= 10):
             frame = self.camera.read_frame()
             eye = frame.find_eye()
 
@@ -42,6 +42,7 @@ class Rebot:
 
         x_sum = 0.0
         y_sum = 0.0
+        print str(readings)
         for i in readings:
             x_sum = readings[i][0] + x_sum
             y_sum = readings[i][1] + y_sum
