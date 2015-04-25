@@ -16,7 +16,7 @@ class Arm:
         self.sp.start()
 
     def is_initialized(self):
-        return self.sp.initialized
+        return self.sp.initialized.value
 
     def update(self, eye):
         if self.spoon_status in ['empty'] and self.leg_status in ['retracted']:
