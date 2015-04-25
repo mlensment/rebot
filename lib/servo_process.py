@@ -19,7 +19,7 @@ class ServoProcess(Process):
         self.initialized = Value('b', False)
 
     def run(self):
-        print '----> Calibrating servos...'
+        print '----> Initiating servo calibration sequence...'
 
         i = config.SERVO_MAX_WIDTH - config.SERVO_MIN_WIDTH
         while(i > 0):

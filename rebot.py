@@ -55,7 +55,6 @@ class Rebot:
         self.calibrate_camera()
 
         # Wait for servos to calibrate
-        print '--> Waiting for servos to calibrate...'
         while(not self.arm.is_initialized()):
             if cv2.waitKey(1) & 0xFF == ord('/'):
                 break
