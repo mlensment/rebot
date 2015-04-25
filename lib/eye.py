@@ -31,7 +31,7 @@ class Eye:
 
         return Eye.current_target_gaze
 
-    def is_not_looking_at_target(self):
+    def not_looking_at_target(self):
         return not self.is_looking_at_target()
 
     def update_target_gaze_cache(self, b):

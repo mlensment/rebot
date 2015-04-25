@@ -12,32 +12,24 @@ class Frame:
         self.printed = False
 
     def find_eye(self):
-        # convert to grayscale
-        cv2.imshow('frame', self.original)
-
         self.processed = self.original.copy()
+
+        # convert to grayscale
         img = cv2.cvtColor(self.processed, cv2.COLOR_BGR2GRAY)
 
         # erode remaining white areas
         kernel = np.ones((10,10), np.uint8)
         img = cv2.morphologyEx(img, cv2.MORPH_OPEN, kernel)
 
-        # cv2.imshow('4', img)
-        cv2.imshow('2', img)
-
         # find edges
         # values 50, 130 work well
         # values 40, 130 work well
         edges = cv2.Canny(img, 40, 130)
-        # kernel = np.ones((2,2), np.uint8)
-        # edges = cv2.dilate(edges, kernel, iterations = 1)
-        # cv2.imshow('2', edges)
-
-        cv2.imshow('4', edges)
 
         # find contours
         contours, hierarchy = cv2.findContours(edges, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 
+        # find largest contour
         largest_area = 0
         contour = None
         for i in contours:
@@ -55,51 +47,30 @@ class Frame:
             contour = i
             largest_area = area
 
-        # if not self.printed:
-        #     print e
-        # self.printed = True
-
-        # minLineLength = 100
-        # maxLineGap = 10
-        # lines = cv2.HoughLinesP(contours,1,np.pi/180,100,minLineLength,maxLineGap)
-        # for x1,y1,x2,y2 in lines[0]:
-        #     cv2.line(img,(x1,y1),(x2,y2),(0,255,0),2)
-
-        # contour = contours[2]
-
         if contour is not None and contour.any():
-            (x,y),radius = cv2.minEnclosingCircle(contour)
-            center = (int(x),int(y))
-            radius = int(radius)
-            img = cv2.circle(self.processed, center, radius, (0, 255, 0), 2)
-            img = cv2.circle(self.processed, center, 2, (0, 0, 255), 2)
-            #
-            # cv2.drawContours(self.processed, contour, -1, (0,255,0), 3)
-            font = cv2.FONT_HERSHEY_SIMPLEX
-            cv2.putText(self.processed, 'Largest contour area: ' + str(round(largest_area, 2)), (10,30), font, 0.5, (255,255,255), 2)
-            cv2.putText(self.processed, 'Center of the contour: (' + str(round(x, 2)) + ', ' + str(round(y, 2)) + ')', (10,60), font, 0.5, (255,255,255), 2)
-            cv2.putText(self.processed, 'Radius of the contour: ' + str(round(radius, 2)), (10,90), font, 0.5, (255,255,255), 2)
+            # find center and encosing circle
+            (x,y), radius = cv2.minEnclosingCircle(contour)
+
+            if config.DEBUG:
+                center = (int(x), int(y))
+                radius = int(radius)
+
+                # draw the enclosing circle
+                img = cv2.circle(self.processed, center, radius, (0, 255, 0), 2)
+
+                # draw a red dot in the center of the circle
+                img = cv2.circle(self.processed, center, 2, (0, 0, 255), 2)
+
+                # write debug information
+                font = cv2.FONT_HERSHEY_SIMPLEX
+                cv2.putText(self.processed, 'Largest contour area: ' + str(round(largest_area, 2)), (10,30), font, 0.5, (255,255,255), 2)
+                cv2.putText(self.processed, 'Center of the contour: (' + str(round(x, 2)) + ', ' + str(round(y, 2)) + ')', (10,60), font, 0.5, (255,255,255), 2)
+                cv2.putText(self.processed, 'Radius of the contour: ' + str(round(radius, 2)), (10,90), font, 0.5, (255,255,255), 2)
+                self.show()
+
             return eye.Eye(round(x, 2), round(y, 2))
 
-        cv2.imshow('3', self.processed)
-
         return eye.Eye()
-        # cv2.imshow(config.WINDOW_NAME, img)
-        # edges = cv2.Canny(img, 0, 200)
-        # #
-        # cv2.imshow(config.WINDOW_NAME, edges)
-
-        # ret, thresh = cv2.threshold(img, 200, 255, cv2.THRESH_BINARY)
-        # #
-        # contours, hierarchy = cv2.findContours(thresh,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
-        # cv2.drawContours(self.processed, contours, -1, (0,255,0), 3)
-        #
-        # if not self.printed:
-        #     print len(contours)
-        # self.printed = True
-
-
-        # img = img[c1:c1+25,r1:r1+25]
 
     def show(self):
         cv2.imshow(config.WINDOW_NAME, self.processed)

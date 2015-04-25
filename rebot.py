@@ -15,18 +15,10 @@ class Rebot:
         self.arm = arm.Arm()
         # self.arm = arm.Arm()
 
-        # create a window for displaying image and move it to a reasonable spot
-        cv2.namedWindow(config.WINDOW_NAME)
-        cv2.moveWindow(config.WINDOW_NAME, 100, 100)
-
-        cv2.namedWindow('2')
-        cv2.moveWindow('2', 500, 100)
-
-        cv2.namedWindow('3')
-        cv2.moveWindow('3', 1000, 100)
-
-        cv2.namedWindow('4')
-        cv2.moveWindow('4', 100, 500)
+        if config.DEBUG:
+            # create a window for displaying image and move it to a reasonable spot
+            cv2.namedWindow(config.WINDOW_NAME)
+            cv2.moveWindow(config.WINDOW_NAME, 100, 100)
 
     def calibrate_camera(self):
         print '--> Initiating camera calibration sequence...'
@@ -70,24 +62,22 @@ class Rebot:
             # print e.is_looking_at_target()
 
             if cv2.waitKey(1) & 0xFF == ord('/'):
+                print '--> Received shut down signal'
                 self.arm.shut_down()
                 break
 
-        print '--> Shutting down...'
+        print '--> Finishing servo processes...'
         time.sleep(.1)
         while(self.arm.not_finished()):
             pass
+        print '--> Servo processes finished'
 
-        print '--> Rebot stopped'
+        print '--> Shutting down camera...'
+        self.camera.close()
+        cv2.destroyAllWindows()
+        print '--> Camera shut down finished'
 
-        # self.camera.close()
-        # cv2.destroyAllWindows()
-
-        # eye = frame.find_eye()
-        # if eye.looks_at_target():
-        #     arm.eat()
-        # else:
-        #     arm.take_food()
+        print '--> Rebot will shut down NOW!'
 
 parser = argparse.ArgumentParser(description='Rebot.')
 parser.add_argument('--frame', nargs='?', const = 'frame.jpg', default = None, help = 'Path to frame you want to process.')

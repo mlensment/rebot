@@ -1,6 +1,4 @@
-from multiprocessing import Process, Value, Manager
-import time
-import math
+from multiprocessing import Process, Value
 import os
 import config
 import servo
@@ -8,7 +6,7 @@ import servo
 class ServoProcess(Process):
     def __init__(self):
         print '----> Loading servo driver...'
-        os.system("sudo bin/servod --step-size 2")
+        os.system("sudo bin/servod --step-size " + config.PWM_STEP_SIZE + " 2> /dev/null")
 
         if not os.path.exists('/dev/servoblaster'):
             raise Exception('Servo driver was not found. Is servoblaster loaded?')
