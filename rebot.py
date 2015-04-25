@@ -35,8 +35,7 @@ class Rebot:
         # beep / flash
         # time.sleep(1)
         # beep beep
-        print '--> OK'
-        print '--> Calibrating camera...'
+
         while(len(x_readings) <= 10):
             frame = self.camera.read_frame()
             e = frame.find_eye()
@@ -49,19 +48,20 @@ class Rebot:
         # print str(eye.Eye.target)
 
         # beep
-        print '--> OK'
+        print '--> Camera calibration complete'
 
     def run(self):
         self.arm.init()
         self.calibrate_camera()
 
         # Wait for servos to calibrate
+        print '--> Waiting for servos to calibrate...'
         while(not self.arm.is_initialized()):
             if cv2.waitKey(1) & 0xFF == ord('/'):
                 break
 
         print '--> Initiating main loop...'
-        print '--> OK'
+        print '--> Rebot is running'
         while(1):
             frame = self.camera.read_frame()
             e = frame.find_eye()

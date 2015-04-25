@@ -11,7 +11,7 @@ class ServoProcess(Process):
         # TODO: Start servod
         if not os.path.exists('/dev/servoblaster'):
             raise Exception('Servo driver was not found. Is servoblaster loaded?')
-        print '----> OK'
+        print '----> Servo driver loaded'
 
         Process.__init__(self)
         self.spoon = servo.Servo(2, 0.0)
@@ -27,7 +27,7 @@ class ServoProcess(Process):
             self.leg.decrease_pwm(10)
             i -= 10
 
-        print '----> OK'
+        print '----> Servo calibration complete'
         self.initialized.value = True
 
         while(1):
