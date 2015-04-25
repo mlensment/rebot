@@ -56,8 +56,7 @@ class Rebot:
 
         # Wait for servos to calibrate
         while(not self.arm.is_initialized()):
-            if cv2.waitKey(1) & 0xFF == ord('/'):
-                break
+            pass
 
         print '--> Initiating main loop...'
         print '--> Rebot is running'
@@ -71,7 +70,14 @@ class Rebot:
             # print e.is_looking_at_target()
 
             if cv2.waitKey(1) & 0xFF == ord('/'):
+                self.arm.shut_down()
                 break
+
+        print '--> Shutting down...'
+        while(self.arm.not_finished()):
+            pass
+
+        print '--> Rebot stopped'
 
         # self.camera.close()
         # cv2.destroyAllWindows()

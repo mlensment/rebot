@@ -8,14 +8,15 @@ import servo
 class ServoProcess(Process):
     def __init__(self):
         print '----> Loading servo driver...'
-        # TODO: Start servod
+        os.system("sudo ../bin/servod --step-size 2")
+
         if not os.path.exists('/dev/servoblaster'):
             raise Exception('Servo driver was not found. Is servoblaster loaded?')
         print '----> Servo driver loaded'
 
         Process.__init__(self)
-        self.spoon = servo.Servo(2, 0.0)
-        self.leg = servo.Servo(5, 0.0)
+        self.spoon = servo.Servo(config.SPOON_SERVO_ID)
+        self.leg = servo.Servo(config.LEG_SERVO_ID)
         self.initialized = Value('b', False)
 
     def run(self):

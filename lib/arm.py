@@ -6,8 +6,6 @@ import servo_process as sp
 
 class Arm:
     def __init__(self):
-        # self.init_servos()
-        # 'scooping', ''
         self.spoon_status = 'empty'
         self.leg_status = 'retracted'
 
@@ -101,7 +99,7 @@ class Arm:
         time.sleep(.1) # wait until servo buffers clear
 
     def shut_down(self):
-        if self.not_finished(): return
+        self.stop()
 
         print 'SHUTTING DOWN'
         self.spoon_status = 'shutting_down'

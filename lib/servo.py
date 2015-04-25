@@ -5,9 +5,9 @@ import os
 import config
 
 class Servo:
-    def __init__(self, servo_id, initial_angle):
+    def __init__(self, servo_id):
         self.servo_id = servo_id
-        self.angle = Value('f', initial_angle)
+        self.angle = Value('f', 0.0)
         self.stop_signal = Value('b', False)
 
         manager = Manager()
@@ -20,7 +20,6 @@ class Servo:
     def rotate(self, deg, timeframe = None):
         self.command_queue.append({'target_angle': deg, 'timeframe': timeframe})
         if not self.current_command: self.next_command()
-        # print self.current_command
 
     def sleep(self, timeframe):
         self.command_queue.append({'timeframe': timeframe})
@@ -40,7 +39,6 @@ class Servo:
             self.finished.value = False
 
         try:
-            # if not self.current_command: return
             elapsed_time = Servo.time_in_millis() - self.current_command['start_time']
 
             if 'target_angle' in self.current_command:
@@ -55,7 +53,6 @@ class Servo:
                 self.next_command()
         except:
             pass
-            # print 'update failed ' + str(self.servo_id)
 
         if self.stop_signal.value:
             self.next_command()
@@ -97,13 +94,7 @@ class Servo:
         pwm = self.angle.value * ((config.SERVO_MAX_WIDTH - config.SERVO_MIN_WIDTH) / 180.0) # 1 degree = max high pulse time / 180
         pwm += config.SERVO_MIN_WIDTH  # add minimum high pulse time
 
-        # TODO: Move this to init
-        if os.path.exists('/dev/servoblaster'):
-            # print str(math.ceil(pwm))
-            os.system("echo " + str(self.servo_id) + "=" + str(math.ceil(pwm)) + " > /dev/servoblaster")
-        else:
-            pass
-            # raise Exception('Servo driver was not found. Is servoblaster loaded?')
+        os.system("echo " + str(self.servo_id) + "=" + str(math.ceil(pwm)) + " > /dev/servoblaster")
 
     def decrease_pwm(self, val):
         os.system("echo " + str(self.servo_id) + "=-" + str(val) + " > /dev/servoblaster")

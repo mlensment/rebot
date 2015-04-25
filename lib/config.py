@@ -1,7 +1,8 @@
 WINDOW_NAME = "frame"
 
-SPOON_SERVO = 5
-LEG_SERVO = 2
+SPOON_SERVO_ID = 5
+LEG_SERVO_ID = 2
+
 # 0 on P1-7           GPIO-4
 # 1 on P1-11          GPIO-17
 # 2 on P1-12          GPIO-18

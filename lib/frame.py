@@ -11,24 +11,6 @@ class Frame:
         self.processed = None
         self.printed = False
 
-    def process(self):
-        # Frame can be processed only once...
-        if self.processed is not None: return self.processed
-
-        # convert to grayscale
-        gray = cv2.cvtColor(self.original, cv2.COLOR_BGR2GRAY)
-
-        # threshold the image
-        # ret, thresh = cv2.threshold(gray, 200, 255, cv2.THRESH_BINARY)
-
-        thresh = cv2.adaptiveThreshold(gray, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C,\
-            cv2.THRESH_BINARY, 11, 2)
-
-        # th2 = cv2.adaptiveThreshold(gray,255,cv2.ADAPTIVE_THRESH_MEAN_C,\
-        #     cv2.THRESH_BINARY,11,2)
-
-        self.processed = thresh
-
     def find_eye(self):
         # convert to grayscale
         cv2.imshow('frame', self.original)
@@ -89,8 +71,8 @@ class Frame:
             (x,y),radius = cv2.minEnclosingCircle(contour)
             center = (int(x),int(y))
             radius = int(radius)
-            img = cv2.circle(self.processed, center, radius,(0,255,0),2)
-            img = cv2.circle(self.processed, center, 2,(0,0,255),2)
+            img = cv2.circle(self.processed, center, radius, (0, 255, 0), 2)
+            img = cv2.circle(self.processed, center, 2, (0, 0, 255), 2)
             #
             # cv2.drawContours(self.processed, contour, -1, (0,255,0), 3)
             font = cv2.FONT_HERSHEY_SIMPLEX
