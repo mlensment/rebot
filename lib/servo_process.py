@@ -6,7 +6,8 @@ import servo
 class ServoProcess(Process):
     def __init__(self):
         print '----> Loading servo driver...'
-        os.system("sudo bin/servod --step-size " + config.PWM_STEP_SIZE + " 2> /dev/null")
+        os.system("sudo killall servod")
+        os.system("sudo bin/servod --step-size " + str(config.PWM_STEP_SIZE) + " 2> /dev/null")
 
         if not os.path.exists('/dev/servoblaster'):
             raise Exception('Servo driver was not found. Is servoblaster loaded?')
