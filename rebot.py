@@ -28,15 +28,15 @@ class Rebot:
         cv2.namedWindow('4')
         cv2.moveWindow('4', 100, 500)
 
-    def calibrate(self):
-        print '-----> Initiating camera calibration sequence...'
+    def calibrate_camera(self):
+        print '--> Initiating camera calibration sequence...'
         x_readings = []
         y_readings = []
         # beep / flash
         # time.sleep(1)
         # beep beep
 
-        print '-----> Calibrating camera...'
+        print '--> Calibrating camera...'
         while(len(x_readings) <= 10):
             frame = self.camera.read_frame()
             e = frame.find_eye()
@@ -49,14 +49,19 @@ class Rebot:
         # print str(eye.Eye.target)
 
         # beep
-        print '-----> Camera calibration complete'
+        print '--> Camera calibration complete'
 
     def run(self):
-        self.arm.init_servos()
-        self.calibrate()
+        self.arm.init()
+        self.calibrate_camera()
 
-        print '-----> Initiating main loop...'
-        print '-----> Rebot is running'
+        # Wait for servos to calibrate
+        while(not self.arm.is_initialized()):
+            if cv2.waitKey(1) & 0xFF == ord('/'):
+                break
+
+        print '--> Initiating main loop...'
+        print '--> Rebot is running'
         while(1):
             frame = self.camera.read_frame()
             e = frame.find_eye()

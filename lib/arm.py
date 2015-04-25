@@ -11,9 +11,12 @@ class Arm:
         self.spoon_status = 'empty'
         self.leg_status = 'retracted'
 
-    def init_servos(self):
+    def init(self):
         self.sp = sp.ServoProcess()
         self.sp.start()
+
+    def is_initialized(self):
+        return self.sp.initialized
 
     def update(self, eye):
         if self.spoon_status in ['empty'] and self.leg_status in ['retracted']:
