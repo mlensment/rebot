@@ -74,6 +74,7 @@ class Rebot:
                 break
 
         print '--> Shutting down...'
+        time.sleep(.1)
         while(self.arm.not_finished()):
             pass
 
