@@ -30,9 +30,12 @@ class ServoProcess(Process):
         print '----> Servo calibration complete'
         self.initialized.value = True
 
-        while(1):
-            self.spoon.update()
-            self.spoon.alter_pwm()
+        try:
+            while(1):
+                self.spoon.update()
+                self.spoon.alter_pwm()
 
-            self.leg.update()
-            self.leg.alter_pwm()
+                self.leg.update()
+                self.leg.alter_pwm()
+        except KeyboardInterrupt:
+            pass
