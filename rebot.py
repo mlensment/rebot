@@ -52,19 +52,23 @@ class Rebot:
 
         print '--> Initiating main loop...'
         print '--> Rebot is running'
-        while(1):
-            frame = self.camera.read_frame()
-            e = frame.find_eye()
+        try:
+            while(1):
+                frame = self.camera.read_frame()
+                e = frame.find_eye()
 
-            if e.is_visible():
-                self.arm.update(e)
+                if e.is_visible():
+                    self.arm.update(e)
 
-            # print e.is_looking_at_target()
+                # print e.is_looking_at_target()
 
-            if cv2.waitKey(1) & 0xFF == ord('/'):
-                print '--> Received shut down signal'
-                self.arm.shut_down()
-                break
+                if cv2.waitKey(1) & 0xFF == ord('/'):
+                    break
+        except KeyboardInterrupt:
+            pass
+
+        print '--> Received shut down signal'
+        self.arm.shut_down()
 
         print '--> Finishing servo processes...'
         time.sleep(.1)
