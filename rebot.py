@@ -8,11 +8,16 @@ from lib import camera, frame, eye, arm
 import cv2
 import time
 import numpy
+import RPi.GPIO as GPIO
 
 class Rebot:
     def __init__(self, frame_path = None):
         self.camera = camera.Camera(frame_path)
         self.arm = arm.Arm()
+
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(config.LED_PIN, GPIO.OUT)
+        GPIO.output(config.LED_PIN, True)
         # self.arm = arm.Arm()
 
         if config.DEBUG:
