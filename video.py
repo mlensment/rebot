@@ -1,5 +1,6 @@
 import numpy as np
 import cv2
+import cv2.cv as cv
 
 cap = cv2.VideoCapture(0)
 width, height = 320, 320
