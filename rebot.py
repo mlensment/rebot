@@ -74,7 +74,10 @@ class Rebot:
                 if e.is_visible():
                     self.arm.update(e)
 
-                # print e.is_looking_at_target()
+                if e.is_looking_at_target():
+                    GPIO.output(config.LED_PIN, 1)
+                else:
+                    GPIO.output(config.LED_PIN, 0)
 
                 if cv2.waitKey(1) & 0xFF == ord('/'):
                     break
