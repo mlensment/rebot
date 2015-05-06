@@ -1,10 +1,9 @@
 import RPi.GPIO as GPIO
 import time
 
-GPIO.cleanup()
-GPIO.setmode(GPIO.BCM) ## Use board pin numbering
-GPIO.setup(25, GPIO.OUT) ## Setup GPIO Pin 7 to OUT
-GPIO.output(25,True) #
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(25, GPIO.OUT)
+GPIO.output(25, True) #
 
 time.sleep(5)
-GPIO.output(25,False) #
+GPIO.output(25, False) #
