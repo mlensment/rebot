@@ -15,9 +15,9 @@ class Rebot:
         self.camera = camera.Camera(frame_path)
         self.arm = arm.Arm()
 
-        GPIO.setmode(GPIO.BCM)
-        GPIO.setup(config.LED_PIN, GPIO.OUT)
-        GPIO.output(config.LED_PIN, True)
+        # GPIO.setmode(GPIO.BCM)
+        # GPIO.setup(config.LED_PIN, GPIO.OUT)
+        # GPIO.output(config.LED_PIN, True)
         # self.arm = arm.Arm()
 
         if config.DEBUG:
