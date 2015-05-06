@@ -17,7 +17,6 @@ class Rebot:
 
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(config.LED_PIN, GPIO.OUT)
-        GPIO.output(config.LED_PIN, True)
         # self.arm = arm.Arm()
 
         if config.DEBUG:
@@ -27,11 +26,10 @@ class Rebot:
 
     def calibrate_camera(self):
         print '--> Initiating camera calibration sequence...'
+        GPIO.output(config.LED_PIN, 1)
+
         x_readings = []
         y_readings = []
-        # beep / flash
-        # time.sleep(1)
-        # beep beep
 
         while(len(x_readings) <= 10):
             frame = self.camera.read_frame()
@@ -44,10 +42,15 @@ class Rebot:
         eye.Eye.target = (round(numpy.median(x_readings), 2), round(numpy.median(y_readings), 2))
         # print str(eye.Eye.target)
 
-        # beep
+        GPIO.output(config.LED_PIN, 0)
         print '--> Camera calibration complete'
 
     def run(self):
+        # Indicate that initialization has started
+        GPIO.output(config.LED_PIN, 1)
+        time.sleep(1)
+        GPIO.output(config.LED_PIN, 0)
+
         self.arm.init()
         self.calibrate_camera()
 
@@ -56,6 +59,9 @@ class Rebot:
             pass
 
         print '--> Initiating main loop...'
+        GPIO.output(config.LED_PIN, 1)
+        time.sleep(1)
+        GPIO.output(config.LED_PIN, 0)
         print '--> Rebot is running'
         try:
             while(1):
@@ -85,6 +91,7 @@ class Rebot:
         self.camera.close()
         cv2.destroyAllWindows()
         print '--> Camera shut down finished'
+
         GPIO.output(config.LED_PIN, False)
         print '--> Rebot will shut down NOW!'
 
