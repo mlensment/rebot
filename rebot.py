@@ -16,6 +16,7 @@ class Rebot:
         self.arm = arm.Arm()
 
         GPIO.setmode(GPIO.BCM)
+        GPIO.setwarnings(False)
         GPIO.setup(config.LED_PIN, GPIO.OUT)
         # self.arm = arm.Arm()
 
@@ -27,11 +28,14 @@ class Rebot:
     def calibrate_camera(self):
         print '--> Initiating camera calibration sequence...'
         GPIO.output(config.LED_PIN, 1)
+        time.sleep(1)
+        GPIO.output(config.LED_PIN, 0)
+        time.sleep(2)
 
         x_readings = []
         y_readings = []
 
-        while(len(x_readings) <= 10):
+        while(len(x_readings) <= 50):
             frame = self.camera.read_frame()
             e = frame.find_eye()
 
@@ -43,14 +47,10 @@ class Rebot:
         # print str(eye.Eye.target)
 
         GPIO.output(config.LED_PIN, 0)
+        time.sleep(2)
         print '--> Camera calibration complete'
 
     def run(self):
-        # Indicate that initialization has started
-        GPIO.output(config.LED_PIN, 1)
-        time.sleep(1)
-        GPIO.output(config.LED_PIN, 0)
-
         self.arm.init()
         self.calibrate_camera()
 
