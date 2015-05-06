@@ -32,7 +32,7 @@ class Rebot:
         x_readings = []
         y_readings = []
 
-        while(len(x_readings) <= 10):
+        while(len(x_readings) <= 50):
             frame = self.camera.read_frame()
             e = frame.find_eye()
 
