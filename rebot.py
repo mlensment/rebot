@@ -32,7 +32,7 @@ class Rebot:
         x_readings = []
         y_readings = []
 
-        while(len(x_readings) <= 50):
+        while(len(x_readings) <= 40):
             frame = self.camera.read_frame()
             e = frame.find_eye()
 
@@ -50,7 +50,7 @@ class Rebot:
     def run(self):
         # Indicate that initialization has started
         GPIO.output(config.LED_PIN, 1)
-        time.sleep(1)
+        time.sleep(.5)
         GPIO.output(config.LED_PIN, 0)
         time.sleep(2)
 
@@ -63,7 +63,7 @@ class Rebot:
 
         print '--> Initiating main loop...'
         GPIO.output(config.LED_PIN, 1)
-        time.sleep(1)
+        time.sleep(.5)
         GPIO.output(config.LED_PIN, 0)
         print '--> Rebot is running'
         try:
