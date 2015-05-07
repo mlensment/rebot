@@ -21,11 +21,13 @@ class Frame:
         kernel = np.ones((10,10), np.uint8)
         img = cv2.morphologyEx(img, cv2.MORPH_OPEN, kernel)
 
+        cv2.imshow('1', img)
+
         # find edges
         # values 50, 130 work well
         # values 40, 130 work well
         edges = cv2.Canny(img, 40, 130)
-
+        cv2.imshow('2', edges)
         # find contours
         contours, hierarchy = cv2.findContours(edges, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 
