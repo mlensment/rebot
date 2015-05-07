@@ -8,16 +8,16 @@ from lib import camera, frame, eye, arm
 import cv2
 import time
 import numpy
-import RPi.GPIO as GPIO
+# import RPi.GPIO as GPIO
 
 class Rebot:
     def __init__(self, frame_path = None):
         self.camera = camera.Camera(frame_path)
         self.arm = arm.Arm()
 
-        GPIO.setmode(GPIO.BCM)
-        GPIO.setwarnings(False)
-        GPIO.setup(config.LED_PIN, GPIO.OUT)
+        # GPIO.setmode(GPIO.BCM)
+        # GPIO.setwarnings(False)
+        # GPIO.setup(config.LED_PIN, GPIO.OUT)
         # self.arm = arm.Arm()
 
         if config.DEBUG:
@@ -27,7 +27,7 @@ class Rebot:
 
     def calibrate_camera(self):
         print '--> Initiating camera calibration sequence...'
-        GPIO.output(config.LED_PIN, 1)
+        # GPIO.output(config.LED_PIN, 1)
 
         x_readings = []
         y_readings = []
@@ -43,16 +43,16 @@ class Rebot:
         eye.Eye.target = (round(numpy.median(x_readings), 2), round(numpy.median(y_readings), 2))
         # print str(eye.Eye.target)
 
-        GPIO.output(config.LED_PIN, 0)
+        # GPIO.output(config.LED_PIN, 0)
         time.sleep(2)
         print '--> Camera calibration complete'
 
     def run(self):
         # Indicate that initialization has started
-        GPIO.output(config.LED_PIN, 1)
-        time.sleep(.5)
-        GPIO.output(config.LED_PIN, 0)
-        time.sleep(2)
+        # GPIO.output(config.LED_PIN, 1)
+        # time.sleep(.5)
+        # GPIO.output(config.LED_PIN, 0)
+        # time.sleep(2)
 
         self.arm.init()
         self.calibrate_camera()
@@ -62,9 +62,9 @@ class Rebot:
             pass
 
         print '--> Initiating main loop...'
-        GPIO.output(config.LED_PIN, 1)
-        time.sleep(.5)
-        GPIO.output(config.LED_PIN, 0)
+        # GPIO.output(config.LED_PIN, 1)
+        # time.sleep(.5)
+        # GPIO.output(config.LED_PIN, 0)
         print '--> Rebot is running'
         try:
             while(1):
@@ -74,10 +74,10 @@ class Rebot:
                 if e.is_visible():
                     self.arm.update(e)
 
-                if e.is_looking_at_target():
-                    GPIO.output(config.LED_PIN, 1)
-                else:
-                    GPIO.output(config.LED_PIN, 0)
+                # if e.is_looking_at_target():
+                #     GPIO.output(config.LED_PIN, 1)
+                # else:
+                #     GPIO.output(config.LED_PIN, 0)
 
                 if cv2.waitKey(1) & 0xFF == ord('/'):
                     break
@@ -98,7 +98,7 @@ class Rebot:
         cv2.destroyAllWindows()
         print '--> Camera shut down finished'
 
-        GPIO.output(config.LED_PIN, False)
+        # GPIO.output(config.LED_PIN, 0)
         print '--> Rebot will shut down NOW!'
 
 parser = argparse.ArgumentParser(description='Rebot.')
