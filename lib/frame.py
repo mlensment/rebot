@@ -12,6 +12,7 @@ class Frame:
         self.printed = False
 
     def find_eye(self):
+        cv2.imshow('4', self.original)
         self.processed = self.original.copy()
 
         # convert to grayscale

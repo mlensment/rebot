@@ -29,7 +29,7 @@ class Rebot:
             cv2.moveWindow('2', 1000, 100)
 
             cv2.namedWindow('3')
-            cv2.moveWindow('3', 100, 500)
+            cv2.moveWindow('3', 100, 450)
 
             cv2.namedWindow(config.WINDOW_NAME)
             cv2.moveWindow(config.WINDOW_NAME, 100, 100)
