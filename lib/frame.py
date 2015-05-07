@@ -31,7 +31,7 @@ class Frame:
         cv2.imshow('3', edges)
         # find contours
         contours, hierarchy = cv2.findContours(edges, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
-        cv2.imshow('4', contours)
+        
         # find largest contour
         largest_area = 0
         contour = None
