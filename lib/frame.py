@@ -19,8 +19,9 @@ class Frame:
         img = cv2.cvtColor(self.processed, cv2.COLOR_BGR2GRAY)
 
         # erode remaining white areas
-        kernel = np.ones((10,10), np.uint8)
-        img = cv2.morphologyEx(img, cv2.MORPH_OPEN, kernel)
+        kernel = np.ones((10, 10), np.uint8)
+        # img = cv2.morphologyEx(img, cv2.MORPH_OPEN, kernel)
+        img = cv2.erode(kernel)
 
         cv2.imshow('2', img)
 
@@ -31,7 +32,7 @@ class Frame:
         cv2.imshow('3', edges)
         # find contours
         contours, hierarchy = cv2.findContours(edges, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
-        
+
         # find largest contour
         largest_area = 0
         contour = None
