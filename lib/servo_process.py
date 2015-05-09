@@ -6,7 +6,6 @@ import signal
 
 class ServoProcess(Process):
     def __init__(self):
-        signal.signal(signal.SIGINT, signal.SIG_IGN)
         print '----> Checking servo driver...'
         if not os.path.exists('/dev/servoblaster'):
             raise Exception('Servo driver was not found. Is servoblaster loaded?')
@@ -19,6 +18,7 @@ class ServoProcess(Process):
         self.initialized = Value('b', False)
 
     def run(self):
+        signal.signal(signal.SIGINT, signal.SIG_IGN)
         print '----> Initiating servo calibration sequence...'
 
         i = config.SERVO_MAX_WIDTH - config.SERVO_MIN_WIDTH
