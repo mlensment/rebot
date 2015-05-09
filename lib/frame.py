@@ -12,7 +12,6 @@ class Frame:
         self.printed = False
 
     def find_eye(self):
-        cv2.imshow('1', self.original)
         self.processed = self.original.copy()
 
         # convert to grayscale
@@ -23,13 +22,11 @@ class Frame:
         # kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE,(5,5))
         img = cv2.morphologyEx(img, cv2.MORPH_OPEN, kernel)
 
-        cv2.imshow('2', img)
-
         # find edges
         # values 50, 130 work well
         # values 40, 130 work well
         edges = cv2.Canny(img, 40, 130)
-        cv2.imshow('3', edges)
+
         # find contours
         contours, hierarchy = cv2.findContours(edges, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 

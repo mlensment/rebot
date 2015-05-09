@@ -22,15 +22,6 @@ class Rebot:
 
         if config.DEBUG:
             # create a window for displaying image and move it to a reasonable spot
-            cv2.namedWindow('1')
-            cv2.moveWindow('1', 500, 100)
-
-            cv2.namedWindow('2')
-            cv2.moveWindow('2', 1000, 100)
-
-            cv2.namedWindow('3')
-            cv2.moveWindow('3', 100, 450)
-
             cv2.namedWindow(config.WINDOW_NAME)
             cv2.moveWindow(config.WINDOW_NAME, 100, 100)
 
