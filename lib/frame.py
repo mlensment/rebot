@@ -19,8 +19,8 @@ class Frame:
         img = cv2.cvtColor(self.processed, cv2.COLOR_BGR2GRAY)
 
         # erode remaining white areas
-        # kernel = np.ones((10, 10), np.uint8)
-        kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE,(5,5))
+        kernel = np.ones((9, 9), np.uint8)
+        # kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE,(5,5))
         img = cv2.morphologyEx(img, cv2.MORPH_OPEN, kernel)
 
         cv2.imshow('2', img)
