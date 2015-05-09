@@ -12,6 +12,7 @@ import RPi.GPIO as GPIO
 
 class Rebot:
     def __init__(self, frame_path = None):
+        print '--> Starting Rebot...'
         self.camera = camera.Camera(frame_path)
         self.arm = arm.Arm()
 

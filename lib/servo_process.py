@@ -2,9 +2,11 @@ from multiprocessing import Process, Value
 import os
 import config
 import servo
+import signal
 
 class ServoProcess(Process):
     def __init__(self):
+        signal.signal(signal.SIGINT, signal.SIG_IGN)
         print '----> Checking servo driver...'
         if not os.path.exists('/dev/servoblaster'):
             raise Exception('Servo driver was not found. Is servoblaster loaded?')
