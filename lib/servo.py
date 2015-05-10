@@ -1,8 +1,10 @@
 from multiprocessing import Process, Value, Manager
+from multiprocessing.managers import SyncManager
 import time
 import math
 import os
 import config
+import signal
 
 class Servo:
     def __init__(self, servo_id):
@@ -10,7 +12,8 @@ class Servo:
         self.angle = Value('f', 0.0)
         self.stop_signal = Value('b', False)
 
-        manager = Manager()
+        manager = SyncManager()
+        manager.start(Servo.init_mgr)
         self.command_queue = manager.list([])
         self.current_command = manager.dict()
 
@@ -115,3 +118,8 @@ class Servo:
     @staticmethod
     def time_in_millis():
         return int(round(time.time() * 1000))
+
+    @staticmethod
+    def init_mgr():
+        signal.signal(signal.SIGINT, signal.SIG_IGN)
+        print 'initialized manager'
