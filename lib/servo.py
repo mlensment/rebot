@@ -12,13 +12,12 @@ class Servo:
         self.angle = Value('f', 0.0)
         self.stop_signal = Value('b', False)
 
-        manager = SyncManager()
-        manager.start(Servo.init_mgr)
+        manager = SyncManager() # instead of regular Manager because we want to ignore kb interrupt
+        manager.start(Servo.init_mgr) # start the manager explicitly
         self.command_queue = manager.list([])
         self.current_command = manager.dict()
 
         self.finished = Value('b', False)
-
 
     def rotate(self, deg, timeframe = None):
         self.command_queue.append({'target_angle': deg, 'timeframe': timeframe})
@@ -121,5 +120,5 @@ class Servo:
 
     @staticmethod
     def init_mgr():
+        # ignore kb interrupt in SyncManager
         signal.signal(signal.SIGINT, signal.SIG_IGN)
-        print 'initialized manager'

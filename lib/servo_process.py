@@ -18,7 +18,7 @@ class ServoProcess(Process):
         self.initialized = Value('b', False)
 
     def run(self):
-        signal.signal(signal.SIGINT, signal.SIG_IGN)
+        signal.signal(signal.SIGINT, signal.SIG_IGN) # ignore kb interrupt in subprocess
         try:
             print '----> Initiating servo calibration sequence...'
 
