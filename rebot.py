@@ -49,25 +49,26 @@ class Rebot:
         print '--> Camera calibration complete'
 
     def run(self):
-        # Indicate that initialization has started
-        GPIO.output(config.LED_PIN, 1)
-        time.sleep(.5)
-        GPIO.output(config.LED_PIN, 0)
-        time.sleep(2)
-
-        self.arm.init()
-        self.calibrate_camera()
-
-        # Wait for servos to calibrate
-        while(not self.arm.is_initialized()):
-            pass
-
-        print '--> Initiating main loop...'
-        GPIO.output(config.LED_PIN, 1)
-        time.sleep(.5)
-        GPIO.output(config.LED_PIN, 0)
-        print '--> Rebot is running'
         try:
+            # Indicate that initialization has started
+            GPIO.output(config.LED_PIN, 1)
+            time.sleep(.5)
+            GPIO.output(config.LED_PIN, 0)
+            time.sleep(2)
+
+            self.arm.init()
+            self.calibrate_camera()
+
+            # Wait for servos to calibrate
+            while(not self.arm.is_initialized()):
+                pass
+
+            print '--> Initiating main loop...'
+            GPIO.output(config.LED_PIN, 1)
+            time.sleep(.5)
+            GPIO.output(config.LED_PIN, 0)
+            print '--> Rebot is running'
+            
             while(1):
                 frame = self.camera.read_frame()
                 e = frame.find_eye()
