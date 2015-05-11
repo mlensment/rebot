@@ -43,11 +43,11 @@ class Eye:
         return not self.is_looking_at_target()
 
     def reset_timer(self):
-        print Eye.target_timer
         Eye.target_timer_start = Eye.time_in_millis()
         Eye.target_timer = 0
 
     def update_timer(self):
+        print Eye.target_timer
         Eye.target_timer += Eye.time_in_millis() - Eye.target_timer_start
 
     def update_target_gaze_cache(self, b):
