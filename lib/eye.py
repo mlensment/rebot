@@ -48,7 +48,7 @@ class Eye:
 
     def update_timer(self):
         print Eye.target_timer
-        Eye.target_timer += Eye.time_in_millis() - Eye.target_timer_start
+        Eye.target_timer = Eye.time_in_millis() - Eye.target_timer_start
 
     def update_target_gaze_cache(self, b):
         if len(Eye.target_gaze_cache) < 40:
