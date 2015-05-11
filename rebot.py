@@ -71,9 +71,10 @@ class Rebot:
             while(1):
                 frame = self.camera.read_frame()
                 e = frame.find_eye()
-                
+
                 if e.is_visible():
                     self.arm.update(e)
+                    e.target_confirmed()
 
                 if e.is_looking_at_target():
                     GPIO.output(config.LED_PIN, 1)

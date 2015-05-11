@@ -49,6 +49,7 @@ class Eye:
             return False
 
         if sum(i for i in Eye.target_gaze_cache) == 30:
+            print 'TARGET IS CONFIRMED'
             return True
 
         return False
