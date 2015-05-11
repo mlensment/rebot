@@ -23,7 +23,6 @@ class Eye:
             Eye.current_target_gaze = False
             self.update_target_gaze_cache(False)
 
-        print Eye.target_gaze_cache
         # print str(math.fabs(self.x - Eye.target[0])) + ' ' + str(math.fabs(self.y - Eye.target[1]))
 
         # if sum(i for i in Eye.target_gaze_cache) == 3:
@@ -38,12 +37,18 @@ class Eye:
         return not self.is_looking_at_target()
 
     def update_target_gaze_cache(self, b):
-        Eye.target_gaze_cache.append(b)
-        if len(Eye.target_gaze_cache) > 9:
-            Eye.target_gaze_cache.pop(0)
+        if len(Eye.target_gaze_cache) < 40:
+            Eye.target_gaze_cache.append(b)
+        else:
+            Eye.target_gaze_cache = []
+            # Eye.target_gaze_cache.pop(0)
         return b
 
     def target_confirmed(self):
-        if sum(i for i in Eye.target_gaze_cache) == 9:
+        if len(Eye.target_gaze_cache) < 40:
+            return False
+
+        if sum(i for i in Eye.target_gaze_cache) == 30:
             return True
+
         return False
