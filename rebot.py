@@ -71,7 +71,7 @@ class Rebot:
             while(1):
                 frame = self.camera.read_frame()
                 e = frame.find_eye()
-
+                print Eye.target_gaze_cache
                 if e.is_visible():
                     self.arm.update(e)
 

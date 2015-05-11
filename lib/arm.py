@@ -37,8 +37,6 @@ class Arm:
                 print 'STARTIN RETRACTING'
                 self.retract()
 
-        print Eye.target_gaze_cache
-
 
             # if self.leg_status in ['extended']:
             #     self.shut_down()
