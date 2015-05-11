@@ -12,6 +12,7 @@ class Servo:
         self.angle = Value('f', 0.0)
         self.stop_signal = Value('b', False)
 
+        # http://jtushman.github.io/blog/2014/01/14/python-|-multiprocessing-and-interrupts/
         manager = SyncManager() # instead of regular Manager because we want to ignore kb interrupt
         manager.start(Servo.init_mgr) # start the manager explicitly
         self.command_queue = manager.list([])
