@@ -1,5 +1,6 @@
 import math
 import time
+import config
 
 class Eye:
     target = None
