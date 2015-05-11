@@ -12,6 +12,7 @@ import RPi.GPIO as GPIO
 
 class Rebot:
     def __init__(self, frame_path = None):
+        print '---------- BOOT LOG -----------'
         print '--> Starting Rebot...'
         self.camera = camera.Camera(frame_path)
         self.arm = arm.Arm()
@@ -67,7 +68,7 @@ class Rebot:
         time.sleep(.5)
         GPIO.output(config.LED_PIN, 0)
         print '--> Rebot is running'
-        print '---------- ACTION LOG ----------'
+        print '---------- ACTION LOG ---------'
         try:
             while(1):
                 frame = self.camera.read_frame()
@@ -81,12 +82,12 @@ class Rebot:
                 else:
                     GPIO.output(config.LED_PIN, 0)
 
-                if cv2.waitKey(1) & 0xFF == ord('/'):
+                if cv2.waitKey(1) & 0xFF == ord('c'):
                     break
         except KeyboardInterrupt:
             pass
 
-        print '-------- ACTION LOG END --------'
+        print '-------- SHUT DOWN LOG --------'
         print '--> Received shut down signal'
         self.arm.shut_down()
 
@@ -101,7 +102,7 @@ class Rebot:
         cv2.destroyAllWindows()
         print '--> Camera shut down finished'
 
-        GPIO.output(config.LED_PIN, False)
+        GPIO.output(config.LED_PIN, 0)
         print '--> Rebot will shut down NOW!'
 
 parser = argparse.ArgumentParser(description='Rebot.')

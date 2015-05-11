@@ -3,6 +3,7 @@ import os
 import math
 import time
 import servo_process as sp
+from rebot import config
 
 class Arm:
     def __init__(self):
@@ -26,33 +27,6 @@ class Arm:
 
             if self.spoon_status in ['empty'] and self.leg_status in ['extended']:
                 self.retract()
-
-        if self.leg_status == 'extended':
-            self.spoon_status = 'empty' #move this
-
-        # if self.leg_status == 'fed' and self.spoon_status == 'empty':
-        #     self.retract()
-        #
-        # if eye.is_looking_at_target():
-        #     if self.spoon_status in ['full'] and self.leg_status in ['retracted', 'retracting']:
-        #         self.extend()
-        #
-        # if eye.not_looking_at_target():
-        #     if self.spoon_status in ['full'] and self.leg_status in ['extending']:
-        #         self.stop()
-        #         self.spoon_status = 'empty'
-        #         print 'STARTIN RETRACTING'
-        #         self.retract()
-
-
-            # if self.leg_status in ['extended']:
-            #     self.shut_down()
-            #
-            # if self.leg_status in ['shut_down'] and self.spoon_status in ['shut_down']:
-            #     break
-
-            # if self.spoon_status == 'finished_scooping':
-            #     self.reset_position();
 
         self.update_spoon_status()
         self.update_leg_status()
@@ -111,6 +85,9 @@ class Arm:
 
         if self.spoon_status == 'shutting_down' and self.is_finished():
             self.spoon_status = 'shut_down'
+
+        if self.leg_status == 'extended' and self.is_finished():
+            self.spoon_status = 'empty'
 
     def update_leg_status(self):
         if self.leg_status == 'extending' and self.is_finished():
