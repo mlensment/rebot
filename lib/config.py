@@ -1,4 +1,4 @@
-DEBUG = False
+DEBUG = True
 
 # 0 on P1-7           GPIO-4
 # 1 on P1-11          GPIO-17
