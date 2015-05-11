@@ -36,7 +36,7 @@ class Rebot:
         while(len(x_readings) <= 40):
             frame = self.camera.read_frame()
             e = frame.find_eye()
-            print e.action_confirmed()
+
             if e.is_visible():
                 x_readings.append(e.x)
                 y_readings.append(e.y)
@@ -74,7 +74,8 @@ class Rebot:
 
                 if e.is_visible():
                     self.arm.update(e)
-                    e.target_confirmed()
+
+                print e.action_confirmed()
 
                 if e.is_looking_at_target():
                     GPIO.output(config.LED_PIN, 1)
