@@ -6,8 +6,8 @@ class Eye:
     current_target_gaze = False
     target_gaze_cache = []
 
-    target_timer_start = int(round(time.time() * 1000))
-    target_timer = 0
+    action_timer_start = int(round(time.time() * 1000))
+    action_timer = 0
 
     def __init__(self, x = None, y = None):
         self.x = x
@@ -43,12 +43,11 @@ class Eye:
         return not self.is_looking_at_target()
 
     def reset_timer(self):
-        Eye.target_timer_start = Eye.time_in_millis()
-        Eye.target_timer = 0
+        Eye.action_timer_start = Eye.time_in_millis()
+        Eye.action_timer = 0
 
     def update_timer(self):
-        print Eye.target_timer
-        Eye.target_timer = Eye.time_in_millis() - Eye.target_timer_start
+        Eye.action_timer = Eye.time_in_millis() - Eye.action_timer_start
 
     def update_target_gaze_cache(self, b):
         if len(Eye.target_gaze_cache) < 40:
@@ -58,12 +57,8 @@ class Eye:
             # Eye.target_gaze_cache.pop(0)
         return b
 
-    def target_confirmed(self):
-        if len(Eye.target_gaze_cache) < 40:
-            return False
-
-        if sum(i for i in Eye.target_gaze_cache) == 30:
-            print 'TARGET IS CONFIRMED'
+    def action_confirmed(self):
+        if Eye.action_timer >= config.ACTION_CONFIRM_TIME:
             return True
 
         return False
