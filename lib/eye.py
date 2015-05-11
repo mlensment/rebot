@@ -6,7 +6,7 @@ class Eye:
     current_target_gaze = False
     target_gaze_cache = []
 
-    target_timer_start = Eye.time_in_millis()
+    target_timer_start = int(round(time.time() * 1000))
     target_timer = 0
 
     def __init__(self, x = None, y = None):
