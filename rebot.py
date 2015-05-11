@@ -67,6 +67,7 @@ class Rebot:
         time.sleep(.5)
         GPIO.output(config.LED_PIN, 0)
         print '--> Rebot is running'
+        print '---------- ACTION LOG ----------'
         try:
             while(1):
                 frame = self.camera.read_frame()
@@ -85,6 +86,7 @@ class Rebot:
         except KeyboardInterrupt:
             pass
 
+        print '-------- ACTION LOG END --------'
         print '--> Received shut down signal'
         self.arm.shut_down()
 

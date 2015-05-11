@@ -60,7 +60,7 @@ class Arm:
     def scoop(self):
         if self.not_finished(): return
 
-        print 'SCOOPING'
+        print '--> Scooping'
         self.spoon_status = 'scooping'
 
         self.sp.spoon.rotate(0, 2000)
@@ -77,24 +77,15 @@ class Arm:
     def extend(self):
         if self.not_finished(): return
 
-        print 'EXTENDING'
+        print '--> Extending'
         self.leg_status = 'extending'
         self.sp.leg.rotate(70, 5000)
         self.sp.spoon.sleep(5000)
 
-    def feed(self):
-        if self.not_finished(): return
-
-        print 'FEEDING'
-        self.leg_status = 'feeding'
-        self.spoon_status = 'feeding'
-        self.sp.spoon.sleep(5000)
-        self.sp.leg.sleep(5000)
-
     def retract(self):
         if self.not_finished(): return
 
-        print 'RETRACTING'
+        print '--> Retracting'
         self.leg_status = 'retracting'
         self.sp.leg.rotate(20, 5000)
         self.sp.spoon.sleep(5000)
@@ -107,7 +98,6 @@ class Arm:
     def shut_down(self):
         self.stop()
 
-        print 'SHUTTING DOWN'
         self.spoon_status = 'shutting_down'
         self.leg_status = 'shutting_down'
 
@@ -116,23 +106,19 @@ class Arm:
 
     def update_spoon_status(self):
         if self.spoon_status == 'scooping' and self.is_finished():
+            print '--> Finished scooping'
             self.spoon_status = 'full'
 
         if self.spoon_status == 'shutting_down' and self.is_finished():
             self.spoon_status = 'shut_down'
 
-        if self.spoon_status == 'feeding' and self.is_finished():
-            self.spoon_status = 'empty'
-
-
     def update_leg_status(self):
         if self.leg_status == 'extending' and self.is_finished():
+            print '--> Finished extending'
             self.leg_status = 'extended'
 
-        if self.leg_status == 'feeding' and self.is_finished():
-            self.leg_status = 'fed'
-
         if self.leg_status == 'retracting' and self.is_finished():
+            print '--> Finished retracting'
             self.leg_status = 'retracted'
 
         if self.leg_status == 'shutting_down' and self.is_finished():
