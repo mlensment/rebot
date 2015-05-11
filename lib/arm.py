@@ -3,7 +3,6 @@ import os
 import math
 import time
 import servo_process as sp
-from rebot import config
 
 class Arm:
     def __init__(self):
