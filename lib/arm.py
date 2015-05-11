@@ -20,22 +20,29 @@ class Arm:
         if self.spoon_status in ['empty'] and self.leg_status in ['retracted']:
             self.scoop()
 
-        if self.leg_status == 'extended':
-            self.feed()
-
-        if self.leg_status == 'fed' and self.spoon_status == 'empty':
-            self.retract()
-
-        if eye.is_looking_at_target():
-            if self.spoon_status in ['full'] and self.leg_status in ['retracted', 'retracting']:
+        if eye.action_confirmed():
+            if self.spoon_status in ['full'] and self.leg_status in ['retracted']:
                 self.extend()
 
-        if eye.not_looking_at_target():
-            if self.spoon_status in ['full'] and self.leg_status in ['extending']:
-                self.stop()
-                self.spoon_status = 'empty'
-                print 'STARTIN RETRACTING'
+            if self.spoon_status in ['empty'] and self.leg_status in ['extended']:
                 self.retract()
+
+        if self.leg_status == 'extended':
+            self.spoon_status = 'empty' #move this
+
+        # if self.leg_status == 'fed' and self.spoon_status == 'empty':
+        #     self.retract()
+        #
+        # if eye.is_looking_at_target():
+        #     if self.spoon_status in ['full'] and self.leg_status in ['retracted', 'retracting']:
+        #         self.extend()
+        #
+        # if eye.not_looking_at_target():
+        #     if self.spoon_status in ['full'] and self.leg_status in ['extending']:
+        #         self.stop()
+        #         self.spoon_status = 'empty'
+        #         print 'STARTIN RETRACTING'
+        #         self.retract()
 
 
             # if self.leg_status in ['extended']:

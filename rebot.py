@@ -75,8 +75,6 @@ class Rebot:
                 if e.is_visible():
                     self.arm.update(e)
 
-                print e.action_confirmed()
-
                 if e.is_looking_at_target():
                     GPIO.output(config.LED_PIN, 1)
                 else:
