@@ -106,7 +106,12 @@ class Rebot:
         print '--> Rebot will shut down NOW!'
 
 parser = argparse.ArgumentParser(description='Rebot.')
-parser.add_argument('--frame', nargs='?', const = 'frame.jpg', default = None, help = 'Path to frame you want to process.')
+parser.add_argument('--frame', nargs='?', const = 'frame.jpg', default = None,
+    help = 'Force camera to cache one frame by specifying its path. If file does not exist or path was not specified, camera will snapshot a frame and cache this.'
+)
+parser.add_argument('--debug',
+    help = 'Debug mode will display processed camera feed. Requires a display server.'
+)
 args = parser.parse_args()
 
 r = Rebot(args.frame)
