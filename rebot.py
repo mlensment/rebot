@@ -22,7 +22,7 @@ class Rebot:
         GPIO.setwarnings(False)
         GPIO.setup(config.LED_PIN, GPIO.OUT)
 
-        if config.DEBUG:
+        if self.debug:
             # create a window for displaying image and move it to a reasonable spot
             cv2.namedWindow(config.WINDOW_NAME)
             cv2.moveWindow(config.WINDOW_NAME, 100, 100)
