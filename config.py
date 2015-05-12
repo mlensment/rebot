@@ -12,8 +12,8 @@ SPOON_SERVO_ID = 5
 LEG_SERVO_ID = 2
 
 # these values apply for 2us pwm step
-SERVO_MIN_WIDTH = 250 # 0 deg
-SERVO_MAX_WIDTH = 1200 # 180 deg
+SERVO_MIN_WIDTH = 280 # 0 deg
+SERVO_MAX_WIDTH = 1230 # 180 deg
 
 WINDOW_NAME = "frame"
 
