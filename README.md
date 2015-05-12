@@ -16,9 +16,11 @@ The hardware consists of two parts - glasses and robotic arm.
 
 ## Connecting the hardware
 The camera has to be mounted about 5 centimeters away from the eye. PI does not have to go necessarily on the glasses, if you have a long ribbon cable for the camera handy.
+
 ![Glasses](https://raw.githubusercontent.com/mlensment/rebot/master/img/glasses.png "Glasses")
 
 The arm must be designed in such a way that it will mechanically maintain the horizontal position for the spoon.
+
 ![Arm](https://raw.githubusercontent.com/mlensment/rebot/master/img/arm.png "Arm")
 
 ![Schematic](https://raw.githubusercontent.com/mlensment/rebot/master/img/schematic.png "Schematic")
