@@ -11,16 +11,16 @@ import numpy
 import RPi.GPIO as GPIO
 
 class Rebot:
-    def __init__(self, frame_path = None):
+    def __init__(self, frame_path = None, debug = False):
         print '---------- BOOT LOG -----------'
         print '--> Starting Rebot...'
+        self.debug = debug
         self.camera = camera.Camera(frame_path)
         self.arm = arm.Arm()
 
         GPIO.setmode(GPIO.BCM)
         GPIO.setwarnings(False)
         GPIO.setup(config.LED_PIN, GPIO.OUT)
-        # self.arm = arm.Arm()
 
         if config.DEBUG:
             # create a window for displaying image and move it to a reasonable spot
@@ -43,7 +43,6 @@ class Rebot:
                 y_readings.append(e.y)
 
         eye.Eye.target = (round(numpy.median(x_readings), 2), round(numpy.median(y_readings), 2))
-        # print str(eye.Eye.target)
 
         GPIO.output(config.LED_PIN, 0)
         time.sleep(2)
@@ -72,7 +71,7 @@ class Rebot:
         try:
             while(1):
                 frame = self.camera.read_frame()
-                e = frame.find_eye()
+                e = frame.find_eye(self.debug)
 
                 if e.is_visible():
                     self.arm.update(e)
@@ -106,11 +105,14 @@ class Rebot:
         print '--> Rebot will shut down NOW!'
 
 parser = argparse.ArgumentParser(description='Rebot.')
-parser.add_argument('--frame', nargs='?', const = 'frame.jpg', default = None,
-    help = 'Force camera to cache one frame by specifying its path. If file does not exist or path was not specified, camera will snapshot a frame and cache this.'
+parser.add_argument('--frame', '-f', nargs='?', const = 'frame.jpg', default = None,
+    help = 'Force camera to cache one frame by specifying its path. '\
+    'If the file does not exist or path was not specified, camera will '\
+    'snapshot a frame and cache this as "frame.jpg" in the current directory.'
 )
-parser.add_argument('--debug',
-    help = 'Debug mode will display processed camera feed. Requires a display server.'
+parser.add_argument('--debug', '-d',
+    help = 'Debug mode will display processed camera feed. Requires a display server.',
+    action = 'store_true'
 )
 args = parser.parse_args()
 

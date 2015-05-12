@@ -1,4 +1,4 @@
-DEBUG = True
+LED_PIN = 12
 
 # 0 on P1-7           GPIO-4
 # 1 on P1-11          GPIO-17
@@ -8,7 +8,6 @@ DEBUG = True
 # 5 on P1-16          GPIO-23
 # 6 on P1-18          GPIO-24
 # 7 on P1-22          GPIO-25
-LED_PIN = 12
 SPOON_SERVO_ID = 5
 LEG_SERVO_ID = 2
 

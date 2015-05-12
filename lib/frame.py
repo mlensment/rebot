@@ -9,9 +9,8 @@ class Frame:
     def __init__(self, original):
         self.original = original
         self.processed = None
-        self.printed = False
 
-    def find_eye(self):
+    def find_eye(self, debug = False):
         self.processed = self.original.copy()
 
         # convert to grayscale
@@ -52,7 +51,7 @@ class Frame:
             # find center and encosing circle
             (x,y), radius = cv2.minEnclosingCircle(contour)
 
-            if config.DEBUG:
+            if debug:
                 center = (int(x), int(y))
                 radius = int(radius)
 
