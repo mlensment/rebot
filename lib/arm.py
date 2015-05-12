@@ -1,6 +1,3 @@
-import argparse
-import os
-import math
 import time
 import servo_process as sp
 
@@ -106,5 +103,3 @@ class Arm:
 
     def not_finished(self):
         return not self.is_finished()
-# a = Arm()
-# a.run()
