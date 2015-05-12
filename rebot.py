@@ -1,10 +1,7 @@
 #!/usr/bin/python
 
 import argparse
-import config
 from lib import camera, frame, eye, arm, config
-# import eye
-# import arm
 import cv2
 import time
 import numpy
@@ -104,8 +101,8 @@ class Rebot:
         GPIO.output(config.LED_PIN, 0)
         print '--> Rebot will shut down NOW!'
 
-parser = argparse.ArgumentParser(description='Rebot.')
-parser.add_argument('--frame', '-f', nargs='?', const = 'frame.jpg', default = None,
+parser = argparse.ArgumentParser(description = 'Rebot.')
+parser.add_argument('--frame', '-f', nargs = '?', const = 'frame.jpg', default = None,
     help = 'Force camera to cache one frame by specifying its path. '\
     'If the file does not exist or path was not specified, camera will '\
     'snapshot a frame and cache this as "frame.jpg" in the current directory.'
