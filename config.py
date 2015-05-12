@@ -8,12 +8,14 @@ DEBUG = True
 # 5 on P1-16          GPIO-23
 # 6 on P1-18          GPIO-24
 # 7 on P1-22          GPIO-25
-LED_PIN = 12
 SPOON_SERVO_ID = 5
 LEG_SERVO_ID = 2
 
-PWM_STEP_SIZE = 2 # microseconds
+# these values apply for 2us pwm step
 SERVO_MIN_WIDTH = 250 # 0 deg
 SERVO_MAX_WIDTH = 1200 # 180 deg
 
 WINDOW_NAME = "frame"
+
+# how long user must look at the target to confirm the action (value in ms)
+ACTION_CONFIRM_TIME = 2000

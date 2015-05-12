@@ -2,7 +2,7 @@
 
 import argparse
 import config
-from lib import camera, frame, eye, arm
+from lib import camera, frame, eye, arm, config
 # import eye
 # import arm
 import cv2

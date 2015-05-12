@@ -1,6 +1,6 @@
 import math
 import time
-from .. import config
+import config
 
 class Eye:
     target = None
