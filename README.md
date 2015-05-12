@@ -1,7 +1,6 @@
 # R(eye)bot
 
-## Introduction
-The object of this project is to create an eye controllable feeding robot for the disabled. Code name of the project is R(eye)bot which is Rebot, in short.
+The object of this project is to create an eye controllable feeding robot for the disabled. Codename of the project is R(eye)bot which is Rebot, in short.
 
 Code is designed to run on Raspberry PI 2 B with Raspbian operating system. In order to test the code, specialized hardware is required.
 
@@ -17,7 +16,7 @@ The hardware consists of two parts - glasses and robotic arm.
 
 ## Connecting the hardware
 The camera has to be mounted about 5 centimeters away from the eye. PI does not have to go necessarily on the glasses, if you have a long ribbon cable for the camera handy.
-![Glasses](https://github.com/mlensment/rebot/tree/master/img/glasses.png "Glasses")
+![Glasses](https://raw.githubusercontent.com/mlensment/rebot/master/img/glasses.png "Glasses")
 
 The arm must be designed in such a way that it will mechanically maintain the horizontal position for the spoon.
 ![Arm](https://github.com/mlensment/rebot/tree/master/img/glasses.png "Arm")
