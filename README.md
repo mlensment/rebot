@@ -19,9 +19,9 @@ The camera has to be mounted about 5 centimeters away from the eye. PI does not 
 ![Glasses](https://raw.githubusercontent.com/mlensment/rebot/master/img/glasses.png "Glasses")
 
 The arm must be designed in such a way that it will mechanically maintain the horizontal position for the spoon.
-![Arm](https://github.com/mlensment/rebot/tree/master/img/glasses.png "Arm")
+![Arm](https://raw.githubusercontent.com/mlensment/rebot/master/img/arm.png "Arm")
 
-![Schematic](https://github.com/mlensment/rebot/tree/master/img/schematic.png "Schematic")
+![Schematic](https://raw.githubusercontent.com/mlensment/rebot/master/img/schematic.png "Schematic")
 
 ## Feeding procedure
 
