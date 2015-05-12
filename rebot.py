@@ -116,5 +116,5 @@ parser.add_argument('--debug', '-d',
 )
 args = parser.parse_args()
 
-r = Rebot(args.frame)
+r = Rebot(args.frame, args.debug)
 r.run()
