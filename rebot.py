@@ -112,7 +112,8 @@ parser.add_argument('--frame', '-f', nargs='?', const = 'frame.jpg', default = N
 )
 parser.add_argument('--debug', '-d',
     help = 'Debug mode will display processed camera feed. Requires a display server.',
-    action = 'store_true'
+    action = 'store_true',
+    default = False
 )
 args = parser.parse_args()
 
