@@ -97,6 +97,9 @@ Load the driver on boot:
 Before the last line (exit 0) add:
 
     /home/pi/init.sh &
+
+Reboot the system:
+
     sudo reboot
 
 ## Rebot setup
