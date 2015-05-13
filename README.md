@@ -32,10 +32,10 @@ Note that resistances must be calculated depending on the LEDs used.
 
 1. Patient sits at a 80-90 degree angle.
 2. Rebot is turned on.
-3. Rebot flashes the LED shortly, this means camera calibration will start in a second
+3. Rebot flashes the LED shortly, this means camera calibration will start in a second.
 4. Rebot flashes the LED for about 2 to 3 seconds, in that time, patient must look the LED. When the LED turns off, patient must look away.
 5. Rebot flashes the LED shortly, this means all systems are online and the next time patient looks at the LED, the robot will begin to feed.
-6. Rebot will scoop the first portion of food automatically
+6. Rebot will scoop the first portion of food automatically.
 7. Patient must look at the LED for 2 seconds (the LED will illuminate). After this, the arm will move to feed the patient.
 8. After eating, the patient must look at the LED again to move the arm down and scoop for another portion.
 9. Steps 6-8 repeat.
@@ -88,6 +88,8 @@ Add content:
     # This file is executed on boot as root via /etc/rc.local
     echo "Loading servo driver..."
     /home/pi/drivers/servod --step-size 2 --min 280
+
+
 
     chmod +x ~/init.sh
     sudo nano /etc/rc.local
