@@ -80,7 +80,7 @@ Currently OpenCV 2.4.1 and Python 2.7.3 are used, because at the time of writing
     mkdir ~/drivers
     cd ~/drivers
     wget https://github.com/mlensment/rebot/raw/master/drivers/servod
-    sudo nano ~/init.sh
+    nano ~/init.sh
 
 Add content:
 
@@ -89,11 +89,10 @@ Add content:
     echo "Loading servo driver..."
     /home/pi/drivers/servod --step-size 2 --min 280
 
-Load the driver on boot:
-
+```
     chmod +x ~/init.sh
     sudo nano /etc/rc.local
-
+```
 Before the last line (exit 0) add:
 
     /home/pi/init.sh &
