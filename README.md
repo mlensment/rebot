@@ -13,7 +13,7 @@ The hardware consists of two parts - glasses and robotic arm.
 * 2x IR LEDs (800-1000nm) (+2 resistors)
 * 1x LED (+1 resistor)
 * 2x servo motors (+2 1000 ohm resistors to protect GPIO pins) (note that the leg servo should be more powerful)
-* AC/DC 5V adapters for the PI and the servo motors (servo adapter can be slightly more powerful to max out torque).
+* AC/DC 5V adapters for the PI and the servo motors (servo adapter can be slightly more powerful to max out torque)
 
 ## Connecting the hardware
 The camera has to be mounted about 5 centimeters away from the eye. PI does not have to go necessarily on the glasses, if you have a long ribbon cable for the camera handy.
