@@ -31,7 +31,7 @@ class Rebot:
         x_readings = []
         y_readings = []
 
-        while(len(x_readings) <= 40):
+        while(len(x_readings) <= config.CAMERA_CALIBRATION_CYCLES):
             frame = self.camera.read_frame()
             e = frame.find_eye()
 

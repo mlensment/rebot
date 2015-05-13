@@ -19,3 +19,6 @@ WINDOW_NAME = "frame"
 
 # how long user must look at the target to confirm the action (value in ms)
 ACTION_CONFIRM_TIME = 2000
+
+# how many frames to read during camera calibration
+CAMERA_CALIBRATION_CYCLES = 40
