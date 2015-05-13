@@ -89,10 +89,11 @@ Add content:
     echo "Loading servo driver..."
     /home/pi/drivers/servod --step-size 2 --min 280
 
-```
+Load the driver on boot:
+
     chmod +x ~/init.sh
     sudo nano /etc/rc.local
-```
+
 Before the last line (exit 0) add:
 
     /home/pi/init.sh &
