@@ -13,7 +13,7 @@ The hardware consists of two parts - glasses and robotic arm.
 * 2x IR LEDs (800-1000nm) (+2 resistors)
 * 1x LED (+1 resistor)
 * 2x servo motors (+2 1000 ohm resistors to protect GPIO pins) (note that the leg servo should be more powerful)
-* AC/DC adapters for the PI and the servo motors.
+* AC/DC 5V adapters for the PI and the servo motors (servo adapter can be slightly more powerful to max out torque).
 
 ## Connecting the hardware
 The camera has to be mounted about 5 centimeters away from the eye. PI does not have to go necessarily on the glasses, if you have a long ribbon cable for the camera handy.
@@ -113,9 +113,7 @@ Reboot the system:
 
 The configuration is found in the config.py file (in root). Configuration file includes comments on how to configure Rebot and should be self explanatory.
 
-#### Caveats
-
-When changing the `SERVO_MIN_WIDTH` make sure you reconfigure your servo driver with the same or lower `--min` value in `init.sh` in your home path. Do not go too low though, otherwise you may ruin your servo motors.
+There is one caveat though. When changing the `SERVO_MIN_WIDTH` make sure you reconfigure your servo driver with the same or lower `--min` value in `init.sh` in your home path. Do not go too low though, otherwise you may ruin your servo motors.
 
 ### Running Rebot
 
