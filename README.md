@@ -4,6 +4,8 @@ The object of this project is to create an eye controllable feeding robot for th
 
 Code is designed to run on Raspberry PI 2 B with Raspbian operating system. In order to test the code, specialized hardware is required.
 
+Two theses were released about the project. One for [hardware](katrin_msc.pdf) and other for [software](martin_msc.pdf).
+
 ## Hardware
 The hardware consists of two parts - glasses and robotic arm.
 
