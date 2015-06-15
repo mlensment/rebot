@@ -6,7 +6,7 @@ Code is designed to run on Raspberry PI 2 B with Raspbian operating system. In o
 
 Two theses were released about the project. One for [hardware](katrin_msc.pdf) and other for [software](martin_msc.pdf).
 
-Video from the actual prototype can be found from [Youtube](https://youtu.be/gn2T4rIBAUM)
+Video from the actual prototype can be found from [Youtube](https://youtu.be/gn2T4rIBAUM).
 
 ## Hardware
 The hardware consists of two parts - glasses and robotic arm.
